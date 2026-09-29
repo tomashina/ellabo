@@ -26,7 +26,7 @@ if [[ "${1:-}" == "--dry-run" ]]; then
 fi
 
 cd "$repo_root"
-while IFS= read -r -d '' tracked_file; do
+git ls-files -z | while IFS= read -r -d '' tracked_file; do
     case "$tracked_file" in
         .git* | .cpanel.yml | .deploy-excludes | README.md | scripts/* \
         | config.php | admin/config.php | config.example.php | admin/config.example.php \
@@ -43,5 +43,4 @@ while IFS= read -r -d '' tracked_file; do
     esac
 
     printf '%s\0' "$tracked_file"
-done < <(git ls-files -z) \
-    | /usr/bin/rsync "${rsync_options[@]}" "$repo_root/" "$deploy_root/"
+done | /usr/bin/rsync "${rsync_options[@]}" "$repo_root/" "$deploy_root/"
