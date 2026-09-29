@@ -1,0 +1,83 @@
+
+
+<div class="advanced-grid force-full-width advanced-grid-137780138 banners-7 " style="margin-top: 50px;margin-bottom: 0px;">
+           
+          <div style=" background-color: #007470;   background-position: top center;background-repeat: repeat;background-attachment: fixed;"> 
+           
+                <div class="container">
+                    <div style="padding-top: 30px;padding-left: 0px;padding-bottom: 50px;padding-right: 0px;">
+                         <div class="row">
+                               
+                               
+                                {% for banner in banners %}   
+                                    
+                           <div class="col-md-4">
+                            <a href="{{ banner.link }}">
+                                <div class="banner">
+                  <div class="banner-image" style="background-image: url('{{ banner.image }}')"></div>
+        
+                </div> 
+                                              
+                                 </a>        
+                             </div>
+
+                                    {% endfor %}
+                                                       
+
+
+                                                        </div>
+                    </div>
+               </div>
+          </div>
+          
+           
+     </div>
+
+
+
+          <script type="text/javascript">
+               function force_full_width_137780138() {
+                    var p = $(".standard-body .full-width .advanced-grid-137780138");
+                    if(p.size() > 0) {
+                         p.width($('body').width());
+                         p.css("left", "0px");
+                         var position = p.offset();
+                         p.css("left", "-" + position.left + "px");
+                         p.find(".container").css("padding-left", position.left);
+                         p.find(".container").css("padding-right", position.left);
+                    }
+                    
+                    var s = $(".standard-body .fixed .advanced-grid-137780138");
+                    if(s.size() > 0) {
+                         s.width($('.standard-body .fixed .pattern').width());
+                         s.css("left", "0px");
+                         var position = s.offset();
+                         var position2 = $('.standard-body .fixed .pattern').offset();
+                         var position3 = position.left-position2.left;
+                         s.css("left", "-" + position3 + "px");
+                         s.find(".container").css("padding-left", position3);
+                         s.find(".container").css("padding-right", position3);
+                    }
+                    
+                    var c = $(".fixed-body .advanced-grid-137780138");
+                    if(c.size() > 0) {
+                         c.width($('.fixed-body .main-fixed').width());
+                         c.css("left", "0px");
+                         var position = c.offset();
+                         var position2 = $('.fixed-body .main-fixed').offset();
+                         var position3 = position.left-position2.left;
+                         c.css("left", "-" + position3 + "px");
+                         c.find(".container").css("padding-left", position3);
+                         c.find(".container").css("padding-right", position3);
+                    }
+               }
+               
+               force_full_width_137780138();
+               
+               $(window).resize(function() {
+                    force_full_width_137780138();
+               });
+          </script>
+
+
+

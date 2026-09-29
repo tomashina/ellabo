@@ -1,0 +1,73 @@
+header.header-type-4 {
+	#top-bar {
+		.right {
+			ul.menu {
+				border-left: 1px solid rgba(0, 0, 0, 0.1);
+				font-size: 13px;
+				padding: 10px 0px 10px 29px;
+				margin: 0px 0px 0px 29px;
+				display: flex;
+				list-style: none;
+				li {
+					padding-left: 25px;
+					&:first-child {
+						padding-left: 0px;
+					}
+				}
+			}
+		}
+	}
+	.search_form {
+		width: auto;
+		max-width: 245px;
+		position: relative;
+		.search-query {
+			width: 100%;
+			margin: 0px;
+		}
+		.button-search {
+			position: absolute;
+			top: 50%;
+			right: 12px;
+			transform: translateY(-50%);
+			-webkit-transform: translateY(-50%);
+			-moz-transform: translateY(-50%);
+			cursor: pointer;
+			&:before {
+				content: "\f002";
+				font-family: "Font Awesome 5 Free";
+				font-weight: 900;
+				-moz-osx-font-smoothing: grayscale;
+				-webkit-font-smoothing: antialiased;
+				display: inline-block;
+				font-style: normal;
+				font-variant: normal;
+				text-rendering: auto;
+				line-height: 1;
+			}
+		}
+	}
+	.logo {
+		img {
+			margin: 0px auto;
+		}
+	}
+	.my-account {
+		margin-left: auto;
+	}
+	ul.megamenu {
+		text-align: center;
+		> li {
+			float: none;
+			display: inline-block;
+			vertical-align: top;
+			text-align: left;
+			margin-right: 18px;
+			margin-left: 18px;
+			@media (max-width: 1098px) {
+				margin-left: 12px;
+				margin-right: 12px;
+			}
+		}
+	}
+}

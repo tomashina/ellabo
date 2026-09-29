@@ -1,0 +1,49 @@
+{{ header }}
+{% include 'zeexo/template/new_elements/wrapper_top.twig' %}
+{% set theme_options = registry.get('theme_options') %}
+{% set config = registry.get('config') %}
+{% set s = 1 %}
+<div class="row">
+    <div class="col-md-12">
+        <p><strong>Popis Atesta</strong>
+           {% for group_key, anchor in anchors  %}
+                <a href="atesti#{{ anchor }}">
+                    {{ group_key }}
+                </a>
+            {% endfor %}
+        </p>
+        <div class="faq-area">
+            <div class="faq-section">
+                <div id="questions">
+                    {% for group, sections in groups %}
+
+                    <a id="{{ group }}" class="anchor"></a>
+                        <div class="panel panel-faq" >
+                            <div class="panel-heading">
+                                <h4 class="panel-title"  >
+                                    <a data-toggle="collapse"  data-parent="#questions" href="#answer-{{ group|replace({"." : "-","," : "-","{" : "-","}" : "-","[" : "-","]" : "-",";" : "-",":" : "-","(" : "-",")" : "-","&" : "-","*" : "-"," " : "-","/" : "-","+" : "-" }) }}" aria-expanded="false" class="collapsed">
+                                        {{ group }}
+                                    </a>
+                                </h4>
+                            </div>
+                            {% for key, section in sections %}
+                                <div id="answer-{{ group|replace({"." : "-","," : "-","{" : "-","}" : "-","[" : "-","]" : "-",";" : "-",":" : "-","(" : "-",")" : "-","&" : "-","*" : "-"," " : "-","/" : "-" ,"+" : "-"}) }}" class="panel-collapse collapse" aria-expanded="false">
+                                    <div class="panel-body">
+                                        <h4>{{ section['description']['title'] }}</h4>
+                                        <ul>
+                                            {% for file in section['files'] %}
+                                                <li><a href="{{ file['href'] }}">  {{ file['mask'] }} -  {{ file['size'] }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'zeexo/template/new_elements/wrapper_bottom.twig' %}
+{{ footer }}

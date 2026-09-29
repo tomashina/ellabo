@@ -1,0 +1,51 @@
+{% if (registry.has('theme_options') == constant('true')) %} 
+  {% set id = random(50000)*random(50000) %}
+
+  <div class="box">
+    <script type="text/javascript">
+      $(document).ready(function() {
+        var owl{{ id }} = $(".box #myCarousel{{ id }} .owl-carousel");
+
+        owl{{ id }}.owlCarousel({
+          slideSpeed: 500,
+          margin: 30,
+          nav: false,
+          dots: false,
+          responsiveClass:true,
+          responsive:{
+            0:{
+              items:2
+            },
+            600:{
+              items:3
+            },
+            1000:{
+              items:4
+            }
+          }
+        });
+      });
+    </script>
+
+    {% if (module['content']['title'] != '') %} 
+      <div class="box-heading">{{ module['content']['title'] }}</div>
+      <div class="strip-line"></div>
+    {% endif %} 
+    <div class="clear"></div>
+    <div class="box-content furniture4-most-viewed-products">
+      <div id="myCarousel{{ id }}">
+        <div class="owl-carousel">
+          <div class="item">
+            {% for product in module['content']['products'] %} 
+              {% if loop.index == 3 or loop.index == 5 or loop.index == 7 or loop.index == 9 or loop.index == 11 or loop.index == 13 or loop.index == 15 %}
+                </div>
+                <div class="item">
+              {% endif %}
+              {% include 'zeexo/template/new_elements/product.twig' %}
+            {% endfor %} 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+{% endif %}

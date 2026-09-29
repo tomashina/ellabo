@@ -1,0 +1,516 @@
+{% if (registry.has('theme_options') == constant('false')) %} 
+  <style>
+    body {
+      display: none !important;
+    }
+  </style>
+  <script>
+    window.location = 'themeinstall/index.php';
+  </script>
+{% else %}
+	{% set theme_options = registry.get('theme_options') %}
+	{% set config = registry.get('config') %}
+	{% set request = registry.get('request') %}
+
+	{% if (request.get['route'] is defined) %}
+		{% if (request.get['product_id'] is defined) %}
+			{% set class = '-' ~ request.get['product_id'] %}
+		{% elseif (request.get['path'] is defined) %}
+			{% set class = '-' ~ request.get['path'] %}
+		{% elseif (request.get['manufacturer_id'] is defined) %}
+			{% set class = '-' ~ request.get['manufacturer_id'] %}
+		{% elseif (request.get['information_id'] is defined) %}
+			{% set class = '-' ~ request.get['information_id'] %}
+		{% else %} 
+			{% set class = '' %}
+		{% endif %}
+
+		{% set klasa = request.get['route']|replace({ '/': "-" }) ~ class %}
+	{% else %} 
+		{% set klasa = 'common-home' %}
+	{% endif %} 
+
+	<!DOCTYPE html>
+	<!--[if IE 7]> <html lang="{{ lang }}" class="ie7 responsive"> <![endif]-->  
+	<!--[if IE 8]> <html lang="{{ lang }}" class="ie8 responsive"> <![endif]-->  
+	<!--[if IE 9]> <html lang="{{ lang }}" class="ie9 responsive"> <![endif]-->  
+	<!--[if !IE]><!--> <html lang="{{ lang }}" class="responsive"> <!--<![endif]-->  
+	<head>
+		<title>{{ title }} - elektromaterijal, rasvjeta Ellabo</title>
+		<base href="{{ base }}" />
+
+		<!-- Meta -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		{% if (theme_options.get( 'responsive_design' ) != '0') %} 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		{% endif %} 
+		{% if (description) %} 
+		<meta name="description" content="{{ description }}" />
+		{% endif %} 
+		{% if (keywords) %} 
+		<meta name="keywords" content="{{ keywords }}" />
+		{% endif %} 
+		
+		{% for link in links %} 
+		<link href="{{ link['href'] }}" rel="{{ link['rel'] }}" />
+		{% endfor %} 
+		
+		<!-- Google Fonts -->
+		<link href="//fonts.googleapis.com/css?family=IBM+Plex+Sans:800,700,600,500,400,300" rel="stylesheet" type="text/css">
+
+		{% if theme_options.get( 'load_styles' ) == 'jewelry_1.css' or theme_options.get( 'load_styles' ) == 'jewelry_2.css' or theme_options.get( 'load_styles' ) == 'jewelry_3.css' or theme_options.get( 'load_styles' ) == 'jewelry_4.css' or theme_options.get( 'load_styles' ) == 'jewelry_5.css' or theme_options.get( 'load_styles' ) == 'jewelry_6.css' or theme_options.get( 'load_styles' ) == 'jewelry_7.css' or theme_options.get( 'load_styles' ) == 'jewelry_8.css' or theme_options.get( 'load_styles' ) == 'jewelry_9.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_1.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_2.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_3.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_4.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_5.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_6.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_7.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_8.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_1.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_2.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_3.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_4.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_5.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_6.css' %}
+			<link href="//fonts.googleapis.com/css?family=Barlow:800,700,600,500,400,300" rel="stylesheet" type="text/css">
+		{% endif %}
+
+		{% if theme_options.get( 'load_styles' ) == 'glasses_1.css' or theme_options.get( 'load_styles' ) == 'glasses_2.css' or theme_options.get( 'load_styles' ) == 'glasses_3.css' or theme_options.get( 'load_styles' ) == 'glasses_4.css' or theme_options.get( 'load_styles' ) == 'glasses_5.css' or theme_options.get( 'load_styles' ) == 'furniture_1.css' or theme_options.get( 'load_styles' ) == 'furniture_2.css' or theme_options.get( 'load_styles' ) == 'furniture_3.css' or theme_options.get( 'load_styles' ) == 'furniture_4.css' or theme_options.get( 'load_styles' ) == 'furniture_5.css' or theme_options.get( 'load_styles' ) == 'furniture_6.css' or theme_options.get( 'load_styles' ) == 'furniture_7.css' or theme_options.get( 'load_styles' ) == 'furniture_8.css' or theme_options.get( 'load_styles' ) == 'furniture_9.css' or theme_options.get( 'load_styles' ) == 'furniture_10.css' or theme_options.get( 'load_styles' ) == 'furniture_11.css' or theme_options.get( 'load_styles' ) == 'clean_1.css' or theme_options.get( 'load_styles' ) == 'clean_2.css' or theme_options.get( 'load_styles' ) == 'clean_3.css' or theme_options.get( 'load_styles' ) == 'clean_4.css' or theme_options.get( 'load_styles' ) == 'clean_5.css' or theme_options.get( 'load_styles' ) == 'clean_6.css' or theme_options.get( 'load_styles' ) == 'clean_7.css' %}
+			<link href="//fonts.googleapis.com/css?family=Montserrat:800,700,600,500,400,300" rel="stylesheet" type="text/css">
+		{% endif %}
+		
+		{% if ( theme_options.get( 'font_status' ) == '1' ) %}
+			{% set lista_fontow = [] %}
+	 		{% if ( theme_options.get( 'body_font' ) != '' and theme_options.get( 'body_font' ) != 'standard' and theme_options.get( 'body_font' ) != 'Arial' and theme_options.get( 'body_font' ) != 'Georgia' and theme_options.get( 'body_font' ) != 'Times New Roman' ) %}
+				{% set font = theme_options.get( 'body_font' ) %}
+				{% set lista_fontow = lista_fontow|merge([font]) %}
+			{% endif %}
+			
+			{% for font in lista_fontow %} 
+				{{ '<link href="//fonts.googleapis.com/css?family=' ~ font|url_encode ~ ':800,700,600,500,400,300,200,100" rel="stylesheet" type="text/css">' }}
+			{% endfor %}
+		{% endif %}
+		
+		
+		{% set lista_plikow = [
+				'catalog/view/theme/zeexo/css/bootstrap.css',
+				'catalog/view/theme/zeexo/css/animate.css',
+				'catalog/view/theme/zeexo/css/stylesheet.css',
+				'catalog/view/theme/zeexo/css/menu.css',
+				'catalog/view/theme/zeexo/css/owl.carousel.css'
+		] %} 
+		
+		{# Full screen background slider #}
+		{% if (config.get( 'full_screen_background_slider_module' ) != '') %} {% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/css/jquery.vegas.css']) %}{% endif %}
+		
+		{# Category wall #}
+		{% if (config.get( 'category_wall_module' ) != '') %} {% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/css/category_wall.css']) %}{% endif %}
+		
+		{# Filter product #}
+		{% if (config.get( 'filter_product_module' ) != '') %} {% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/css/filter_product.css']) %}{% endif %}
+
+		{# Carousel brands #}
+		{% if (config.get( 'carousel_module' ) != '') %} {% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/css/carousel.css']) %}{% endif %}
+		
+		{# Wide width		 #}
+		{% if (theme_options.get( 'page_width' ) == 1) %} {% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/css/wide-grid.css']) %}{% endif %}
+		
+		{# Normal width #}
+		{% if (theme_options.get( 'page_width' ) == 3) %} {% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/css/standard-grid.css']) %}{% endif %}
+
+		{# header types #}
+		{% if (theme_options.get( 'header_type' ) == 2) %}
+			{% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/css/header/header_2.css']) %}
+		{% elseif (theme_options.get('header_type') == 3) %}
+			{% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/css/header/header_3.css']) %}
+		{% elseif (theme_options.get('header_type') == 4) %}
+			{% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/css/header/header_4.css']) %}
+		{% elseif (theme_options.get('header_type') == 5) %}
+			{% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/css/header/header_5.css']) %}
+		{% elseif (theme_options.get('header_type') == 6) %}
+			{% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/css/header/header_6.css']) %}
+		{% elseif (theme_options.get('header_type') == 7) %}
+			{% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/css/header/header_7.css']) %}
+		{% elseif (theme_options.get('header_type') == 8) %}
+			{% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/css/header/header_8.css']) %}
+		{% elseif (theme_options.get('header_type') == 9) %}
+			{% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/css/header/header_9.css']) %}
+		{% elseif (theme_options.get('header_type') == 10) %}
+			{% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/css/header/header_10.css']) %}
+		{% elseif (theme_options.get('header_type') == 11) %}
+			{% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/css/header/header_11.css']) %}
+		{% elseif (theme_options.get('header_type') == 12) %}
+			{% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/css/header/header_12.css']) %}
+		{% elseif (theme_options.get('header_type') == 13) %}
+			{% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/css/header/header_13.css']) %}
+		{% elseif (theme_options.get('header_type') == 14) %}
+			{% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/css/header/header_14.css']) %}
+		{% elseif (theme_options.get('header_type') == 15) %}
+			{% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/css/header/header_15.css']) %}
+		{% elseif (theme_options.get('header_type') == 16) %}
+			{% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/css/header/header_16.css']) %}
+		{% elseif (theme_options.get('header_type') == 17) %}
+			{% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/css/header/header_17.css']) %}
+		{% elseif (theme_options.get('header_type') == 18) %}
+			{% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/css/header/header_18.css']) %}
+		{% elseif (theme_options.get('header_type') == 19) %}
+			{% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/css/header/header_19.css']) %}
+		{% endif %}
+
+		{# custom styles for skin #}
+		{% if (theme_options.get( 'load_styles' ) != '' and theme_options.get( 'load_styles' ) != '0') %} {% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/css/skins/' ~ theme_options.get( 'load_styles' )]) %}{% endif %}
+
+		{{ theme_options.compressorCodeCss( 'zeexo', lista_plikow, theme_options.get( 'compressor_code_status' ), constant('HTTP_SERVER') ) }} 
+		
+		
+		{# <link rel="stylesheet/less" type="text/css" href="catalog/view/theme/zeexo/css/stylesheet.less" />
+		<link rel="stylesheet/less" type="text/css" href="catalog/view/theme/zeexo/css/header/header_14.less" />
+		<link rel="stylesheet/less" type="text/css" href="catalog/view/theme/zeexo/css/skins/market_gray_7.less" />
+		<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js" ></script> #}
+
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+		{# Custom colors, fonts and backgrounds #}
+		{% include 'zeexo/css/custom_colors.twig' %}
+		
+		{% if (theme_options.get( 'custom_code_css_status' ) == 1) %} 
+		<link rel="stylesheet" href="catalog/view/theme/zeexo/skins/store_{{ theme_options.get( 'store' ) }}/{{ theme_options.get( 'skin' ) }}/css/custom_code.css">
+		{% endif %} 
+		
+		{% for style in styles %} 
+			{% if ("mf/jquery-ui.min.css" in style['href']) %} 
+				<link rel="{{ style['rel'] }}" type="text/css" href="catalog/view/theme/zeexo/css/jquery-ui.min.css" media="{{ style['media'] }}" />
+			{% elseif ("mf/style.css" in style['href']) %} 
+				<link rel="{{ style['rel'] }}" type="text/css" href="catalog/view/theme/zeexo/css/mega_filter.css" media="{{ style['media'] }}" />
+			{% elseif ("blog-news" in style['href']) %} 
+				<link rel="{{ style['rel'] }}" type="text/css" href="catalog/view/theme/zeexo/css/blog.css" media="{{ style['media'] }}" />
+			{% elseif (style['href'] != 'catalog/view/javascript/jquery/owl-carousel/owl.carousel.css') %} 
+				<link rel="{{ style['rel'] }}" type="text/css" href="{{ style['href'] }}" media="{{ style['media'] }}" />
+			{% endif %} 
+		{% endfor %} 
+		
+		<link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/magnific/magnific-popup.css" media="screen" />
+		
+		{% if (theme_options.get( 'page_width' ) == 2 and theme_options.get( 'max_width' ) > 900) %} 
+		<style type="text/css">
+			.standard-body .full-width .container {
+				max-width: {{ theme_options.get( 'max_width' ) }}px;
+			}
+			
+			.standard-body .fixed .background,
+			.main-fixed {
+				max-width: {{ theme_options.get( 'max_width' )-40 }}px;
+			}
+		</style>
+		{% endif %} 
+		    
+	    {% set lista_plikow = [] %} 
+		 
+		{% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/js/jquery-2.1.1.min.js']) %}
+		{% if (theme_options.file_exists('catalog/view/javascript/mf/jquery-ui.min.js')) %} {% set lista_plikow = lista_plikow|merge(['catalog/view/javascript/mf/jquery-ui.min.js']) %}{% endif %}
+		{% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/js/jquery-migrate-1.2.1.min.js']) %}
+		{% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/js/jquery.easing.1.3.js']) %}
+		{% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/js/popper.min.js']) %}
+		{% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/js/bootstrap.min.js']) %}
+		{% if (theme_options.get( 'lazy_loading_images' ) != '0') %} {% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/js/echo.min.js']) %}{% endif %}
+		{% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/js/spectragram.min.js']) %}
+		{% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/js/common.js']) %}
+		{% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/js/tweetfeed.min.js']) %}
+		{% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/js/bootstrap-notify.min.js']) %}
+		 
+		{# Specials countdown #}
+		{% if (theme_options.get( 'display_specials_countdown' ) == '1') %}
+			{% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/js/jquery.plugin.min.js']) %}
+			{% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/js/jquery.countdown.min.js']) %}
+		{% endif %}
+		 
+		{# Carousel brands #}
+		{% if (config.get( 'carousel_module' ) != '') %} {% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/js/jquery.jcarousel.min.js']) %}{% endif %}
+		 
+		{# Banner module #}
+		{% if (config.get( 'banner_module' ) != '') %} {% set lista_plikow = lista_plikow|merge(['catalog/view/theme/zeexo/js/jquery.cycle2.min.js']) %}{% endif %}
+		 
+		{{ theme_options.compressorCodeJs( 'zeexo', lista_plikow, theme_options.get( 'compressor_code_status' ), constant('HTTPS_SERVER') ) }} 
+	    
+	    {# Full screen background slider #}
+	 	{% if (config.get( 'full_screen_background_slider_module' ) != '') %} 
+	        <script type="text/javascript" src="catalog/view/theme/zeexo/js/jquery.vegas.min.js"></script>
+	    {% endif %} 
+	    
+	    {# Fixed header #}
+	 	{% if (theme_options.get( 'fixed_header' ) == 1) %} 
+	        <script type="text/javascript" src="catalog/view/theme/zeexo/js/jquery.sticky.js"></script>
+	    {% endif %} 
+	    
+	    <script type="text/javascript" src="catalog/view/theme/zeexo/js/owl.carousel.min.js"></script>
+	    
+	    {% if (theme_options.get( 'quick_search_autosuggest' ) != '0' and klasa != 'account-tracking') %} 
+	    	<script type="text/javascript" src="catalog/view/theme/zeexo/js/jquery-ui-1.10.4.custom.min.js"></script>
+	    {% endif %} 
+	    
+	    <script type="text/javascript" src="catalog/view/javascript/jquery/magnific/jquery.magnific-popup.min.js"></script>
+		
+		<script type="text/javascript">
+			var responsive_design = 'yes';
+		</script>
+		
+		{% for script in scripts %} 
+			{% if (script != 'catalog/view/javascript/jquery/owl-carousel/owl.carousel.min.js') %} 
+				<script type="text/javascript" src="{{ script }}"></script>
+			{% endif %} 
+			{% if ("mega_filter.js" in script) %} 
+				<script type="text/javascript">
+					function display_MFP(view) {
+					     {% if (theme_options.get( 'quick_view' ) == 1) %} 
+					     $('.quickview a').magnificPopup({
+					          preloader: true,
+					          tLoading: '',
+					          type: 'iframe',
+					          mainClass: 'quickview',
+					          removalDelay: 200,
+					          gallery: {
+					           enabled: true
+					          }
+					     });
+					     {% endif %} 
+					     
+						if (localStorage.getItem('display') == 'list') {
+							display('list');
+						} else {
+							display('grid');
+						}
+					}
+				</script>
+			{% endif %} 
+		{% endfor %} 
+
+		<script type="text/javascript" src="catalog/view/theme/zeexo/js/jquery.ihavecookies.js"></script>
+		<script type="text/javascript">
+$(document).ready(function() {
+$('body').ihavecookies({
+
+delay: 600,
+expires: 90,
+
+onAccept: function(){
+var myPreferences = $.fn.ihavecookies.cookie();
+
+},
+uncheckBoxes: false
+});
+
+});
+</script>
+		
+		{% if (theme_options.get( 'custom_code_javascript_status' ) == 1) %} 
+			<script type="text/javascript" src="catalog/view/theme/zeexo/skins/store_{{ theme_options.get( 'store' ) }}/{{ theme_options.get( 'skin' ) }}/js/custom_code.js"></script>
+		{% endif %} 
+		
+		{% for analytic in analytics %} 
+		{{ analytic }} 
+		{% endfor %} 
+		<!--[if lt IE 9]>
+			<script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="catalog/view/theme/zeexo/js/respond.min.js"></script>
+		<![endif]-->
+	</head>	
+	<body class="{{ klasa }}">
+	<div id="wrap-main">
+
+	{% if (theme_options.get( 'widget_facebook_status' ) == 1) %} 
+	<div class="facebook_{% if (theme_options.get( 'widget_facebook_position' ) == 1) %}{{ 'left' }}{% else %}{{ 'right' }}{% endif %} hidden-xs hidden-sm">
+		<div class="facebook-icon"></div>
+		<div class="facebook-content">
+			<script>(function(d, s, id) {
+			  var js, fjs = d.getElementsByTagName(s)[0];
+			  if (d.getElementById(id)) return;
+			  js = d.createElement(s); js.id = id;
+			  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+			  fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));</script>
+			
+			<div class="fb-like-box fb_iframe_widget" profile_id="{{ theme_options.get( 'widget_facebook_id' ) }}" data-colorscheme="light" data-height="370" data-connections="16" fb-xfbml-state="rendered"></div>
+		</div>
+		
+		<script type="text/javascript">    
+		$(function() {  
+			$(".facebook_right").hover(function() {            
+				$(".facebook_right").stop(true, false).animate({right: "0"}, 800, 'easeOutQuint');        
+			}, function() {            
+				$(".facebook_right").stop(true, false).animate({right: "-308"}, 800, 'easeInQuint');        
+			}, 1000);    
+		
+			$(".facebook_left").hover(function() {            
+				$(".facebook_left").stop(true, false).animate({left: "0"}, 800, 'easeOutQuint');        
+			}, function() {            
+				$(".facebook_left").stop(true, false).animate({left: "-308"}, 800, 'easeInQuint');        
+			}, 1000);    
+		});  
+		</script>
+	</div>
+	{% endif %} 
+
+	{% if (theme_options.get( 'widget_twitter_status' ) == 1) %} 
+	<div class="twitter_{% if (theme_options.get( 'widget_twitter_position' ) == 1) %}{{ 'left' }}{% else %}{{ 'right' }}{% endif %} hidden-xs hidden-sm">
+		<div class="twitter-icon"></div>
+		<div class="twitter-content">
+			<a class="twitter-timeline"
+			  href="https://twitter.com/{{ theme_options.get( 'widget_twitter_user_name' ) }}"
+			  data-width="300"
+			  data-height="300">
+			Tweets by @{{ theme_options.get( 'widget_twitter_user_name' ) }}
+			</a>
+		</div>
+
+		<script>window.twttr = (function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0],
+		    t = window.twttr || {};
+		  if (d.getElementById(id)) return t;
+		  js = d.createElement(s);
+		  js.id = id;
+		  js.src = "https://platform.twitter.com/widgets.js";
+		  fjs.parentNode.insertBefore(js, fjs);
+
+		  t._e = [];
+		  t.ready = function(f) {
+		    t._e.push(f);
+		  };
+
+		  return t;
+		}(document, "script", "twitter-wjs"));</script>
+
+		<script type="text/javascript">    
+		$(function() {  
+			$(".twitter_right").hover(function() {            
+				$(".twitter_right").stop(true, false).animate({right: "0"}, 800, 'easeOutQuint');        
+			}, function() {            
+				$(".twitter_right").stop(true, false).animate({right: "-250"}, 800, 'easeInQuint');        
+			}, 1000);    
+		
+			$(".twitter_left").hover(function() {            
+				$(".twitter_left").stop(true, false).animate({left: "0"}, 800, 'easeOutQuint');        
+			}, function() {            
+				$(".twitter_left").stop(true, false).animate({left: "-250"}, 800, 'easeInQuint');        
+			}, 1000);    
+		});  
+		</script>
+	</div>
+	{% endif %} 
+
+	{% if (theme_options.get( 'widget_custom_status' ) == 1) %} 
+	<div class="custom_{% if (theme_options.get( 'widget_custom_position' ) == 1) %}{{ 'left' }}{% else %}{{ 'right' }}{% endif %} hidden-xs hidden-sm">
+		<div class="custom-icon"></div>
+		<div class="custom-content">
+			{% set lang_id = config.get( 'config_language_id' ) %} 
+			{% set custom_content = theme_options.get( 'widget_custom_content' ) %} 
+			{% if (custom_content[lang_id] is defined) %} {{ theme_options.html_entity_decode(custom_content[lang_id]) }}{% endif %} 
+		</div>
+		
+		<script type="text/javascript">    
+		$(function() {  
+			$(".custom_right").hover(function() {            
+				$(".custom_right").stop(true, false).animate({right: "0"}, 800, 'easeOutQuint');        
+			}, function() {            
+				$(".custom_right").stop(true, false).animate({right: "-250"}, 800, 'easeInQuint');        
+			}, 1000);    
+		
+			$(".custom_left").hover(function() {            
+				$(".custom_left").stop(true, false).animate({left: "0"}, 800, 'easeOutQuint');        
+			}, function() {            
+				$(".custom_left").stop(true, false).animate({left: "-250"}, 800, 'easeInQuint');        
+			}, 1000);    
+		});  
+		</script>
+		
+	</div>
+	{% endif %} 
+	
+	{% if (theme_options.get( 'quick_view' ) == 1) %} 
+	<script type="text/javascript">
+	$(window).load(function(){
+	     $('.quickview a').magnificPopup({
+	          preloader: true,
+	          tLoading: '',
+	          type: 'iframe',
+	          mainClass: 'quickview',
+	          removalDelay: 200,
+	          gallery: {
+	           enabled: true
+	          }
+	     });
+	});
+	</script>
+	{% endif %} 
+
+	{% if (theme_options.get( 'fixed_header' ) == 1) %} 
+	<script type="text/javascript">
+	  $(window).load(function(){
+	  	if($(window).outerWidth() > 1280) {
+		    $("#top").sticky({ topSpacing: 0 });
+		}
+	  });
+	</script>
+	{% endif %} 
+
+
+	{% set popup = theme_options.getModules('popup') %}
+	{% if ( popup|length > 0 ) %} 
+		{% for module in popup %} 
+			{{ module }}
+		{% endfor %}
+	{% endif %} 
+
+
+	{% set header_notice = theme_options.getModules('header_notice') %}
+	{% if ( header_notice|length > 0 ) %} 
+		{% for module in header_notice %} 
+			{{ module }}
+		{% endfor %}
+	{% endif %} 
+
+
+	{% set cookie = theme_options.getModules('cookie') %}
+	{% if ( cookie|length > 0 ) %} 
+	 {% for module in cookie %} 
+	 {{ module }}
+	 {% endfor %}
+	{% endif %} 
+	
+	<div class="{% if (theme_options.get( 'main_layout' ) == 2) %} {{ 'fixed-body' }} {% else %} {{ 'standard-body' }} {% endif %}">
+		<div id="main" class="{% if (theme_options.get( 'main_layout' ) == 2) %} {{ 'main-fixed' }} {% endif %}">
+			{% if (theme_options.get( 'mobile_header_type' ) == 2) %}
+				{% include 'zeexo/template/common/mobile_header/header_02.twig' %}
+			{% elseif (theme_options.get( 'mobile_header_type' ) == 3) %}
+				{% include 'zeexo/template/common/mobile_header/header_03.twig' %}
+			{% else %} 	
+				{% include 'zeexo/template/common/mobile_header/header_01.twig' %}
+			{% endif %}
+			{% if (theme_options.get( 'header_type' ) == 2) %}
+				{% include 'zeexo/template/common/header/header_02.twig' %}
+			{% elseif (theme_options.get( 'header_type' ) == 3) %}
+				{% include 'zeexo/template/common/header/header_03.twig' %}
+			{% elseif (theme_options.get( 'header_type' ) == 4) %}
+				{% include 'zeexo/template/common/header/header_04.twig' %}
+			{% elseif (theme_options.get( 'header_type' ) == 5) %}
+				{% include 'zeexo/template/common/header/header_05.twig' %}
+			{% elseif (theme_options.get( 'header_type' ) == 6) %}
+				{% include 'zeexo/template/common/header/header_06.twig' %}
+			{% elseif (theme_options.get( 'header_type' ) == 7) %}
+				{% include 'zeexo/template/common/header/header_07.twig' %}
+			{% elseif (theme_options.get( 'header_type' ) == 8) %}
+				{% include 'zeexo/template/common/header/header_08.twig' %}
+			{% elseif (theme_options.get( 'header_type' ) == 9) %}
+				{% include 'zeexo/template/common/header/header_09.twig' %}
+			{% elseif (theme_options.get( 'header_type' ) == 10) %}
+				{% include 'zeexo/template/common/header/header_10.twig' %}
+			{% elseif (theme_options.get( 'header_type' ) == 11) %}
+				{% include 'zeexo/template/common/header/header_11.twig' %}
+			{% elseif (theme_options.get( 'header_type' ) == 12) %}
+				{% include 'zeexo/template/common/header/header_12.twig' %}
+			{% elseif (theme_options.get( 'header_type' ) == 13) %}
+				{% include 'zeexo/template/common/header/header_13.twig' %}
+			{% elseif (theme_options.get( 'header_type' ) == 14) %}
+				{% include 'zeexo/template/common/header/header_14.twig' %}
+			{% elseif (theme_options.get( 'header_type' ) == 15) %}
+				{% include 'zeexo/template/common/header/header_15.twig' %}
+			{% elseif (theme_options.get( 'header_type' ) == 16) %}
+				{% include 'zeexo/template/common/header/header_16.twig' %}
+			{% elseif (theme_options.get( 'header_type' ) == 17) %}
+				{% include 'zeexo/template/common/header/header_17.twig' %}
+			{% elseif (theme_options.get( 'header_type' ) == 18) %}
+				{% include 'zeexo/template/common/header/header_18.twig' %}
+			{% elseif (theme_options.get( 'header_type' ) == 19) %}
+				{% include 'zeexo/template/common/header/header_19.twig' %}
+			{% else %} 
+				{% include 'zeexo/template/common/header/header_01.twig' %}
+			{% endif %} 
+	
+{% endif %}

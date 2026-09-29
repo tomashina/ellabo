@@ -1,0 +1,9 @@
+#cart_content{
+overflow: scroll;
+max-height: 500px;
+} 
+
+.product-info .product-center h1 {
+
+  text-transform: unset;
+}

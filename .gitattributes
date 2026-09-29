@@ -1,0 +1,2 @@
+# Preserve the production snapshot byte-for-byte, including existing line endings.
+* -text

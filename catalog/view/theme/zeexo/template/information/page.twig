@@ -1,0 +1,35 @@
+{{ header }} 
+{% include 'zeexo/template/new_elements/wrapper_top.twig' %}
+
+<div style="padding-bottom: 10px">{{ description }}</div>
+
+
+
+ <!-- <div style="padding-bottom: 10px">{{ custom_field_3.text }}</div>
+
+
+   <div style="padding-bottom: 10px"> {{ custom_field_4.text }}</div> -->
+
+
+
+
+       
+{% if docs %}
+            <ul>
+                {% for doc in docs %}
+                    <li><a href="{{ doc['href'] }}">{{ doc['mask'] }}</a></li>
+                {% endfor %}
+            </ul>
+            {#{% for doc in docs %}
+                <li>{{ doc['mask'] }}</li>
+                <embed width="191" height="207" name="plugin" src="/storage/download/{{ doc['filename'] }}" type="application/pdf">
+            {% endfor %}#}
+        {% endif %}
+   
+
+
+ 
+
+
+{% include 'zeexo/template/new_elements/wrapper_bottom.twig' %}
+{{ footer }}

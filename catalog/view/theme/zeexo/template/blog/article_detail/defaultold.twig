@@ -1,0 +1,368 @@
+{{ header }} 
+{% include 'zeexo/template/new_elements/wrapper_top.twig' %}
+
+{% if (settings['comments_engine'] == 'FACEBOOK') %}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+{% endif %} 
+
+{% set theme_options = registry.get('theme_options') %}
+{% set config = registry.get('config') %} 
+{% set page_direction = theme_options.get( 'page_direction' ) %} 
+{% set language_id = config.get( 'config_language_id' ) %}
+
+{% if (article|length > 0) %}
+<div class="post">
+    <div class="post-entry">
+        {% if (article['gallery']|length > 0) %}
+            {% if (article['article_list_gallery_display'] == 'CLASSIC') %}
+                <div class="post-media">
+                    {{ article['gallery'][0]['output'] }}
+                </div>
+            {% endif %} 
+            {% if (article['article_list_gallery_display'] == 'SLIDER') %}
+                <div class="post-media">
+                    <div class="media-slider owl-carousel">
+                    {% for gallery in article['gallery'] %}
+                        <div class="item">{{ gallery['output'] }}</div>
+                    {% endfor %} 
+                    </div>
+                </div>
+            {% endif %} 
+        {% endif %} 
+
+        <div class="post-heading">
+          <div class="row">
+            <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+              <h2>{{ heading_title }}</h2>
+              <div class="date-published">
+                  <span class="month">
+                      {{ theme_options.date('M', theme_options.strtotime(article['date_published'])) }} 
+                  </span>
+                  <span class="day">
+                      {{ theme_options.date('d', theme_options.strtotime(article['date_published'])) }},
+                  </span>
+                  <span class="day">
+                      {{ theme_options.date('Y', theme_options.strtotime(article['date_published'])) }} 
+                  </span>
+              </div>
+              {% if (settings['comments_engine'] == 'LOCAL') %}
+              <div class="comments">{{ article['comments_count']}} {{ text_comments}}</div>
+              {% endif %}
+            </div>
+          </div> 
+        </div>
+
+        <div class="post-content">
+          <div class="row">
+            <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+              {{ article['content']}}
+            </div>
+          </div>
+        </div>
+
+        <script type="text/javascript">
+          $('.gallery-content').magnificPopup({
+            delegate: 'a', // child items selector, by clicking on it popup will open
+            type: 'image'
+            // other options
+          });
+        </script>
+     
+      {% if (products|length > 0 and settings['product_related_status'] == 1) %} 
+        {% set id = random(5000) * random(50000) %}
+        <div class="box clearfix box-with-products {% if (settings['product_scroll_related'] != '0') %} {{ 'with-scroll' }} {% endif %}">
+          {% if (settings['product_scroll_related'] != '0') %} 
+          <!-- Carousel nav -->
+          <a class="next" href="#myCarousel{{ id }}" id="myCarousel{{ id }}_next"><span></span></a>
+          <a class="prev" href="#myCarousel{{ id }}" id="myCarousel{{ id }}_prev"><span></span></a>
+          {% endif %} 
+          
+           <div class="row"><div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2"><div class="box-heading text-left">{{ text_related_products }}</div></div></div>
+          <div class="strip-line"></div>
+          <div class="clear"></div>
+          <div class="box-content products">
+            <div class="box-product">
+              <div id="myCarousel{{ id }}">
+                {% if (settings['product_scroll_related'] != '0') %} 
+                  <div class="owl-carousel">
+                      <div class="item">
+                        <div class="product-grid">
+                          {% for product in products %}
+                            {% if loop.index > 1 %}</div></div><div class="item"><div class="product-grid">{% endif %}
+                            {% include 'zeexo/template/new_elements/product.twig' %}
+                          {% endfor %}
+                        </div>
+                      </div>
+                    </div>
+                {% else %}
+                    <div class="active item">
+                      <div class="product-grid">
+                        <div class="row">
+                        {% set class = 'col-6 col-md-4 col-lg-3' %} 
+                        {% if (settings['product_related_per_row'] == 6) %} {% set class = 'col-6 col-md-3 col-lg-2' %} {% endif %}
+                        {% if (settings['product_related_per_row'] == 5) %} {% set class = 'col-6 col-md-3 col-lg-25' %} {% endif %}
+                        {% if (settings['product_related_per_row'] == 3) %} {% set class = 'col-6 col-md-6 col-lg-4' %} {% endif %}
+                        {% if (settings['product_related_per_row'] == 2) %} {% set class = 'col-12 col-md-6' %} {% endif %}
+                          {% for product in products %}
+                            <div class="{{ class }}">
+                              {% include 'zeexo/template/new_elements/product.twig' %}
+                            </div>
+                          {% endfor %} 
+                        </div>
+                      </div>
+                    </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% if (settings['product_scroll_related'] != '0') %} 
+        <script type="text/javascript">
+          $(document).ready(function() {
+            var owl{{ id }} = $(".box #myCarousel{{ id }} .owl-carousel");
+            
+            $("#myCarousel{{ id }}_next").click(function(){
+                owl{{ id }}.trigger('next.owl.carousel');
+                return false;
+              })
+            $("#myCarousel{{ id }}_prev").click(function(){
+                owl{{ id }}.trigger('prev.owl.carousel');
+                return false;
+            });
+
+          {% set itemsmobile = 2 %}
+          {% set itemstablet = 3 %}
+
+          {% if settings['product_related_per_row'] == 2 %}
+            {% set itemsmobile = 1 %}
+            {% set itemstablet = 2 %}
+          {% endif %}
+
+          {% set itemsperpage = 4 %} 
+          {% if (settings['product_related_per_row'] > 1) %}{% set itemsperpage = settings['product_related_per_row'] %}{% endif %} 
+         
+            owl{{ id }}.owlCarousel({
+              slideSpeed: 500,
+              {% if theme_options.get( 'load_styles' ) == 'fashion_modern_1.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_2.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_3.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_4.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_5.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_6.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_7.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_8.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_1.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_2.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_3.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_4.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_5.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_6.css' %}
+                margin: 10,
+              {% else %}
+                margin: 30,
+              {% endif %}
+              nav: false,
+              dots: false,
+              responsiveClass:true,
+              responsive:{
+                  0:{
+                      items:{{ itemsmobile }},
+                  },
+                  600:{
+                      items:{{ itemstablet }},
+                  },
+                  1000:{
+                      items:{{ itemsperpage }},
+                  }
+              }
+             });
+          });
+        </script>
+        {% endif %}
+      {% endif %}
+
+     {% if (articles|length > 0 and settings['article_related_status'] == 1) %} 
+      <div class="related-posts"><div class="row"><div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+        <div class="info">
+          {% if (tags) %} 
+          <div class="tags">
+              {% set i = 0 %}{% for i in i..tags %} 
+                  <a href="{{ tags[i]['href'] }}">{{ tags[i]['tag'] }}</a>
+              {% endfor %} 
+          </div>
+          {% endif %} 
+          <div class="date-published">
+              <span class="month">
+                  {{ theme_options.date('M', theme_options.strtotime(article['date_published'])) }} 
+              </span>
+              <span class="day">
+                  {{ theme_options.date('d', theme_options.strtotime(article['date_published'])) }},
+              </span>
+              <span class="day">
+                  {{ theme_options.date('Y', theme_options.strtotime(article['date_published'])) }} 
+              </span>
+          </div>
+          {% if (settings['comments_engine'] == 'LOCAL') %}
+          <div class="comments">{{ article['comments_count']}} {{ text_comments}}</div>
+          {% endif %}
+        </div>
+        {% include 'zeexo/template/blog/article_related/' ~ settings['article_related_template']|replace({'.tpl': '.twig'}) %} 
+      </div></div></div>
+     {% endif %}  
+
+     <div class="row"><div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+            <div class="share">
+              <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5cd6b9471aa38a0012c07e1b&product='inline-share-buttons'' async='async'></script>
+              <div class="sharethis-inline-share-buttons"></div>
+            </div>
+     </div></div>
+
+        {% if (article['status_comments']) %} 
+          {% if (settings['comments_engine'] == 'LOCAL') %}
+            <div class="row"><div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+              <div class="box box-no-advanced comments">
+                  <div class="box-heading">{{ text_comments }}: {{ article['comments_count'] }}<br><a href="#" class="btn btn-default">{{ text_leave_reply }}</a></div>
+                   <div class="strip-line"></div>
+                   <div class="box-content">
+                        {% if (comments|length > 0) %}
+                        <div class="comments-list">
+                            {% for comment in comments %}
+                              <div class="comment">
+                                <div class="row">
+                                  <div class="col-3 col-md-2">{{ theme_options.date('d-m-Y H:i', theme_options.strtotime(comment['date_added'])) }}</div>
+                                  <div class="col-9 col-md-10">
+                                    <span class="name">{{ comment['name'] }}</span>
+                                    <div class="text">
+                                        {{ comment['content'] }} 
+                                    </div>
+                                  </div>
+                                </div> 
+                              </div>
+                            {% endfor %} 
+                        </div> 
+                        {% else %} 
+                        <p>{{ text_no_comments }}</p>
+                        {% endif %} 
+                   </div>
+              </div>
+            </div></div>
+
+<div id="popup-product-question-1" class="popup reply-block mfp-hide"><div id="reply-block">
+         <h4>{{ text_leave_reply }}</h4> 
+                         <p style="padding-top: 5px">{{ text_required_info }}<abbr class="required">*</abbr> </p>
+         
+                         <form class="form-horizontal" method="post" id="form-comment">
+                             <div class="form-group row required">
+                                 <div class="col-12 col-md-6">
+                                     <label class="control-label" for="input-name">{{ text_name }}</label>
+                                     <input type="text" name="name" value="" id="input-name" class="form-control">
+                                 </div>
+                                 <div class="col-12 col-md-6">
+                                     <label class="control-label" for="input-email">{{ text_email }}</label>
+                                     <input type="text" name="email" value="" id="input-email" class="form-control">
+                                 </div>
+                             </div>
+                             <div class="form-group row required">
+                                 <div class="col-12">
+                                     <label class="control-label" for="input-content">{{ text_content }}</label>
+                                     <textarea rows="10" id="input-content" name="content" class="form-control"></textarea>
+                                 </div>
+                             </div>
+         
+                             <div class="text-center">
+                                  <button class="button button-large button-comment" id="button-comment" type="submit">{{ button_post_comment }}</button>
+                             </div>
+                         </form>
+</div></div>
+
+<script>
+    $(function(){
+        $('.comments .btn-default').click(function(e){
+            $.magnificPopup.open({
+                items: {
+                    src: '#popup-product-question-1',
+                    type: 'inline'
+                },
+                tLoading: '',
+                mainClass: 'popup-module mfp-with-zoom',
+                removalDelay: 200,
+            });
+            
+            return false;
+            
+        })
+    })
+</script>
+
+              {% endif %} 
+
+              {% if (settings['comments_engine'] == 'DISQUS') %}
+                <div class="row"><div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+                <div style="height: 30px"></div>
+                  <div id="disqus_thread"></div>
+                  <script type="text/javascript">
+                      /* * * CONFIGURATION VARIABLES * * */
+                      var disqus_shortname = '{{ settings['disqus_name'] }}';
+
+                      /* * * DON'T EDIT BELOW THIS LINE * * */
+                      (function() {
+                          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                      })();
+                  </script>
+                  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+                </div></div>
+              {% endif %} 
+
+              {% if (settings['comments_engine'] == 'FACEBOOK') %}
+                <div class="row"><div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+                  <div style="height: 30px"></div>
+                  <div class="fb-comments" data-href="{{ theme_options.facebook() }}" data-width="100%"></div>
+                </div></div>
+              {% endif %} 
+          {% endif %}
+    </div>            
+</div>
+
+<script>
+    $(function(){
+        $('.media-slider').owlCarousel({
+          items: 1,
+          autoHeight : true,
+          nav: true,
+          dots: false
+        })
+        
+        $('#button-comment').on('click', function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: 'index.php?route=blog/article/write&article_id={{ article_id }}',
+                type: 'post',
+                dataType: 'json',
+                data: $("#form-comment").serialize(),
+                beforeSend: function() {
+                    $('#button-comment').button('loading');
+                },
+                complete: function() {
+                    $('#button-comment').button('reset');
+                },
+                success: function(json) {
+                    $('.alert-success, .alert-danger').remove();
+
+                    if (json['error']) {
+                        $('#reply-block').before('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + '</div>');
+                    }
+
+                    if (json['success']) {
+                        $('#reply-block').before('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + '</div>');
+
+                        $('input[name=\'name\']').val('');
+                        $('input[name=\'email\']').val('');
+                        $('textarea[name=\'content\']').val('');
+                    }
+                }
+            });
+        });
+    });
+</script>
+
+{% endif %}
+
+{% include 'zeexo/template/new_elements/wrapper_bottom.twig' %}
+{{ footer }}

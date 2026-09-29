@@ -1,0 +1,68 @@
+# Local configuration and secrets
+/config.php
+/admin/config.php
+.env
+.env.*
+!.env.example
+/auth.json
+/.htpasswd
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Logs, dumps, backups, and archives
+*.log
+**/error_log
+*.sql
+*.sql.gz
+*.dump
+*.bak
+*.old
+*.orig
+*.tmp
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+/.ftpquota
+/htacces_old.txt
+
+# OpenCart runtime data
+/system/storage/cache/*
+!/system/storage/cache/.gitkeep
+/system/storage/logs/*
+!/system/storage/logs/.gitkeep
+/system/storage/modification/*
+!/system/storage/modification/.gitkeep
+/system/storage/session/*
+!/system/storage/session/.gitkeep
+/system/storage/upload/*
+!/system/storage/upload/.gitkeep
+/system/storage/download/*
+!/system/storage/download/.gitkeep
+/system/cache_mfp/
+
+# Generated feeds and customer/order data
+/xml/*
+!/xml/.gitkeep
+
+# Store media is deployed separately
+/image/*
+!/image/.gitkeep
+/image.zip
+/data_sample/
+
+# Runtime-generated theme settings containing admin tokens
+/catalog/view/theme/zeexo/skins/store_default/*/settings.json
+
+# Local tooling
+/.idea/
+/.vscode/
+.DS_Store
+**/.DS_Store
+*.swp
+*.swo
+*~
+Thumbs.db

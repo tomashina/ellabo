@@ -1,0 +1,247 @@
+.slider-align-top.common-home #mobile-header-2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 12;
+}
+header #top-bar {
+  background: #000;
+  border: none;
+  color: #fff;
+}
+header #top-bar a {
+  color: #fff;
+}
+header #top-bar a:hover {
+  color: #fff;
+}
+header #top-bar .dropdown-menu a {
+  color: #000;
+}
+header #top-bar .dropdown-menu a:hover {
+  color: #000;
+}
+header #top-bar .left .social-links li a {
+  color: #808080;
+}
+header #top-bar .left .social-links li a:hover {
+  color: #fff;
+}
+header #top-bar .right ul.menu,
+header #top-bar .right .welcome-text {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.common-home .main-content .pattern > .container,
+.common-home .standard-body .main-content .pattern > .container {
+  padding-bottom: 0px;
+}
+.common-home .footer {
+  border-top: none;
+}
+.standard-body .footer .background {
+  background: #fff;
+}
+.footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.footer .background {
+  background: #fff;
+}
+.footer .background .pattern a {
+  color: #000;
+}
+.footer .background .pattern a:hover {
+  color: #000;
+}
+.footer .background .pattern h4 {
+  color: #06bec7;
+}
+.footer .background .footer-newsletter h5 {
+  color: #000;
+}
+.footer .background .footer-newsletter .content {
+  background: #fff;
+}
+.footer .background .footer-newsletter .content input {
+  background: #e6e6e6;
+  color: #000;
+}
+.footer .background .footer-newsletter .checkbox label .custom-control-indicator {
+  background: #e6e6e6;
+}
+.footer .background .footer-newsletter .line {
+  background: rgba(0, 0, 0, 0.1);
+}
+.footer .background .open-footer-menu .icon span {
+  background: #000;
+}
+.footer .background .open-footer-menu .text {
+  color: #000;
+}
+.footer .background .links {
+  text-align: center;
+  padding: 73px 0px 0px 0px;
+}
+@media (max-width: 767px) {
+  .footer .background .links {
+    padding: 35px 0px 0px 0px;
+    white-space: nowrap;
+  }
+}
+.footer .background .links ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+@media (max-width: 767px) {
+  .footer .background .links ul {
+    overflow: scroll;
+  }
+}
+.footer .background .links ul li {
+  display: inline-block;
+  vertical-align: top;
+  padding: 0px 15px;
+}
+@media (max-width: 767px) {
+  .footer .background .links ul li {
+    padding: 0px 25px 0px 0px;
+  }
+}
+.footer .background .links ul li a {
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+@media (max-width: 767px) {
+  .footer .background .links ul li a {
+    font-size: 16px;
+  }
+}
+.footer .background .about-us {
+  text-align: center;
+  padding: 43px 0px 0px 0px;
+}
+@media (max-width: 767px) {
+  .footer .background .about-us {
+    padding-top: 35px;
+  }
+}
+.footer .background .about-us img {
+  margin-bottom: 15px;
+  max-height: 30px;
+}
+.footer .background .about-us p {
+  padding: 20px 0px 0px 0px;
+  font-size: 15px;
+  line-height: 22px;
+  color: #000;
+}
+@media (max-width: 767px) {
+  .footer .background .about-us p {
+    font-size: 14px;
+    line-height: 21px;
+    padding-top: 15px;
+  }
+}
+.footer .background .about-us p span {
+  color: #06bec7;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+@media (max-width: 767px) {
+  .footer .background .about-us p span {
+    font-size: 15px;
+  }
+}
+.footer .background .about-us .social-links {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 35px 0px 0px 0px;
+  margin: 0px;
+}
+@media (max-width: 767px) {
+  .footer .background .about-us .social-links {
+    padding-top: 20px;
+  }
+}
+.footer .background .about-us .social-links li {
+  margin: 0px 11px 0px 12px;
+}
+.footer .background .about-us .social-links li:first-child {
+  margin-left: auto;
+}
+.footer .background .about-us .social-links li:last-child {
+  margin-right: auto;
+}
+.footer .background .about-us .social-links li a {
+  color: #b2b2b1;
+  font-size: 20px;
+}
+.footer .background .about-us .social-links li a:hover {
+  color: #000;
+}
+.standard-body .copyright .background {
+  background: #fff;
+}
+.copyright .background {
+  background: #fff;
+  text-align: center;
+  color: #999999;
+}
+.copyright .background a {
+  color: #999;
+}
+.copyright .background a:hover {
+  color: #999;
+}
+.copyright .background .pattern > .container > *:first-child {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.copyright .background .links {
+  padding: 36px 0px 0px 0px;
+}
+@media (max-width: 767px) {
+  .copyright .background .links {
+    white-space: nowrap;
+    overflow: scroll;
+    text-align: left;
+    padding-top: 32px;
+  }
+}
+.copyright .background .links ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+.copyright .background .links ul li {
+  display: inline-block;
+  vertical-align: top;
+  padding: 0px 10px;
+}
+@media (max-width: 767px) {
+  .copyright .background .links ul li {
+    padding: 0px 20px 0px 0px;
+  }
+}
+.copyright .background .links ul li a {
+  font-size: 13px;
+  text-transform: uppercase;
+  color: #000;
+  font-weight: 600;
+}
+.copyright .background .payments {
+  padding: 24px 0px 0px 0px;
+}
+.copyright .background .payments a {
+  display: inline-block;
+  vertical-align: top;
+  padding: 0px 4px;
+}
+.copyright .background p {
+  padding: 26px 0px 0px 0px;
+  color: #999999;
+}

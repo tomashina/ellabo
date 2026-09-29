@@ -1,0 +1,125 @@
+<div id="mobile-header-2" class="{% if (theme_options.get( 'header_layout' ) == 1) %} {{ 'full-width' }} {% else %} {{ 'fixed' }} {% endif %}">
+	<div class="background-top"></div>
+	<div class="background">
+		<div class="shadow"></div>
+		<div class="pattern">
+			<div class="container">
+				<div class="top-center d-flex align-items-center">
+					<div class="open-menu2">
+						<a href="#">
+							{% include 'zeexo/template/common/icons/menu.twig' %}
+						</a>
+					</div>
+					{% if (logo) %} 
+					<!-- Logo -->
+					<div class="logo"><a href="{{ home }}"><img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" /></a></div>
+					{% endif %} 
+					<div class="open-cart open-cart2">
+						<a href="#">
+							<i class="cart-count"></i>
+							{% if (theme_options.get( 'load_styles' ) == 'jewelry_1.css' or theme_options.get( 'load_styles' ) == 'jewelry_2.css' or theme_options.get( 'load_styles' ) == 'jewelry_3.css' or theme_options.get( 'load_styles' ) == 'jewelry_4.css' or theme_options.get( 'load_styles' ) == 'jewelry_5.css' or theme_options.get( 'load_styles' ) == 'jewelry_6.css' or theme_options.get( 'load_styles' ) == 'jewelry_7.css' or theme_options.get( 'load_styles' ) == 'jewelry_8.css' or theme_options.get( 'load_styles' ) == 'jewelry_9.css' or theme_options.get( 'load_styles' ) == 'clean_1.css' or theme_options.get( 'load_styles' ) == 'clean_2.css' or theme_options.get( 'load_styles' ) == 'clean_3.css' or theme_options.get( 'load_styles' ) == 'clean_4.css' or theme_options.get( 'load_styles' ) == 'clean_5.css' or theme_options.get( 'load_styles' ) == 'clean_6.css' or theme_options.get( 'load_styles' ) == 'clean_7.css') %}
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px;}</style></defs><title>shopping-cart-1</title><path class="a" d="M6,19.125h9.921A1.5,1.5,0,0,0,17.4,17.876l2.637-15.5a1.5,1.5,0,0,1,1.479-1.248H22.5"/><path class="a" d="M7.875,21.375a.375.375,0,1,1-.375.375.375.375,0,0,1,.375-.375"/><path class="a" d="M15.375,21.375A.375.375,0,1,1,15,21.75a.375.375,0,0,1,.375-.375"/><path class="a" d="M17.953,14.625H5.882a3,3,0,0,1-2.91-2.272l-1.45-5.8a.75.75,0,0,1,.728-.932H19.484"/></svg>
+							{% elseif theme_options.get('load_styles') == 'glasses_1.css' or theme_options.get( 'load_styles' ) == 'glasses_2.css' or theme_options.get( 'load_styles' ) == 'glasses_3.css' or theme_options.get( 'load_styles' ) == 'glasses_4.css' or theme_options.get( 'load_styles' ) == 'glasses_5.css' or theme_options.get( 'load_styles' ) == 'furniture_1.css' or theme_options.get( 'load_styles' ) == 'furniture_2.css' or theme_options.get( 'load_styles' ) == 'furniture_3.css' or theme_options.get( 'load_styles' ) == 'furniture_4.css' or theme_options.get( 'load_styles' ) == 'furniture_5.css' or theme_options.get( 'load_styles' ) == 'furniture_6.css' or theme_options.get( 'load_styles' ) == 'furniture_7.css' or theme_options.get( 'load_styles' ) == 'furniture_8.css'  or theme_options.get( 'load_styles' ) == 'furniture_9.css' or theme_options.get( 'load_styles' ) == 'furniture_10.css' or theme_options.get( 'load_styles' ) == 'furniture_11.css' or theme_options.get( 'load_styles' ) == 'market_light_1.css' or theme_options.get( 'load_styles' ) == 'market_light_2.css' or theme_options.get( 'load_styles' ) == 'market_light_3.css' or theme_options.get( 'load_styles' ) == 'market_light_4.css' or theme_options.get( 'load_styles' ) == 'market_light_5.css' or theme_options.get( 'load_styles' ) == 'market_light_6.css' or theme_options.get( 'load_styles' ) == 'market_light_7.css' or theme_options.get( 'load_styles' ) == 'market_light_8.css' or theme_options.get( 'load_styles' ) == 'market_light_9.css' or theme_options.get( 'load_styles' ) == 'market_light_10.css' or theme_options.get( 'load_styles' ) == 'market_gray_1.css' or theme_options.get( 'load_styles' ) == 'market_gray_2.css' or theme_options.get( 'load_styles' ) == 'market_gray_3.css' or theme_options.get( 'load_styles' ) == 'market_gray_4.css' or theme_options.get( 'load_styles' ) == 'market_gray_5.css' or theme_options.get( 'load_styles' ) == 'market_gray_6.css' or theme_options.get( 'load_styles' ) == 'market_gray_7.css' %}
+								<svg
+					   xmlns:dc="http://purl.org/dc/elements/1.1/"
+					   xmlns:cc="http://creativecommons.org/ns#"
+					   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+					   xmlns:svg="http://www.w3.org/2000/svg"
+					   xmlns="http://www.w3.org/2000/svg"
+					   viewBox="0 0 29.984133 32.003334"
+					   height="32.003334"
+					   width="29.984133"
+					   xml:space="preserve"
+					   id="svg2"
+					   version="1.1"><metadata
+					     id="metadata8"><rdf:RDF><cc:Work
+					         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+					           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
+					     id="defs6"><clipPath
+					       id="clipPath18"
+					       clipPathUnits="userSpaceOnUse"><path
+					         id="path16"
+					         d="M 0,24.003 H 22.488 V 0 H 0 Z" /></clipPath></defs><g
+					     transform="matrix(1.3333333,0,0,-1.3333333,0,32.003333)"
+					     id="g10"><g
+					       id="g12"><g
+					         clip-path="url(#clipPath18)"
+					         id="g14"><g
+					           transform="translate(18.3009,17.2525)"
+					           id="g20"><path
+					             id="path22"
+					             style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+					             d="m 0,0 h -14.113 c -0.701,0.029 -1.315,-0.466 -1.436,-1.157 l -2,-13.915 c -0.04,-0.748 0.533,-1.388 1.282,-1.428 0.052,-0.003 0.103,-0.003 0.155,0 H 1.999 c 0.748,-0.045 1.391,0.524 1.436,1.271 0.003,0.052 0.003,0.105 10e-4,0.157 l -2,13.915 C 1.314,-0.466 0.701,0.028 0,0 Z" /></g><g
+					           transform="translate(14.9298,20.1954)"
+					           id="g24"><path
+					             id="path26"
+					             style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+					             d="M 0,0 C -0.339,1.77 -1.884,3.051 -3.686,3.057 -5.48,3.052 -7.021,1.78 -7.367,0.019" /></g></g></g></g></svg>
+							{% elseif theme_options.get('load_styles') == 'fashion_modern_1.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_2.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_3.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_4.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_5.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_6.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_7.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_8.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_1.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_2.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_3.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_4.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_5.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_6.css' or theme_options.get( 'load_styles' ) == 'tools_orange_1.css'  %}
+									<svg
+									   xmlns:dc="http://purl.org/dc/elements/1.1/"
+									   xmlns:cc="http://creativecommons.org/ns#"
+									   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+									   xmlns:svg="http://www.w3.org/2000/svg"
+									   xmlns="http://www.w3.org/2000/svg"
+									   viewBox="0 0 32 28"
+									   height="28"
+									   width="32"
+									   xml:space="preserve"
+									   id="svg2"
+									   version="1.1"><metadata
+									     id="metadata8"><rdf:RDF><cc:Work
+									         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+									           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
+									     id="defs6"><clipPath
+									       id="clipPath18"
+									       clipPathUnits="userSpaceOnUse"><path
+									         id="path16"
+									         d="M 0,21 H 24 V 0 H 0 Z" /></clipPath></defs><g
+									     transform="matrix(1.3333333,0,0,-1.3333333,0,28)"
+									     id="g10"><g
+									       id="g12"><g
+									         clip-path="url(#clipPath18)"
+									         id="g14"><g
+									           transform="translate(17.5,2)"
+									           id="g20"><path
+									             id="path22"
+									             style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+									             d="M 0,0 C 0,-0.828 0.672,-1.5 1.5,-1.5 2.328,-1.5 3,-0.828 3,0 3,0.828 2.328,1.5 1.5,1.5 0.672,1.5 0,0.828 0,0 Z" /></g><g
+									           transform="translate(6.5,2)"
+									           id="g24"><path
+									             id="path26"
+									             style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+									             d="M 0,0 C 0,-0.828 0.672,-1.5 1.5,-1.5 2.328,-1.5 3,-0.828 3,0 3,0.828 2.328,1.5 1.5,1.5 0.672,1.5 0,0.828 0,0 Z" /></g><g
+									           transform="translate(0.5,20.5)"
+									           id="g28"><path
+									             id="path30"
+									             style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+									             d="m 0,0 h 3.5 l 4,-17 h 11" /></g><g
+									           transform="translate(7.5293,5.5)"
+									           id="g32"><path
+									             id="path34"
+									             style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+									             d="m 0,0 h 12.971 l 3,9 H -2.117" /></g></g></g></g></svg>
+							{% else %}
+								<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><g><path fill="#010101" d="M169.6,377.6c-22.882,0-41.6,18.718-41.6,41.601c0,22.882,18.718,41.6,41.6,41.6s41.601-18.718,41.601-41.6C211.2,396.317,192.481,377.6,169.6,377.6z M48,51.2v41.6h41.6l74.883,151.682l-31.308,50.954c-3.118,5.2-5.2,12.482-5.2,19.765c0,27.85,19.025,41.6,44.825,41.6H416v-40H177.893c-3.118,0-5.2-2.082-5.2-5.2c0-1.036,2.207-5.2,2.207-5.2l20.782-32.8h154.954c15.601,0,29.128-8.317,36.4-21.836l74.882-128.8c1.237-2.461,2.082-6.246,2.082-10.399c0-11.446-9.364-19.765-20.8-19.765H135.364L115.6,51.2H48z M374.399,377.6c-22.882,0-41.6,18.718-41.6,41.601c0,22.882,18.718,41.6,41.6,41.6S416,442.082,416,419.2C416,396.317,397.281,377.6,374.399,377.6z"/></g></svg>
+							{% endif %}
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="mobile-menu">
+	<div class="close-menu2"><i class="fas fa-times"></i></div>
+	<div class="mobile-switcher"></div>
+	<div class="mobile-search"></div>
+</div>
+
+<div class="mobile-cart">
+	<div class="close-cart"><i class="fas fa-times"></i></div>
+</div>
+
+<div class="close-mobile-menu-and-cart"></div>

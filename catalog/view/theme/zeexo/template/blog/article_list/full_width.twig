@@ -1,0 +1,42 @@
+{% if (articles|length > 0) %}
+     {% for article in articles %} 
+          <div class="big-news full-width post">
+             <div class="post-content" onclick="window.location.href = '{{ article['href'] }}'">
+                 {% if (article['gallery']|length > 0) %}
+                     {% if (article['article_list_gallery_display'] == 'CLASSIC') %}
+                         <div class="post-media">
+                             {{ article['gallery'][0]['output'] }}
+                         </div>
+                     {% endif %} 
+                     {% if (article['article_list_gallery_display'] == 'SLIDER') %}
+                         <div class="post-media">
+                             {% for gallery in article['gallery'] %}
+                                {% if loop.index == 1 %}
+                                 {{ gallery['output'] }}
+                                {% endif %}
+                             {% endfor %} 
+                         </div>
+                     {% endif %} 
+                 {% endif %} 
+                 
+                 <div class="right">
+                      <div class="overflow">
+                           <div class="tags">
+                                {% set s = 0 %}
+                                {% for tag in article['tags'] %} 
+                                     {% if (s < 2) %}<a href="{{ tag['href'] }}">{{ tag['tag'] }}</a>{% endif %} 
+                                {% set s = s + 1 %} 
+                                {% endfor %} 
+                           </div>
+                           
+                           <div class="date-published">{{ theme_options.date('d.m.Y', theme_options.strtotime(article['date_published'])) }}</div>
+                           
+                           <h2 class="post-title">
+                                <a href="{{ article['href'] }}">{{ article['title'] }}</a>
+                           </h2>
+                      </div>
+                 </div>
+             </div>       
+          </div>
+     {% endfor %} 
+{% endif %}

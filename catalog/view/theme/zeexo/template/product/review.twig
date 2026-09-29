@@ -1,0 +1,26 @@
+{% if (reviews) %} 
+	<div class="reviews-list">
+		{% for review in reviews %} 
+          <div class="review">
+            <div class="row">
+              <div class="col-4 col-md-3">
+		 		<div class="rating"><i class="fa fa-star{% if (review['rating'] >= 1) %} {{ ' active' }} {% endif %}"></i><i class="fa fa-star{% if (review['rating'] >= 2) %} {{ ' active' }} {% endif %}"></i><i class="fa fa-star{% if (review['rating'] >= 3) %} {{ ' active' }} {% endif %}"></i><i class="fa fa-star{% if (review['rating'] >= 4) %} {{ ' active' }} {% endif %}"></i><i class="fa fa-star{% if (review['rating'] >= 5) %} {{ ' active' }} {% endif %}"></i></div>
+              	{{ review['date_added'] }}
+              </div>
+              <div class="col-8 col-md-9">
+                <span class="name">{{ review['author'] }}</span>
+                <div class="text">
+                    {{ review['text'] }}
+                </div>
+              </div>
+            </div> 
+          </div>
+		{% endfor %} 
+	</div>
+	<div class="row pagination-results">
+	  <div class="col-md-6 text-left">{{ pagination }}</div>
+	  <div class="col-md-6 text-right">{{ results }}</div>
+	</div>
+{% else %} 
+	<p>{{ text_no_reviews }}</p>
+{% endif %} 

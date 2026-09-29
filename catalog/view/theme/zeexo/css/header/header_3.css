@@ -1,0 +1,60 @@
+@media (max-width: 1098px) {
+  header #top .top-center .right .desktop-search {
+    margin: 0px 40px;
+  }
+}
+header .dropdown {
+  margin: 8px 30px 8px 0px;
+}
+header .dropdown .dropdown-toggle {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+header .dropdown .dropdown-toggle:after {
+  border-top-color: #b2b2b2;
+  margin-left: 6px;
+}
+header .my-account {
+  padding-left: 15px;
+}
+@media (max-width: 1098px) {
+  header .my-account {
+    padding-left: 5px;
+  }
+}
+header .desktop-menu {
+  background: #000;
+}
+header .desktop-menu ul.megamenu .megamenu-label {
+  top: -4px;
+}
+header .desktop-menu ul.megamenu > li > a {
+  color: #fff;
+  padding: 12px 0px 0px 0px;
+}
+header .desktop-menu ul.megamenu > li > a:before {
+  bottom: 8px;
+}
+.breadcrumb {
+  margin-top: 10px;
+}
+.breadcrumb:before {
+  display: none;
+}
+.is-sticky #top .pattern > .container {
+  display: block;
+}
+.is-sticky #top .pattern > .container .top-center {
+  display: none !important;
+}
+.is-sticky #top .desktop-menu .horizontal {
+  padding-top: 0px !important;
+}
+.is-sticky #top .desktop-menu .horizontal ul.megamenu > li > a {
+  padding: 12px 0px 0px 0px;
+  height: 50px;
+}
+.is-sticky #top .desktop-menu .horizontal ul.megamenu > li > a .megamenu-label {
+  top: 0;
+}

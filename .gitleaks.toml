@@ -1,0 +1,20 @@
+title = "Ellabo secret scanning"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "OpenCart permission names that resemble generic API key assignments"
+targetRules = ["generic-api-key"]
+condition = "AND"
+regexTarget = "line"
+paths = ['''^admin/controller/common/column_left\.php$''']
+regexes = ['''hasPermission\('access',\s*'(?:catalog/manufacturer|marketplace/modification|marketing/coupon)'\)''']
+
+[[allowlists]]
+description = "Alipay wraps a runtime-supplied key with PEM headers"
+targetRules = ["private-key"]
+condition = "AND"
+regexTarget = "line"
+paths = ['''^catalog/model/extension/payment/alipay\.php$''']
+regexes = ['''-----BEGIN RSA PRIVATE KEY-----''']

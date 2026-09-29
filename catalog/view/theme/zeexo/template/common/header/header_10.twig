@@ -1,0 +1,149 @@
+<!-- HEADER
+	================================================== -->
+<header class="header-type-10">
+	<div class="background-header"></div>
+	<div class="slider-header">
+		<!-- Top Bar -->
+		<div id="top-bar" class="{% if (theme_options.get( 'top_bar_layout' ) == 2) %} {{ 'fixed' }} {% else %} {{ 'full-width' }} {% endif %}">
+			<div class="background-top-bar"></div>
+			<div class="background">
+				<div class="shadow"></div>
+				<div class="pattern">
+					<div class="container">
+						<div class="d-flex align-items-center">
+							<div class="left">
+								{% set top_block = theme_options.getModules('top_block') %}
+								{% if ( top_block|length > 0 ) %}
+									{% for module in top_block %} 
+										{{ module }}
+									{% endfor %}
+								{% endif %}
+							</div>
+							<div class="right d-flex align-items-center">
+								<div class="desktop-switcher">
+									<div class="switchers d-flex align-items-center">
+											{{ language ~ currency }} 
+									</div>
+								</div>
+								<div class="welcome-text">
+									{% if (theme_options.get( 'welcome_text', config.get( 'config_language_id' ) ) != '') %} {{ theme_options.html_entity_decode(theme_options.get( 'welcome_text', config.get( 'config_language_id' ) )) }} {% else %}Need help? <a href="mailto:contact@example.com">contact@example.com</a>{% endif %} 
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Top of pages -->
+		<div id="top" class="{% if (theme_options.get( 'header_layout' ) == 1) %} {{ 'full-width' }} {% else %} {{ 'fixed' }} {% endif %}">
+			<div class="background-top"></div>
+			<div class="background">
+				<div class="shadow"></div>
+				<div class="pattern">
+					<div class="container">
+						<div class="wrap-top-center">
+							<div class="d-flex align-items-center top-center">
+								{% if (logo) %} 
+								<!-- Logo -->
+								<div class="logo"><a href="{{ home }}"><img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" /></a></div>
+								{% endif %} 
+								<div class="right d-flex align-items-center">
+									<div class="desktop-search">
+										<!-- Search -->
+										<div class="search_form">
+											<div class="button-search"></div>
+											<input type="text" class="input-block-level search-query" name="search2" placeholder="{{ search }}" id="search_query" value="" />
+											
+											{% if (theme_options.get( 'quick_search_autosuggest' ) != '0') %} 
+												<div id="autocomplete-results" class="autocomplete-results"></div>
+												
+												<script type="text/javascript">
+												$(document).ready(function() {
+													$('#search_query').autocomplete({
+														delay: 0,
+														appendTo: "#autocomplete-results",
+														source: function(request, response) {		
+															$.ajax({
+																url: 'index.php?route=search/autocomplete&filter_name=' +  encodeURIComponent(request.term),
+																dataType: 'json',
+																success: function(json) {
+																	response($.map(json, function(item) {
+																		return {
+																			label: item.name,
+																			value: item.product_id,
+																			href: item.href,
+																			thumb: item.thumb,
+																			desc: item.desc,
+																			price: item.price
+																		}
+																	}));
+																}
+															});
+														},
+														select: function(event, ui) {
+															document.location.href = ui.item.href;
+															
+															return false;
+														},
+														focus: function(event, ui) {
+													      	return false;
+													   	},
+													   	minLength: 2
+													})
+													.data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+													  return $( "<li>" )
+													    .append( "<a><img src='" + item.thumb + "' alt=''>" + item.label + "<br><span class='description'>" + item.desc + "</span><br><span class='price'>" + item.price + "</span></a>" )
+													    .appendTo( ul );
+													};
+												});
+												</script>
+											{% endif %} 
+										</div>
+									</div>
+									<a href="{{ account }}" class="my-account">
+										{% include 'zeexo/template/common/icons/my_account.twig' %}
+									</a>
+									<a href="{{ wishlist }}" class="wishlist">
+										<i class="wishlist-count">{{ text_wishlist|split('(')[1]|split(')')[0] }}</i>
+										{% include 'zeexo/template/common/icons/wishlist.twig' %}
+									</a>
+									<div class="desktop-cart">{{ cart }}</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="desktop-menu"><div class="wrap-menu">
+						{% set megamenu = theme_options.getModules('menu') %}
+						{% if ( megamenu|length > 0 ) %}
+							{% for module in megamenu %} 
+								{{ module }}
+							{% endfor %}
+						{% else %} 
+							{{ menu }}
+						{% endif %}
+					</div></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="menu-hover-background"></div>
+	
+	{% set slideshow = theme_options.getModules('slideshow') %} 
+	 {% if (slideshow|length > 0) %} 
+	<!-- Slider -->
+	<div id="slider" class="{% if (theme_options.get( 'slideshow_layout' ) == 1) %} {{ 'full-width' }} {% else %} {{ 'fixed' }} {% endif %}">
+		<div class="background-slider"></div>
+		<div class="background">
+			<div class="shadow"></div>
+			<div class="pattern">
+				{% for module in slideshow %} 
+					{{ module }} 
+				{% endfor %} 
+			</div>
+		</div>
+	</div>
+	{% endif %} 
+</header>

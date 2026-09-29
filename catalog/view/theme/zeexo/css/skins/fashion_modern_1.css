@@ -1,0 +1,1988 @@
+a:hover,
+.dropdown-menu a:hover,
+#top-bar .right .welcome-text a,
+ul.megamenu > li > a:hover,
+ul.megamenu > li.active > a,
+ul.megamenu > li.home > a,
+ul.megamenu > li:hover > a,
+#modalAddToCartProduct .desctope .left .tt-modal-messages i,
+#modalAddToCartProduct .desctope .right .tt-cart-total .tt-price,
+#main .mfilter-heading,
+.pagination-results ul.pagination li.active,
+.rating i.active,
+.product-list .product .right .price .price-new,
+.product-info .product-center .price .price-new,
+.product-info .product-center .hurry-up .heading span,
+.htabs a.selected,
+#accordion2 .card .card-header .btn-link:not(.collapsed),
+#accordion4 .card .card-header .btn-link:not(.collapsed),
+.product-info .product-center .options .form-group > label,
+.contact-page > ul li i,
+.banners-2 .banner .banner-content p,
+.contact-box ul li i,
+.contact-box .items .item p span,
+.product-filter .open-filter,
+.product-grid .product-type-2 .right .price .price-new,
+.product-list.type-2 .product-2 .center .price .price-new,
+.product-bar .container .form-group > label,
+.product-bar .container .name .price,
+#main .mfilter-checkbox .mfilter-col-input.mfilter-input-active:after,
+.advanced-grid .advanced-grid-products .product .right .price .price-new,
+.filter-product .filter-tabs .bg-filter-tabs .bg-filter-tabs2 .nav-tabs .nav-item .nav-link.active,
+ul.megamenu li .sub-menu .content .static-menu a.main-menu,
+ul.megamenu li .sub-menu .content .hover-menu li:hover > a,
+#modalAddToCartProduct .mobile i,
+.box-category ul li a.active {
+  color: #7dbd5d;
+}
+ul.megamenu li .sub-menu .content .hover-menu li:hover > a:before {
+  border-left-color: #7dbd5d;
+}
+@media (max-width: 767px) {
+  .responsive ul.megamenu li .sub-menu .content .hover-menu .menu ul li a:hover,
+  .responsive ul.megamenu li .sub-menu .content .static-menu .menu ul li a:hover,
+  .responsive ul.megamenu li .sub-menu .content .hover-menu .menu ul li.active > a,
+  .responsive ul.megamenu li .sub-menu .content .static-menu .menu ul li.active > a {
+    color: #7dbd5d !important;
+  }
+}
+.button,
+.btn,
+.bottom-bar .open-cart a .cart-count,
+.product-info .product-center .hurry-up .line .line2,
+#mobile-header-2 .top-center .open-cart2 a .cart-count,
+#mobile-header-3 .top-center .open-cart a .cart-count,
+.filter-product .filter-tabs .bg-filter-tabs .bg-filter-tabs2 .nav-tabs .nav-item .nav-link.active:before {
+  background: #7dbd5d !important;
+}
+#mobile-header-3 .top-center .open-wishlist a .wishlist-count {
+  background: #575757;
+}
+#top-bar .right .welcome-text a {
+  color: #fcc132;
+}
+#mobile-header-2 .top-center .open-cart2 a .cart-count,
+#mobile-header-3 .top-center .open-cart a .cart-count,
+ul.megamenu > li > a:before {
+  background: #fcc132 !important;
+  color: #000 !important;
+}
+.product-info .product-image .product-image-left ul li a.active,
+.product-info.product-type-4 .product-image .product-image-left ul li a.active,
+.product-info .product-center .options .radio-type-button2.active label,
+.product-bar .container .radio-type-button2.active label {
+  border-color: #7dbd5d;
+}
+.buttons .left .button,
+.buttons .center .button,
+.btn-default,
+.input-group-btn .btn-primary {
+  background: #000 !important;
+}
+.is-countdown .countdown-amount {
+  color: #7dbd5d;
+}
+#top .top-center .right .wishlist .wishlist-count,
+header .slider-header #top .wishlist .wishlist-count {
+  background: #575757;
+  color: #fff;
+  border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+}
+header .top-center .right #cart_block .cart-heading .cart-count,
+header .slider-header #top .menu2 .desktop-cart #cart_block .cart-heading .cart-count {
+  background: #fcc132 !important;
+  color: #000 !important;
+  border-radius: 0px !important;
+  -webkit-border-radius: 0px !important;
+  -moz-border-radius: 0px !important;
+}
+header #top .top-center .right #cart_block .cart-heading .open-cart svg g,
+#mobile-header-3 .top-center .open-cart a svg g,
+#mobile-header-2 .top-center .open-cart2 a svg g,
+.bottom-bar .open-cart a svg g,
+header .slider-header #top .menu2 .desktop-cart #cart_block .cart-heading svg g,
+header #top .top-center .right #cart_block .cart-heading .open-cart svg path,
+#mobile-header-3 .top-center .open-cart a svg path,
+#mobile-header-2 .top-center .open-cart2 a svg path,
+.bottom-bar .open-cart a svg path,
+header .slider-header #top .menu2 .desktop-cart #cart_block .cart-heading svg path {
+  fill: transparent !important;
+  stroke: #fff !important;
+}
+.bottom-bar .open-account a svg g,
+.bottom-bar .open-wishlist a svg g,
+.bottom-bar .open-account a svg path,
+.bottom-bar .open-wishlist a svg path,
+.bottom-bar .open-account a svg *,
+.bottom-bar .open-wishlist a svg * {
+  fill: transparent !important;
+  stroke: #fff !important;
+}
+#top .top-center .right .wishlist svg path,
+#top .top-center .right .wishlist svg g {
+  stroke: #fff !important;
+}
+#top .top-center .right .my-account svg path,
+#top .top-center .right .my-account svg g,
+#top .top-center .right .my-account svg circle {
+  stroke: #fff !important;
+}
+header #top .top-center .right .desktop-search .open-search a svg {
+  width: 24px;
+  height: 24px;
+}
+header #top .top-center .right .desktop-search .open-search a svg path,
+header #top .top-center .right .desktop-search .open-search a svg g,
+header #top .top-center .right .desktop-search .open-search a svg circle {
+  stroke: #fff !important;
+}
+.product-grid .product .price .price-new {
+  color: #000;
+}
+.new:not(.day) {
+  background: #fcc132;
+  color: #000;
+}
+.sale {
+  background: #7dbd5d;
+  color: #fff;
+}
+.product-grid .product .image .add-to-cart a {
+  background: #7dbd5d;
+}
+.product-filter {
+  z-index: 2;
+}
+body,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input,
+select,
+.form-control {
+  font-family: Barlow;
+}
+.product-filter h1,
+.box .box-heading,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+legend,
+table.attribute thead td,
+table.list thead td,
+.wishlist-product table thead td,
+.wishlist-info table thead td,
+.compare-info thead td,
+.cart-info table thead td,
+.checkout-product table thead td,
+.table thead td,
+table.attribute thead th,
+table.list thead th,
+.wishlist-product table thead th,
+.wishlist-info table thead th,
+.compare-info thead th,
+.cart-info table thead th,
+.checkout-product table thead th,
+.table thead th {
+  font-weight: 400 !important;
+  text-transform: none !important;
+}
+.btn,
+.product-info .product-center .cart .add-to-cart .button,
+.btn-link,
+.product-info .product-center .hurry-up .heading,
+.mfilter-box *,
+.add-to-cart a,
+.sale,
+.new:not(.day),
+.list-box li,
+.pagination-results ul.pagination li,
+.pagination-results ul.pagination li a,
+label {
+  font-weight: 400 !important;
+}
+.dropdown-menu > li > a {
+  font-size: 13px;
+  text-transform: none;
+  font-weight: 400;
+}
+.bottom-bar .open-wishlist a svg,
+.bottom-bar .open-home a svg,
+.bottom-bar .open-account a svg,
+.bottom-bar .open-cart a svg,
+.bottom-bar .open-menu2 a svg {
+  width: 24px;
+  height: 24px;
+}
+#mobile-header-1 {
+  background: #000;
+}
+#mobile-header-1 .top-center .mobile-switcher .switchers .dropdown .dropdown-toggle {
+  color: #fff;
+  font-weight: 400;
+  text-transform: none;
+}
+#mobile-header-1 .top-center .mobile-switcher .switchers .dropdown .dropdown-toggle:after {
+  border-top-color: #575757;
+}
+@media (max-width: 767px) {
+  ul.megamenu > li > a strong {
+    font-weight: 400;
+    text-transform: none;
+  }
+}
+@media (max-width: 767px) {
+  .responsive ul.megamenu li .sub-menu .content .hover-menu .menu ul li a,
+  .responsive ul.megamenu li .sub-menu .content .static-menu .menu ul li a {
+    font-weight: 400;
+    text-transform: none;
+  }
+}
+.mobile-menu .mobile-switcher .switchers .dropdown .dropdown-toggle {
+  font-weight: 400;
+  text-transform: none;
+}
+#mobile-header-2 {
+  background: #000;
+}
+#mobile-header-2 .top-center .open-menu2 a svg path,
+#mobile-header-2 .top-center .open-menu2 a svg g {
+  fill: #fff !important;
+}
+#mobile-header-3 {
+  background: #000;
+}
+#mobile-header-3 .top-center .open-account a svg path,
+#mobile-header-3 .top-center .open-account a svg g,
+#mobile-header-3 .top-center .open-wishlist a svg path,
+#mobile-header-3 .top-center .open-wishlist a svg g {
+  stroke: #fff !important;
+}
+#mobile-header-3 .top-bottom .open-menu2 svg path,
+#mobile-header-3 .top-bottom .open-menu2 svg g {
+  fill: #fff !important;
+}
+#mobile-header-3 .top-bottom .open-menu2 span {
+  color: #fff;
+}
+#mobile-header-3 .top-center .open-wishlist a .wishlist-count,
+#mobile-header-3 .top-center .open-cart a .cart-count {
+  border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+}
+#mobile-header-3 .top-bottom .right .social-links li a {
+  color: #575757;
+}
+#mobile-header-3 .top-bottom .right .social-links li a:hover {
+  color: #fff;
+}
+.slider-align-top.common-home #menu-hover-background {
+  display: block;
+}
+.is-sticky #top .pattern > .container .desktop-menu .horizontal ul.megamenu > li > .sub-menu {
+  padding-top: 5px;
+}
+.is-sticky #top .pattern > .container .desktop-menu .horizontal ul.megamenu > li > a .megamenu-label {
+  top: 3px;
+}
+header .slider-header {
+  background: #000000;
+}
+header .slider-header #top-bar {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: #000;
+}
+header .slider-header #top-bar .left .social-links li a {
+  color: #525252;
+}
+header .slider-header #top-bar .left .social-links li a:hover {
+  color: #fff;
+}
+header .slider-header #top-bar .right .welcome-text {
+  border-left-color: rgba(255, 255, 255, 0.1);
+  color: #808080;
+}
+header .slider-header #top-bar .right .switchers .dropdown .dropdown-toggle {
+  color: #808080;
+  text-transform: none;
+  font-size: 13px;
+  font-weight: 400;
+}
+header .slider-header #top-bar .right .switchers .dropdown .dropdown-toggle:after {
+  border-top-color: #525252;
+}
+header .slider-header ul.megamenu > li > a {
+  color: #fff;
+}
+header .slider-header ul.megamenu > li > a strong {
+  font-weight: 400;
+  text-transform: none;
+  font-size: 16px;
+}
+header .slider-header #top .top-center .desktop-menu {
+  margin-top: -16px;
+  margin-bottom: -16px;
+}
+header .slider-header #top .top-center .desktop-menu ul.megamenu > li {
+  margin-right: 30px;
+}
+header .slider-header #top .top-center .desktop-menu ul.megamenu > li.fashionmodern1-shop-by-category {
+  margin-right: 55px;
+}
+header .slider-header #top .top-center .desktop-menu ul.megamenu > li.fashionmodern1-shop-by-category > a {
+  color: #fcc132;
+  padding-left: 30px;
+  position: relative;
+}
+header .slider-header #top .top-center .desktop-menu ul.megamenu > li.fashionmodern1-shop-by-category > a:hover {
+  color: #fcc132;
+}
+header .slider-header #top .top-center .desktop-menu ul.megamenu > li.fashionmodern1-shop-by-category > a:before {
+  content: '';
+  display: block !important;
+  position: absolute;
+  left: 0;
+  top: 19px;
+  width: 16px;
+  height: 4px;
+  background: #fcc132 !important;
+}
+header .slider-header #top .top-center .desktop-menu ul.megamenu > li.fashionmodern1-shop-by-category > a:after {
+  content: '';
+  display: block !important;
+  position: absolute;
+  left: 0;
+  top: 25px;
+  width: 16px;
+  height: 4px;
+  background: #fcc132;
+}
+header .slider-header #top .top-center .desktop-menu ul.megamenu > li.fashionmodern1-shop-by-category > a span:before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 31px;
+  width: 16px;
+  height: 4px;
+  background: #fcc132;
+}
+header .slider-header #top .top-center .desktop-menu ul.megamenu > li > a {
+  color: #fff;
+}
+header .slider-header #top .top-center .desktop-menu ul.megamenu > li > a:before,
+header .slider-header #top .top-center .desktop-menu ul.megamenu > li > a:after {
+  bottom: 4px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+header .slider-header #top .top-center .desktop-menu ul.megamenu > li > a strong {
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: none;
+}
+header .slider-header #top .top-center .desktop-menu ul.megamenu > li > a .megamenu-label {
+  left: -3px;
+  top: 3px;
+  font-size: 11px;
+  font-weight: 400;
+}
+header .slider-header #top .top-center .desktop-menu ul.megamenu > li .sub-menu {
+  padding-top: 10px;
+}
+header .slider-header #top .top-center .desktop-menu ul.megamenu > li .sub-menu .content .hover-menu a {
+  font-size: 16px;
+  text-transform: none;
+  font-weight: 400;
+}
+header .slider-header #top .top-center .desktop-menu ul.megamenu > li .sub-menu .content .hover-menu li:hover > a,
+header .slider-header #top .top-center .desktop-menu ul.megamenu > li .sub-menu .content .hover-menu a:hover {
+  color: #000;
+  font-weight: 600;
+  text-decoration: underline;
+}
+header .slider-header #top .top-center .desktop-menu ul.megamenu > li .sub-menu .content .hover-menu li:hover > a:before,
+header .slider-header #top .top-center .desktop-menu ul.megamenu > li .sub-menu .content .hover-menu a:hover:before {
+  border-left-color: #000;
+}
+header .slider-header #top .top-center .desktop-menu ul.megamenu > li .sub-menu .content .hover-menu .menu ul {
+  margin-top: 0px;
+}
+header .slider-header #top .top-center .desktop-menu ul.megamenu > li .sub-menu .content .hover-menu .menu ul ul {
+  margin-top: -18px;
+}
+.slider-align-top.common-home header .slider-header:hover {
+  background: #000;
+}
+.slider-align-top.common-home header .slider-header #top-bar {
+  border-bottom: none;
+}
+.is-sticky #top {
+  background: #000;
+}
+.slider-text .second-heading {
+  font-size: 70px;
+  line-height: 1.08;
+  text-transform: none;
+  font-weight: 400;
+  padding: 0px;
+  margin: 0px;
+}
+.slider-text .first-heading {
+  padding: 20px 0px 0px 0px;
+  margin: 0px;
+  font-size: 28px;
+  color: #7dbd5d;
+  font-weight: 400;
+}
+.slider-text .slider-button {
+  padding: 38px 0px 0px 0px;
+  margin: 0px;
+}
+.slider-text .slider-button a {
+  display: inline-block;
+  padding: 8px 30px 7px 30px;
+  margin: 0px;
+  background: #fff !important;
+  color: #000 !important;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: none;
+}
+.breadcrumb {
+  margin-top: 15px;
+}
+.box {
+  margin: 56px 0px 0px 0px;
+}
+@media (max-width: 767px) {
+  .box {
+    margin: 35px 0px 0px 0px;
+  }
+}
+.box .next,
+.box .prev {
+  display: none !important;
+}
+.box .box-heading {
+  text-align: left;
+  padding-bottom: 19px;
+}
+.footer h4 {
+  font-size: 20px;
+  color: #fff;
+  padding: 51px 0px 17px 0px;
+  margin: 0px;
+}
+@media (max-width: 767px) {
+  .footer h4 {
+    font-size: 18px;
+    padding-top: 35px;
+  }
+}
+.footer ul li a {
+  color: #8a8a8a;
+  text-transform: none;
+  font-weight: 400;
+}
+.footer .about-us {
+  padding: 53px 0px 0px 0px;
+}
+@media (max-width: 767px) {
+  .footer .about-us {
+    text-align: center;
+    padding: 37px 0px 0px 0px;
+  }
+}
+.footer .about-us p {
+  padding: 18px 0px 0px 0px;
+  font-size: 14px;
+}
+.footer .social-links {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 22px 0px 0px 0px;
+  margin: 0px;
+}
+.footer .social-links li {
+  margin: 0px 23px 0px 0px;
+}
+@media (max-width: 767px) {
+  .footer .social-links li {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .footer .social-links li:first-child {
+    margin-left: auto;
+  }
+  .footer .social-links li:last-child {
+    margin-right: auto;
+  }
+}
+.footer .social-links li a {
+  color: #575757;
+  font-size: 17px;
+}
+.footer .social-links li a:hover {
+  color: #fff;
+}
+.copyright {
+  border-top: 1px solid #1a1a1a;
+}
+.copyright .pattern {
+  padding: 16px 0px;
+  color: #8a8a8a;
+}
+.copyright .pattern a {
+  color: #8a8a8a;
+}
+.common-home .main-content .row {
+  margin: 0px -5px;
+}
+.common-home .main-content .row > div {
+  padding: 0px 5px;
+}
+.product-grid .row {
+  margin: 0px -5px;
+}
+.product-grid .row > div {
+  padding: 0px 5px;
+}
+.box-product .owl-carousel {
+  padding: 10px;
+  margin: -10px;
+}
+.box-product .owl-carousel .owl-item .item {
+  margin-right: 0px;
+}
+.fashionmodern1-banners-1 .row {
+  margin: 0px;
+}
+.fashionmodern1-banners-1 .row > div {
+  padding: 0px;
+}
+.fashionmodern1-banners-1 .banner {
+  margin: 0px;
+  background-size: cover;
+  background-position: center;
+  height: 21.1vw;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+@media (max-width: 767px) {
+  .fashionmodern1-banners-1 .banner {
+    height: 180px;
+  }
+}
+.fashionmodern1-banners-1 .banner:hover .banner-image {
+  transform: scale(1.03);
+  -webkit-transform: scale(1.03);
+  -moz-transform: scale(1.03);
+}
+.fashionmodern1-banners-1 .banner:hover .banner-image:before {
+  top: 50%;
+  opacity: 0.5;
+}
+.fashionmodern1-banners-1 .banner .banner-image {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+}
+.fashionmodern1-banners-1 .banner .banner-image:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 75%;
+  bottom: 0;
+  background: rgba(212, 228, 239, 0);
+  background: -moz-linear-gradient(top, rgba(212, 228, 239, 0) 0%, #000000 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(212, 228, 239, 0)), color-stop(100%, #000000));
+  background: -webkit-linear-gradient(top, rgba(212, 228, 239, 0) 0%, #000000 100%);
+  background: -o-linear-gradient(top, rgba(212, 228, 239, 0) 0%, #000000 100%);
+  background: -ms-linear-gradient(top, rgba(212, 228, 239, 0) 0%, #000000 100%);
+  background: linear-gradient(to bottom, rgba(212, 228, 239, 0) 0%, #000000 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#d4e4ef', endColorstr='#ffffff', GradientType=0);
+  opacity: 0;
+  transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+}
+.fashionmodern1-banners-1 .banner .link {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+}
+.fashionmodern1-banners-1 .banner .banner-content {
+  position: absolute;
+  left: 100px;
+  top: 50%;
+  text-align: left;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+}
+@media (max-width: 1098px) {
+  .fashionmodern1-banners-1 .banner .banner-content {
+    left: 80px;
+  }
+}
+@media (max-width: 991px) {
+  .fashionmodern1-banners-1 .banner .banner-content {
+    left: 50px;
+  }
+}
+@media (max-width: 767px) {
+  .fashionmodern1-banners-1 .banner .banner-content {
+    left: 30px;
+  }
+}
+.fashionmodern1-banners-1 .banner .banner-content .label {
+  position: absolute;
+  transform: translateY(-100%);
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  font-size: 16px;
+  color: #fcc132;
+  text-transform: uppercase;
+}
+.fashionmodern1-banners-1 .banner .banner-content h3 {
+  font-size: 40px;
+  line-height: 1.13;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 400;
+  padding: 0px;
+  margin: 0px;
+}
+@media (max-width: 1098px) {
+  .fashionmodern1-banners-1 .banner .banner-content h3 {
+    font-size: 34px;
+  }
+}
+@media (max-width: 767px) {
+  .fashionmodern1-banners-1 .banner .banner-content h3 {
+    font-size: 24px;
+  }
+}
+.fashionmodern1-popular-categories .box-content {
+  margin-top: -10px;
+  position: relative;
+}
+.fashionmodern1-popular-categories .item {
+  margin: 10px 0px 0px 0px;
+  display: block;
+  background: #f2f2f2;
+  padding: 26px 50px 26px 50px;
+  font-size: 30px;
+  font-weight: 400;
+  color: #000;
+  text-decoration: none;
+  position: relative;
+}
+@media (max-width: 1098px) {
+  .fashionmodern1-popular-categories .item {
+    padding-left: 40px;
+    padding-right: 40px;
+    font-size: 26px;
+  }
+}
+@media (max-width: 767px) {
+  .fashionmodern1-popular-categories .item {
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 21px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+}
+.fashionmodern1-popular-categories .item span {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 50px;
+  width: 48px;
+  height: 22px;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+}
+@media (max-width: 1280px) {
+  .fashionmodern1-popular-categories .item span {
+    display: none;
+  }
+}
+@media (max-width: 991px) {
+  .fashionmodern1-popular-categories .item span {
+    display: block;
+    right: 40px;
+  }
+}
+@media (max-width: 767px) {
+  .fashionmodern1-popular-categories .item span {
+    right: 30px;
+  }
+}
+.fashionmodern1-banners-2 .row {
+  margin: 0px;
+}
+.fashionmodern1-banners-2 .row > div {
+  padding: 0px;
+}
+.fashionmodern1-banners-2 .banner {
+  margin: 0px;
+  background-size: cover;
+  background-position: center;
+  height: 21.1vw;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+@media (max-width: 767px) {
+  .fashionmodern1-banners-2 .banner {
+    height: 180px;
+  }
+}
+.fashionmodern1-banners-2 .banner:hover .banner-image {
+  transform: scale(1.03);
+  -webkit-transform: scale(1.03);
+  -moz-transform: scale(1.03);
+}
+.fashionmodern1-banners-2 .banner:hover .banner-image:before {
+  top: 50%;
+  opacity: 0.5;
+}
+.fashionmodern1-banners-2 .banner .banner-image {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+}
+.fashionmodern1-banners-2 .banner .banner-image:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 75%;
+  bottom: 0;
+  background: rgba(212, 228, 239, 0);
+  background: -moz-linear-gradient(top, rgba(212, 228, 239, 0) 0%, #ffffff 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(212, 228, 239, 0)), color-stop(100%, #ffffff));
+  background: -webkit-linear-gradient(top, rgba(212, 228, 239, 0) 0%, #ffffff 100%);
+  background: -o-linear-gradient(top, rgba(212, 228, 239, 0) 0%, #ffffff 100%);
+  background: -ms-linear-gradient(top, rgba(212, 228, 239, 0) 0%, #ffffff 100%);
+  background: linear-gradient(to bottom, rgba(212, 228, 239, 0) 0%, #ffffff 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#d4e4ef', endColorstr='#ffffff', GradientType=0);
+  opacity: 0;
+  transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+}
+.fashionmodern1-banners-2 .banner .link {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+}
+.fashionmodern1-banners-2 .banner .banner-content {
+  position: absolute;
+  left: 100px;
+  top: 50%;
+  text-align: left;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+}
+@media (max-width: 1098px) {
+  .fashionmodern1-banners-2 .banner .banner-content {
+    left: 80px;
+  }
+}
+@media (max-width: 991px) {
+  .fashionmodern1-banners-2 .banner .banner-content {
+    left: 50px;
+  }
+}
+@media (max-width: 767px) {
+  .fashionmodern1-banners-2 .banner .banner-content {
+    left: 30px;
+  }
+}
+.fashionmodern1-banners-2 .banner .banner-content .label {
+  position: absolute;
+  transform: translateY(-100%);
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  font-size: 16px;
+  color: #7dbd5d;
+  text-transform: uppercase;
+}
+.fashionmodern1-banners-2 .banner .banner-content h3 {
+  font-size: 40px;
+  line-height: 1.13;
+  color: #000;
+  text-transform: uppercase;
+  font-weight: 400;
+  padding: 0px;
+  margin: 0px;
+}
+@media (max-width: 1098px) {
+  .fashionmodern1-banners-2 .banner .banner-content h3 {
+    font-size: 34px;
+  }
+}
+@media (max-width: 767px) {
+  .fashionmodern1-banners-2 .banner .banner-content h3 {
+    font-size: 24px;
+  }
+}
+.fashionmodern1-products-and-banners .box {
+  margin: 56px 0px 0px 0px;
+}
+@media (max-width: 767px) {
+  .fashionmodern1-products-and-banners .box {
+    margin: 37px 0px 0px 0px;
+  }
+}
+.fashionmodern1-products-and-banners .box .box-heading {
+  padding: 0px 0px 27px 0px;
+  font-size: 30px;
+}
+@media (max-width: 1098px) {
+  .fashionmodern1-products-and-banners .box .box-heading {
+    font-size: 26px;
+  }
+}
+@media (max-width: 767px) {
+  .fashionmodern1-products-and-banners .box .box-heading {
+    font-size: 20px;
+  }
+}
+.fashionmodern1-products-and-banners .box .advanced-grid-products .product .image {
+  max-width: 100px;
+}
+.fashionmodern1-product-banner {
+  margin: 130px 0px 0px 0px;
+  background-size: cover;
+  background-position: center;
+  height: 416px;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+@media (max-width: 767px) {
+  .fashionmodern1-product-banner {
+    height: 280px;
+    margin: 40px 0px 0px 0px;
+  }
+}
+.fashionmodern1-product-banner:hover .banner-image {
+  transform: scale(1.03);
+  -webkit-transform: scale(1.03);
+  -moz-transform: scale(1.03);
+}
+.fashionmodern1-product-banner:hover .banner-image:before {
+  top: 50%;
+  opacity: 0.5;
+}
+.fashionmodern1-product-banner .banner-image {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+}
+.fashionmodern1-product-banner .banner-image:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 75%;
+  bottom: 0;
+  background: rgba(212, 228, 239, 0);
+  background: -moz-linear-gradient(top, rgba(212, 228, 239, 0) 0%, #ffffff 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(212, 228, 239, 0)), color-stop(100%, #ffffff));
+  background: -webkit-linear-gradient(top, rgba(212, 228, 239, 0) 0%, #ffffff 100%);
+  background: -o-linear-gradient(top, rgba(212, 228, 239, 0) 0%, #ffffff 100%);
+  background: -ms-linear-gradient(top, rgba(212, 228, 239, 0) 0%, #ffffff 100%);
+  background: linear-gradient(to bottom, rgba(212, 228, 239, 0) 0%, #ffffff 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#d4e4ef', endColorstr='#ffffff', GradientType=0);
+  opacity: 0;
+  transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+}
+.fashionmodern1-product-banner .link {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+}
+.fashionmodern1-product-banner .banner-content {
+  position: absolute;
+  left: 40px;
+  bottom: 35px;
+  text-align: left;
+}
+@media (max-width: 767px) {
+  .fashionmodern1-product-banner .banner-content {
+    left: 30px;
+    bottom: 25px;
+  }
+}
+.fashionmodern1-product-banner .banner-content.right {
+  width: 155px;
+  left: auto;
+  right: 0px;
+  padding-right: 20px;
+}
+@media (max-width: 767px) {
+  .fashionmodern1-product-banner .banner-content.right {
+    width: 135px;
+  }
+}
+.fashionmodern1-product-banner .banner-content h3 {
+  padding: 0px;
+  margin: 0px;
+  font-size: 25px;
+  line-height: 1.2;
+}
+@media (max-width: 767px) {
+  .fashionmodern1-product-banner .banner-content h3 {
+    font-size: 21px;
+  }
+}
+.fashionmodern1-product-banner .banner-content .price {
+  margin: 14px 0px 0px 0px;
+  padding: 0px;
+  font-size: 25px;
+  font-weight: 600;
+  text-decoration: underline;
+}
+@media (max-width: 767px) {
+  .fashionmodern1-product-banner .banner-content .price {
+    font-size: 21px;
+  }
+}
+.fashionmodern1-footer-brands {
+  margin: 0px -2000px;
+  padding: 35px 2000px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+@media (max-width: 767px) {
+  .fashionmodern1-footer-brands {
+    padding: 20px 2000px;
+  }
+}
+.fashionmodern1-footer-brands .item {
+  text-align: center;
+}
+.fashionmodern1-footer-brands .item img {
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+}
+.fashionmodern1-menu-1 {
+  margin: -20px -70px -30px -70px;
+  position: relative;
+}
+@media (max-width: 991px) {
+  .fashionmodern1-menu-1 {
+    margin: -20px -20px -30px -20px;
+  }
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-1 {
+    margin: -20px;
+  }
+}
+.fashionmodern1-menu-1 .row {
+  margin: 0px !important;
+}
+.fashionmodern1-menu-1 .row > div {
+  padding: 0px !important;
+  margin: 0px !important;
+  background-position: top right;
+  background-repeat: no-repeat;
+}
+@media (max-width: 1470px) {
+  .fashionmodern1-menu-1 .row > div {
+    background-image: none !important;
+  }
+}
+.fashionmodern1-menu-1 .links {
+  padding: 74px 20px 74px 70px;
+}
+@media (max-width: 991px) {
+  .fashionmodern1-menu-1 .links {
+    padding: 34px 0px 34px 40px;
+  }
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-1 .links {
+    padding: 24px 0px 24px 25px;
+  }
+}
+.fashionmodern1-menu-1 .links .item {
+  padding-right: 50px;
+}
+@media (max-width: 991px) {
+  .fashionmodern1-menu-1 .links .item {
+    padding-right: 40px;
+  }
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-1 .links .item {
+    padding-right: 30px;
+  }
+}
+.fashionmodern1-menu-1 .links h3 {
+  padding: 0px 0px 10px 0px;
+  margin: 0px;
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: none;
+  color: #7dbd5d;
+}
+.fashionmodern1-menu-1 .links ul {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+}
+.fashionmodern1-menu-1 .links ul li a {
+  font-size: 16px;
+  line-height: 30px;
+}
+.fashionmodern1-menu-1 .links ul li a:hover {
+  color: #000;
+  font-weight: 600;
+  text-decoration: underline;
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-2 .row > div .row {
+    margin: 0px !important;
+  }
+  .fashionmodern1-menu-2 .row > div .row > div {
+    border-top: none !important;
+    margin: 0px !important;
+    padding: 0px !important;
+  }
+}
+.fashionmodern1-menu-2 .links {
+  padding: 54px 0px 74px 0px;
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-2 .links {
+    padding: 10px 0px;
+  }
+}
+.fashionmodern1-menu-2 .links h3 {
+  padding: 0px 0px 10px 0px;
+  margin: 0px;
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: none;
+  color: #7dbd5d;
+}
+.fashionmodern1-menu-2 .links ul {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+}
+.fashionmodern1-menu-2 .links ul li a {
+  font-size: 16px;
+  line-height: 30px;
+}
+.fashionmodern1-menu-2 .links ul li a:hover {
+  color: #000;
+  font-weight: 600;
+  text-decoration: underline;
+}
+.fashionmodern1-menu-2 .border-left {
+  margin-top: -20px !important;
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-2 .border-left {
+    border-left: none !important;
+    margin-top: 20px !important;
+  }
+}
+.fashionmodern1-menu-2 .menu-product {
+  padding: 60px 10px 40px 25px;
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-2 .menu-product {
+    padding: 0px;
+  }
+}
+.fashionmodern1-menu-2 .menu-product img {
+  display: block;
+  width: 100%;
+}
+.fashionmodern1-menu-2 .menu-product .name {
+  padding-top: 9px;
+}
+.fashionmodern1-menu-2 .menu-product .price {
+  color: #000;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 0px 0px 3px 0px;
+}
+.fashionmodern1-menu-2 .menu-product .price .price-old {
+  color: #808080;
+  text-decoration: line-through;
+  padding-left: 6px;
+  font-weight: normal;
+}
+.fashionmodern1-menu-2 .menu-banner {
+  margin: -20px -70px -1px 0px !important;
+  position: relative;
+  height: 540px !important;
+  overflow: hidden;
+}
+@media (max-width: 991px) {
+  .fashionmodern1-menu-2 .menu-banner {
+    margin-right: -20px !important;
+  }
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-2 .menu-banner {
+    margin: 0px !important;
+    height: 300px !important;
+  }
+}
+.fashionmodern1-menu-2 .menu-banner:hover .banner-image {
+  transform: scale(1.03);
+  -webkit-transform: scale(1.03);
+  -moz-transform: scale(1.03);
+}
+.fashionmodern1-menu-2 .menu-banner:hover .banner-image:before {
+  top: 50%;
+  opacity: 0.5;
+}
+.fashionmodern1-menu-2 .menu-banner .banner-image {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+}
+.fashionmodern1-menu-2 .menu-banner .banner-image:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 75%;
+  bottom: 0;
+  background: rgba(212, 228, 239, 0);
+  background: -moz-linear-gradient(top, rgba(212, 228, 239, 0) 0%, #000000 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(212, 228, 239, 0)), color-stop(100%, #000000));
+  background: -webkit-linear-gradient(top, rgba(212, 228, 239, 0) 0%, #000000 100%);
+  background: -o-linear-gradient(top, rgba(212, 228, 239, 0) 0%, #000000 100%);
+  background: -ms-linear-gradient(top, rgba(212, 228, 239, 0) 0%, #000000 100%);
+  background: linear-gradient(to bottom, rgba(212, 228, 239, 0) 0%, #000000 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#d4e4ef', endColorstr='#ffffff', GradientType=0);
+  opacity: 0;
+  transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+}
+.fashionmodern1-menu-2 .menu-banner .banner-content {
+  left: 70px !important;
+  bottom: 70px !important;
+  top: auto !important;
+  right: auto !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+  -moz-transform: none !important;
+  text-align: left !important;
+}
+@media (max-width: 991px) {
+  .fashionmodern1-menu-2 .menu-banner .banner-content {
+    left: 40px !important;
+    bottom: 40px !important;
+  }
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-2 .menu-banner .banner-content {
+    left: 30px !important;
+    bottom: 30px !important;
+  }
+}
+.fashionmodern1-menu-2 .menu-banner .banner-content h3 {
+  padding: 0px;
+  margin: 0px;
+  color: #fff;
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 400;
+}
+@media (max-width: 991px) {
+  .fashionmodern1-menu-2 .menu-banner .banner-content h3 {
+    font-size: 24px !important;
+  }
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-2 .menu-banner .banner-content h3 {
+    font-size: 21px;
+  }
+}
+.fashionmodern1-menu-2 .menu-banner .banner-content .btn {
+  background: #fff !important;
+  color: #000 !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  padding: 8px 30px 7px !important;
+  text-transform: none !important;
+  margin-top: 25px !important;
+}
+.fashionmodern1-menu-2 .fashionmodern1-menu-brands {
+  margin: 0px -2000px;
+  padding: 35px 2000px 0px 2000px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-2 .fashionmodern1-menu-brands {
+    padding: 0px 0px;
+    margin: 0px;
+    border: none;
+  }
+}
+.fashionmodern1-menu-2 .fashionmodern1-menu-brands .item {
+  text-align: center;
+}
+.fashionmodern1-menu-2 .fashionmodern1-menu-brands .item img {
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+}
+.fashionmodern1-menu-3 {
+  margin: -20px -70px -30px -70px;
+  position: relative;
+}
+@media (max-width: 991px) {
+  .fashionmodern1-menu-3 {
+    margin: -20px -20px -30px -20px;
+  }
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-3 {
+    margin: -20px;
+  }
+}
+.fashionmodern1-menu-3 .row {
+  margin: 0px !important;
+}
+.fashionmodern1-menu-3 .row > div {
+  padding: 0px !important;
+  margin: 0px !important;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+@media (max-width: 1199px) {
+  .fashionmodern1-menu-3 .row > div {
+    background-image: none !important;
+  }
+}
+.fashionmodern1-menu-3 .links {
+  padding: 74px 20px 74px 70px;
+}
+@media (max-width: 991px) {
+  .fashionmodern1-menu-3 .links {
+    padding: 34px 0px 34px 40px;
+  }
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-3 .links {
+    padding: 0px 0px 24px 25px;
+  }
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-3 .links .d-flex {
+    flex-wrap: wrap;
+  }
+}
+.fashionmodern1-menu-3 .links .item {
+  padding-right: 50px;
+}
+@media (max-width: 991px) {
+  .fashionmodern1-menu-3 .links .item {
+    padding-right: 40px;
+  }
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-3 .links .item {
+    padding-right: 30px;
+    width: 50%;
+    padding-top: 24px;
+  }
+}
+.fashionmodern1-menu-3 .links .item:last-child {
+  margin-left: auto;
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-3 .links .item:last-child {
+    margin: 0px;
+  }
+}
+.fashionmodern1-menu-3 .links h3 {
+  padding: 0px 0px 10px 0px;
+  margin: 0px;
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: none;
+  color: #7dbd5d;
+}
+.fashionmodern1-menu-3 .links ul {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+}
+.fashionmodern1-menu-3 .links ul li a {
+  font-size: 16px;
+  line-height: 30px;
+}
+.fashionmodern1-menu-3 .links ul li a:hover {
+  color: #000;
+  font-weight: 600;
+  text-decoration: underline;
+}
+.fashionmodern1-menu-3 .menu3-banner {
+  margin: 0px;
+  background-size: cover;
+  background-position: center;
+  height: 482px;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-3 .menu3-banner {
+    height: 220px;
+  }
+}
+.fashionmodern1-menu-3 .menu3-banner:hover .banner-image {
+  transform: scale(1.03);
+  -webkit-transform: scale(1.03);
+  -moz-transform: scale(1.03);
+}
+.fashionmodern1-menu-3 .menu3-banner:hover .banner-image:before {
+  top: 50%;
+  opacity: 0.5;
+}
+.fashionmodern1-menu-3 .menu3-banner .banner-image {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+}
+.fashionmodern1-menu-3 .menu3-banner .banner-image:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 75%;
+  bottom: 0;
+  background: rgba(212, 228, 239, 0);
+  background: -moz-linear-gradient(top, rgba(212, 228, 239, 0) 0%, #000000 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(212, 228, 239, 0)), color-stop(100%, #000000));
+  background: -webkit-linear-gradient(top, rgba(212, 228, 239, 0) 0%, #000000 100%);
+  background: -o-linear-gradient(top, rgba(212, 228, 239, 0) 0%, #000000 100%);
+  background: -ms-linear-gradient(top, rgba(212, 228, 239, 0) 0%, #000000 100%);
+  background: linear-gradient(to bottom, rgba(212, 228, 239, 0) 0%, #000000 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#d4e4ef', endColorstr='#ffffff', GradientType=0);
+  opacity: 0;
+  transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+}
+.fashionmodern1-menu-3 .menu3-banner .link {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+}
+.fashionmodern1-menu-3 .menu3-banner .banner-content {
+  position: absolute;
+  left: 70px;
+  top: 50%;
+  text-align: left;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+}
+@media (max-width: 1098px) {
+  .fashionmodern1-menu-3 .menu3-banner .banner-content {
+    left: 50px;
+  }
+}
+@media (max-width: 991px) {
+  .fashionmodern1-menu-3 .menu3-banner .banner-content {
+    left: 40px;
+  }
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-3 .menu3-banner .banner-content {
+    left: 30px;
+  }
+}
+.fashionmodern1-menu-3 .menu3-banner .banner-content h3 {
+  font-size: 40px;
+  line-height: 1.13;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 400;
+  padding: 0px;
+  margin: 0px;
+}
+@media (max-width: 1098px) {
+  .fashionmodern1-menu-3 .menu3-banner .banner-content h3 {
+    font-size: 34px;
+  }
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-3 .menu3-banner .banner-content h3 {
+    font-size: 24px;
+  }
+}
+.fashionmodern1-menu-3 .menu3-banner .banner-content h3 span {
+  color: #fcc132;
+}
+.fashionmodern1-menu-3 .menu3-banner .banner-content .btn {
+  background: #fff !important;
+  color: #000 !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  padding: 8px 30px 7px !important;
+  text-transform: none !important;
+  margin-top: 25px !important;
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-3 .menu3-banner .banner-content .btn {
+    font-size: 15px !important;
+  }
+}
+.fashionmodern1-menu-4 {
+  margin: -20px -70px -30px -70px;
+  position: relative;
+}
+@media (max-width: 991px) {
+  .fashionmodern1-menu-4 {
+    margin: -20px -20px -30px -20px;
+  }
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-4 {
+    margin: -20px;
+  }
+}
+.fashionmodern1-menu-4 .row {
+  margin: 0px !important;
+}
+.fashionmodern1-menu-4 .row > div {
+  padding: 0px !important;
+  margin: 0px !important;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+@media (max-width: 1199px) {
+  .fashionmodern1-menu-4 .row > div {
+    background-image: none !important;
+  }
+}
+.fashionmodern1-menu-4 .links {
+  padding: 74px 20px 74px 70px;
+}
+@media (max-width: 991px) {
+  .fashionmodern1-menu-4 .links {
+    padding: 34px 0px 34px 40px;
+  }
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-4 .links {
+    padding: 0px 0px 24px 25px;
+  }
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-4 .links .d-flex {
+    flex-wrap: wrap;
+  }
+}
+.fashionmodern1-menu-4 .links .item {
+  padding-right: 50px;
+}
+@media (max-width: 991px) {
+  .fashionmodern1-menu-4 .links .item {
+    padding-right: 40px;
+  }
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-4 .links .item {
+    padding-right: 30px;
+    width: 50%;
+    padding-top: 24px;
+  }
+}
+.fashionmodern1-menu-4 .links .item:last-child {
+  margin-left: auto;
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-4 .links .item:last-child {
+    margin: 0px;
+  }
+}
+.fashionmodern1-menu-4 .links h3 {
+  padding: 0px 0px 10px 0px;
+  margin: 0px;
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: none;
+  color: #7dbd5d;
+}
+.fashionmodern1-menu-4 .links ul {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+}
+.fashionmodern1-menu-4 .links ul li a {
+  font-size: 16px;
+  line-height: 30px;
+}
+.fashionmodern1-menu-4 .links ul li a:hover {
+  color: #000;
+  font-weight: 600;
+  text-decoration: underline;
+}
+.fashionmodern1-menu-4 .menu4-banner {
+  margin: 0px;
+  background-size: cover;
+  background-position: center;
+  height: 18vw;
+  min-height: 360px;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-4 .menu4-banner {
+    height: 220px;
+    min-height: 220px;
+  }
+}
+.fashionmodern1-menu-4 .menu4-banner:hover .banner-image {
+  transform: scale(1.03);
+  -webkit-transform: scale(1.03);
+  -moz-transform: scale(1.03);
+}
+.fashionmodern1-menu-4 .menu4-banner:hover .banner-image:before {
+  top: 50%;
+  opacity: 0.5;
+}
+.fashionmodern1-menu-4 .menu4-banner .banner-image {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+}
+.fashionmodern1-menu-4 .menu4-banner .banner-image:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 75%;
+  bottom: 0;
+  background: rgba(212, 228, 239, 0);
+  background: -moz-linear-gradient(top, rgba(212, 228, 239, 0) 0%, #000000 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(212, 228, 239, 0)), color-stop(100%, #000000));
+  background: -webkit-linear-gradient(top, rgba(212, 228, 239, 0) 0%, #000000 100%);
+  background: -o-linear-gradient(top, rgba(212, 228, 239, 0) 0%, #000000 100%);
+  background: -ms-linear-gradient(top, rgba(212, 228, 239, 0) 0%, #000000 100%);
+  background: linear-gradient(to bottom, rgba(212, 228, 239, 0) 0%, #000000 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#d4e4ef', endColorstr='#ffffff', GradientType=0);
+  opacity: 0;
+  transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+}
+.fashionmodern1-menu-4 .menu4-banner .link {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+}
+.fashionmodern1-menu-4 .menu4-banner .banner-content {
+  position: absolute;
+  left: 70px;
+  top: 90px;
+  text-align: left;
+}
+@media (max-width: 1098px) {
+  .fashionmodern1-menu-4 .menu4-banner .banner-content {
+    left: 50px;
+  }
+}
+@media (max-width: 991px) {
+  .fashionmodern1-menu-4 .menu4-banner .banner-content {
+    left: 40px;
+  }
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-4 .menu4-banner .banner-content {
+    left: 30px;
+    top: 30px;
+  }
+}
+.fashionmodern1-menu-4 .menu4-banner .banner-content h3 {
+  font-size: 30px;
+  line-height: 1.13;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 400;
+  padding: 0px;
+  margin: 0px;
+}
+@media (max-width: 1098px) {
+  .fashionmodern1-menu-4 .menu4-banner .banner-content h3 {
+    font-size: 26px;
+  }
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-4 .menu4-banner .banner-content h3 {
+    font-size: 21px;
+  }
+}
+.fashionmodern1-menu-4 .menu4-banner .banner-content h3 span {
+  color: #fcc132;
+}
+.fashionmodern1-menu-4 .menu4-banner .banner-content .btn {
+  background: #fff !important;
+  color: #000 !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  padding: 8px 30px 7px !important;
+  text-transform: none !important;
+  margin-top: 20px !important;
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-4 .menu4-banner .banner-content .btn {
+    font-size: 15px !important;
+  }
+}
+.fashionmodern1-menu-4 .menu4-banner-2 {
+  margin: 0px;
+  background-size: cover;
+  background-position: center;
+  height: 250px;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-4 .menu4-banner-2 {
+    height: 220px;
+  }
+}
+.fashionmodern1-menu-4 .menu4-banner-2:hover .banner-image {
+  transform: scale(1.03);
+  -webkit-transform: scale(1.03);
+  -moz-transform: scale(1.03);
+}
+.fashionmodern1-menu-4 .menu4-banner-2:hover .banner-image:before {
+  top: 50%;
+  opacity: 0.5;
+}
+.fashionmodern1-menu-4 .menu4-banner-2 .banner-image {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+}
+.fashionmodern1-menu-4 .menu4-banner-2 .banner-image:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 75%;
+  bottom: 0;
+  background: rgba(212, 228, 239, 0);
+  background: -moz-linear-gradient(top, rgba(212, 228, 239, 0) 0%, #ffffff 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(212, 228, 239, 0)), color-stop(100%, #ffffff));
+  background: -webkit-linear-gradient(top, rgba(212, 228, 239, 0) 0%, #ffffff 100%);
+  background: -o-linear-gradient(top, rgba(212, 228, 239, 0) 0%, #ffffff 100%);
+  background: -ms-linear-gradient(top, rgba(212, 228, 239, 0) 0%, #ffffff 100%);
+  background: linear-gradient(to bottom, rgba(212, 228, 239, 0) 0%, #ffffff 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#d4e4ef', endColorstr='#ffffff', GradientType=0);
+  opacity: 0;
+  transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+}
+.fashionmodern1-menu-4 .menu4-banner-2 .link {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+}
+.fashionmodern1-menu-4 .menu4-banner-2 .banner-content {
+  position: absolute;
+  left: 56.45%;
+  top: 50%;
+  text-align: left;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+}
+.fashionmodern1-menu-4 .menu4-banner-2 .banner-content h3 {
+  font-size: 35px;
+  line-height: 1.13;
+  color: #000;
+  text-transform: uppercase;
+  font-weight: 400;
+  padding: 0px;
+  margin: 0px;
+}
+@media (max-width: 1098px) {
+  .fashionmodern1-menu-4 .menu4-banner-2 .banner-content h3 {
+    font-size: 30px;
+  }
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-4 .menu4-banner-2 .banner-content h3 {
+    font-size: 24px;
+  }
+}
+.fashionmodern1-menu-4 .menu4-banner-2 .banner-content h3 span {
+  color: #fcc132;
+}
+.fashionmodern1-menu-4 .menu4-banner-2 .banner-content .btn {
+  background: #fff !important;
+  color: #000 !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  padding: 8px 30px 7px !important;
+  text-transform: none !important;
+  margin-top: 20px !important;
+}
+@media (max-width: 767px) {
+  .fashionmodern1-menu-4 .menu4-banner-2 .banner-content .btn {
+    font-size: 15px !important;
+  }
+}
+/* 28.12.2019 */
+/* colors */
+#modalAddToCartProduct .desctope .left .tt-total .price-new,
+.about-1 .parallax p,
+.about-3 .item h5,
+.carouselItem .testimonial .fa-quote-right {
+  color: #7dbd5d;
+}
+.post-entry .post-content .quote {
+  border-left-color: #7dbd5d;
+}
+.bar3 .item .icon svg path,
+.bar3 .item .icon svg g {
+  fill: #7dbd5d !important;
+}
+/* header 5 */
+header #top-bar .right #cart_block {
+  background: #fcc132;
+}
+header #top-bar .right #cart_block .cart-heading .open-cart svg path,
+header #top-bar .right .wishlist svg path,
+header #top-bar .right #cart_block .cart-heading .open-cart svg g,
+header #top-bar .right .wishlist svg g {
+  fill: transparent !important;
+  stroke: #fff !important;
+}
+/* Header 6 */
+header .slider-header #top .menu2 .desktop-cart #cart_block .cart-heading svg path,
+header .slider-header #top .menu2 .desktop-cart #cart_block .cart-heading svg g {
+  fill: transparent !important;
+  stroke: #fcc132 !important;
+}
+header .slider-header #top .menu2 .desktop-cart #cart_block .cart-heading .cart-count {
+  background: #fcc132;
+}
+header .slider-header #top .menu2 .wishlist .wishlist-count {
+  background: #666;
+  color: #fff;
+}
+/* header 12 */
+#top .top-center .right .desktop-search .search_form .search-cat {
+  background: #fcc132;
+}
+/* header 14 */
+#top .top-center .desktop-search .search_form .search-cat {
+  background: #fcc132;
+}
+/* Header 17 */
+#slider .desktop-search .search_form {
+  border-color: #fcc132;
+}
+/* column left */
+@media (min-width: 1098px) {
+  .main-content #column_left,
+  .main-content #column-left {
+    -ms-flex: 0 0 21.583%;
+    flex: 0 0 21.583%;
+    max-width: 21.583%;
+  }
+}
+@media (min-width: 1098px) {
+  .main-content #column_left + .col-md-9,
+  .main-content #column-left + .col-md-9 {
+    -ms-flex: 0 0 78.417%;
+    flex: 0 0 78.417%;
+    max-width: 78.417%;
+  }
+}
+/* mfilter */
+.mfilter-heading {
+  color: #000 !important;
+  text-transform: none !important;
+  font-size: 20px !important;
+}
+.mfilter-category ul li a,
+.mfilter-tb-as-td {
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+}
+/* Black header */
+header.header-type-6 .slider-header #top .menu2 {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+header.header-type-6 .slider-header #top .menu2 > * {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+header.header-type-6 .slider-header #top .menu2 .desktop-search .open-search a svg path,
+header.header-type-6 .slider-header #top .menu2 .my-account svg path,
+header.header-type-6 .slider-header #top .menu2 .wishlist svg path,
+header.header-type-6 .slider-header #top .menu2 .desktop-search .open-search a svg g,
+header.header-type-6 .slider-header #top .menu2 .my-account svg g,
+header.header-type-6 .slider-header #top .menu2 .wishlist svg g,
+header.header-type-6 .slider-header #top .menu2 .desktop-search .open-search a svg circle,
+header.header-type-6 .slider-header #top .menu2 .my-account svg circle,
+header.header-type-6 .slider-header #top .menu2 .wishlist svg circle,
+header.header-type-6 .slider-header #top .menu2 .desktop-search .open-search a svg line,
+header.header-type-6 .slider-header #top .menu2 .my-account svg line,
+header.header-type-6 .slider-header #top .menu2 .wishlist svg line {
+  fill: transparent !important;
+  stroke: #fff !important;
+}
+header.header-type-6 .slider-header #top .menu2 .wishlist .wishlist-count {
+  background: #fff;
+  color: #000;
+}
+header.header-type-6 .slider-header #top .bottom .switchers .dropdown .dropdown-toggle,
+header.header-type-6 .slider-header #top .bottom .social-links li a {
+  color: #fff;
+}
+header.header-type-8 .slider-header #top-bar {
+  border: none;
+}
+header .slider-header #top-bar {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+header .slider-header #top-bar a {
+  color: #fff;
+}
+header .slider-header #top-bar .dropdown-menu a {
+  color: #000;
+}
+header .slider-header #top-bar .left .social-links li a {
+  color: #525252;
+}
+header .slider-header #top-bar .left .social-links li a:hover {
+  color: #fff;
+}
+header .slider-header #top-bar .right ul.menu,
+header .slider-header #top-bar .right .welcome-text {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+header .slider-header .top-center .right .dropdown .dropdown-toggle {
+  color: #fff;
+}

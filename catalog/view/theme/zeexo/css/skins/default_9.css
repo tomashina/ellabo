@@ -1,0 +1,357 @@
+header.header-type-6 .slider-header #top .menu2 {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+header.header-type-6 .slider-header #top .menu2 > * {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+header.header-type-6 .slider-header #top .menu2 .desktop-search .open-search a svg path,
+header.header-type-6 .slider-header #top .menu2 .my-account svg path,
+header.header-type-6 .slider-header #top .menu2 .wishlist svg path,
+header.header-type-6 .slider-header #top .menu2 .desktop-search .open-search a svg g,
+header.header-type-6 .slider-header #top .menu2 .my-account svg g,
+header.header-type-6 .slider-header #top .menu2 .wishlist svg g {
+  fill: #fff !important;
+}
+header.header-type-6 .slider-header #top .bottom .switchers .dropdown .dropdown-toggle,
+header.header-type-6 .slider-header #top .bottom .social-links li a {
+  color: #fff;
+}
+header.header-type-8 .slider-header #top-bar {
+  border: none;
+}
+header .slider-header {
+  background: #000;
+}
+header .slider-header #top-bar {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+header .slider-header #top-bar a {
+  color: #fff;
+}
+header .slider-header #top-bar .dropdown-menu a {
+  color: #000;
+}
+header .slider-header #top-bar .left .social-links li a {
+  color: #808080;
+}
+header .slider-header #top-bar .left .social-links li a:hover {
+  color: #fff;
+}
+header .slider-header #top-bar .right ul.menu,
+header .slider-header #top-bar .right .welcome-text {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+header .slider-header #top-bar .right .switchers .dropdown .dropdown-toggle:after {
+  border-top-color: #666666;
+}
+header .slider-header .top-center .right .dropdown .dropdown-toggle {
+  color: #fff;
+}
+header .slider-header .top-center .right .desktop-search .open-search a svg {
+  fill: #fff !important;
+}
+header .slider-header .top-center .right .my-account svg path,
+header .slider-header .top-center .right .my-account svg g {
+  fill: #fff !important;
+}
+header .slider-header .top-center .right .wishlist svg path,
+header .slider-header .top-center .right .wishlist svg g {
+  fill: #fff !important;
+}
+header .slider-header ul.megamenu > li > a {
+  color: #fff;
+}
+header .slider-header ul.megamenu > li > a:hover {
+  color: #06bec7;
+}
+header .slider-header ul.megamenu > li.active > a {
+  color: #06bec7;
+}
+header .slider-header ul.megamenu li .sub-menu .content {
+  background: #000;
+  color: #fff;
+}
+header .slider-header ul.megamenu li .sub-menu .content a {
+  color: #fff;
+}
+header .slider-header ul.megamenu li .sub-menu .content .hover-menu a.with-submenu:before {
+  border-left-color: #666;
+}
+header .slider-header ul.megamenu li .sub-menu .content .hover-menu .menu ul ul {
+  background: #000;
+}
+header .is-sticky #top {
+  background: #000;
+}
+#mobile-header-1 {
+  background: #000;
+  color: #fff;
+}
+#mobile-header-1 a {
+  color: #fff;
+}
+#mobile-header-1 .dropdown-menu {
+  color: #000;
+}
+#mobile-header-1 .dropdown-menu a {
+  color: #000;
+}
+#mobile-header-1 .search_form input {
+  background: #fff;
+}
+#mobile-header-1 .search_form .button-search:before {
+  color: #000;
+}
+#mobile-header-2 {
+  background: #000;
+}
+#mobile-header-2 .top-center .open-menu2 a svg g,
+#mobile-header-2 .top-center .open-menu2 a svg path {
+  fill: #fff !important;
+}
+#mobile-header-3 {
+  background: #000;
+  color: #fff;
+}
+#mobile-header-3 a {
+  color: #fff;
+}
+#mobile-header-3 .dropdown-menu {
+  color: #000;
+}
+#mobile-header-3 .dropdown-menu a {
+  color: #000;
+}
+#mobile-header-3 .search_form input {
+  background: #fff;
+}
+#mobile-header-3 .top-center .open-wishlist a svg path,
+#mobile-header-3 .top-center .open-wishlist a svg g {
+  fill: #fff !important;
+}
+#mobile-header-3 .top-center .open-account a svg path,
+#mobile-header-3 .top-center .open-account a svg g {
+  fill: #fff !important;
+}
+#mobile-header-3 .search_form .button-search:before {
+  color: #000;
+}
+#mobile-header-3 .top-bottom .right .social-links li a {
+  color: #808080;
+}
+#mobile-header-3 .top-bottom .right .social-links li a:hover {
+  color: #fff;
+}
+#mobile-header-3 .top-bottom .open-menu2 svg path,
+#mobile-header-3 .top-bottom .open-menu2 svg g {
+  fill: #fff !important;
+}
+.breadcrumb {
+  margin-top: 10px;
+}
+.carousel-brands {
+  margin: 10px 0px 0px 0px;
+  border: none;
+}
+.main-content .pattern > .container,
+.standard-body .main-content .pattern > .container {
+  padding-bottom: 55px;
+}
+@media (max-width: 767px) {
+  .main-content .pattern > .container,
+  .standard-body .main-content .pattern > .container {
+    padding-bottom: 40px;
+  }
+}
+.common-home .main-content .pattern > .container,
+.common-home .standard-body .main-content .pattern > .container {
+  padding-bottom: 46px;
+}
+@media (max-width: 767px) {
+  .common-home .main-content .pattern > .container,
+  .common-home .standard-body .main-content .pattern > .container {
+    padding-bottom: 36px;
+  }
+}
+.standard-body .footer .background {
+  background: #fff;
+}
+.footer .background {
+  background: #fff;
+  color: #000;
+}
+.footer .background .pattern > .container > div:first-child {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.footer .background a {
+  color: #000;
+}
+.footer .background a:hover {
+  color: #000;
+}
+.footer .background h4 {
+  color: #06bec7;
+  padding-top: 0px;
+  margin-top: 57px;
+}
+@media (max-width: 767px) {
+  .footer .background h4 {
+    margin-top: 35px;
+  }
+}
+.footer .background .footer-newsletter h5 {
+  color: #000;
+}
+.footer .background .footer-newsletter .line {
+  background: rgba(0, 0, 0, 0.1);
+}
+.footer .background .footer-newsletter .content {
+  background: #fff;
+}
+.footer .background .footer-newsletter .content input {
+  background: #e6e6e6;
+  color: #000;
+}
+.footer .background .footer-newsletter .checkbox label .custom-control-indicator {
+  background: #e6e6e6;
+}
+.footer .background .about-us {
+  padding-top: 60px;
+}
+@media (max-width: 767px) {
+  .footer .background .about-us {
+    padding-top: 40px;
+    text-align: center;
+  }
+}
+.footer .background .about-us img {
+  margin-bottom: 15px;
+}
+@media (max-width: 767px) {
+  .footer .background .about-us img {
+    max-height: 32px;
+  }
+}
+.footer .background .about-us p {
+  padding: 20px 0px 0px 0px;
+  font-size: 15px;
+  line-height: 22px;
+}
+@media (max-width: 767px) {
+  .footer .background .about-us p {
+    font-size: 14px;
+    line-height: 21px;
+    padding-top: 15px;
+  }
+}
+.footer .background .about-us p span {
+  color: #06bec7;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+@media (max-width: 767px) {
+  .footer .background .about-us p span {
+    font-size: 15px;
+  }
+}
+.footer .background .open-footer-menu .icon span {
+  background: #000;
+}
+.footer .background .open-footer-menu .text {
+  color: #000;
+}
+.standard-body .copyright .background {
+  background: #fff;
+}
+.copyright .background {
+  background: #fff;
+}
+.copyright .background .pattern > .container > div:first-child {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.copyright .background .pattern > .container > p {
+  display: none;
+}
+.copyright .background .pattern {
+  color: #666666;
+}
+.copyright .background .pattern a {
+  color: #666666;
+}
+.copyright .background .pattern .default9-copyright {
+  padding-top: 25px;
+}
+.copyright .background .pattern .default9-copyright .social-links {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+}
+.copyright .background .pattern .default9-copyright .social-links li {
+  margin: 0px 10px 0px 10px;
+}
+.copyright .background .pattern .default9-copyright .social-links li:first-child {
+  margin-left: auto;
+}
+.copyright .background .pattern .default9-copyright .social-links li:last-child {
+  margin-right: auto;
+}
+.copyright .background .pattern .default9-copyright .social-links li a {
+  color: #b2b2b1;
+  font-size: 20px;
+}
+@media (max-width: 767px) {
+  .copyright .background .pattern .default9-copyright .social-links li a {
+    font-size: 17px;
+  }
+}
+.copyright .background .pattern .default9-copyright .social-links li a:hover {
+  color: #000;
+}
+.copyright .background .pattern .default9-copyright ul.d-flex {
+  width: 100%;
+  padding: 20px 0px 0px 0px;
+  margin: 0px;
+  list-style: none;
+}
+@media (max-width: 767px) {
+  .copyright .background .pattern .default9-copyright ul.d-flex {
+    white-space: nowrap;
+    overflow: scroll;
+  }
+}
+.copyright .background .pattern .default9-copyright ul.d-flex li {
+  margin: 0px 12px 0px 12px;
+}
+.copyright .background .pattern .default9-copyright ul.d-flex li:first-child {
+  margin-left: auto;
+}
+.copyright .background .pattern .default9-copyright ul.d-flex li:last-child {
+  margin-right: auto;
+}
+.copyright .background .pattern .default9-copyright ul.d-flex li a {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #000;
+}
+.copyright .background .pattern .default9-copyright p {
+  text-align: center;
+  padding: 17px 0px 0px 0px;
+}
+.copyright .background .pattern .default9-copyright .payment {
+  text-align: center;
+  padding-top: 19px;
+}
+.copyright .background .pattern .default9-copyright .payment a {
+  display: inline-block;
+  vertical-align: top;
+  padding: 0px 4px;
+}
+.copyright .background .pattern .default9-copyright .payment img {
+  max-height: 26px;
+}

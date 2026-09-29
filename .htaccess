@@ -1,0 +1,219 @@
+# 1.To use URL Alias you need to be running apache with mod_rewrite enabled.
+
+# 2. In your opencart directory rename htaccess.txt to .htaccess.
+
+# For any support issues please visit: http://www.opencart.com
+
+Options +FollowSymlinks
+
+# Prevent Directoy listing
+Options -Indexes
+
+# Prevent Direct Access to files
+<FilesMatch "(?i)((\.tpl|.twig|\.ini|\.log|(?<!robots)\.txt))">
+ Require all denied
+## For apache 2.2 and older, replace "Require all denied" with these two lines :
+# Order deny,allow
+# Deny from all
+</FilesMatch>
+
+# SEO URL Settings
+RewriteEngine On
+# If your opencart installation does not run on the main web folder make sure you folder it does run in ie. / becomes /shop/
+
+RewriteBase /
+RewriteRule ^sitemap.xml$ index.php?route=extension/feed/google_sitemap [L]
+RewriteRule ^xml_export_order.xml$ index.php?route=extension/module/xml_export_order [L]
+RewriteRule ^googlebase.xml$ index.php?route=extension/feed/google_base [L]
+RewriteRule ^system/storage/(.*) index.php?route=error/not_found [L]
+RewriteRule ^katalozi$ index.php?route=blog/blog&path=60
+RewriteRule ^novosti$ index.php?route=blog/blog&path=58
+RewriteRule ^rasvjeta$ index.php?route=blog/blog&path=61
+RewriteRule ^atesti$ index.php?route=extension/module/faq
+#RewriteRule ^kontakt-obrazac$ index.php?route=information/contact
+
+RewriteRule ^manufacturer$  index.php?route=product/manufacturer [L]
+
+
+
+
+RewriteRule ^pl/portafonski-komplet/195/l/HR/page/1/flt/0$ https://www.ellabo.hr/webshop/portafoni/portafonski-kompleti-kit-video-i-audio/ [R=301,L]
+
+RewriteRule ^nd/188/Kompletan-asortiman-VIMAR-uticnica--prikljucnica--sklopki--prekidaca--tipkala-pronadite-u-ELLABU.wshtml$ https://www.ellabo.hr/vimar-hr-hr/ [R=301,L]
+
+RewriteRule ^pl/sklopka-zastitna-fid/88/l/HR/page/1/flt/0$ https://www.ellabo.hr/webshop/sklopna-tehnika/sklopke-fid-i-kzs/ [R=301,L]
+
+
+
+
+
+
+
+
+
+RewriteRule ^pl/mehanizmi-regulatora/49/l/HR/page/1/flt/0$ https://www.ellabo.hr/webshop/prekidaci-i-uticnice/mehanizmi-regulatora-rasvjete-modularnog/ [R=301,L]
+
+RewriteRule ^cd/99/Niskonaponska-i-sklopna-tehnika---referenta-lista.wshtml$ https://www.ellabo.hr/webshop/sklopna-tehnika/ [R=301,L]
+
+RewriteRule ^pl/antenski-ormarici/232/l/HR/page/1/flt/0$ https://www.ellabo.hr/webshop/antenski-sustavi/antenski-ormarici/ [R=301,L]
+
+RewriteRule ^pl/ormari-i-pribor/80/l/HR/page/3/flt/0$ https://www.ellabo.hr/webshop/sklopna-tehnika/ormari-i-pribor/ [R=301,L]
+
+RewriteRule ^nd/540/Limeni-modularni-samostojeci-ormari---predstavljamo.wshtml$ https://www.ellabo.hr/predstavljamo-modularni-samostojeci-ormari [R=301,L]
+
+RewriteRule ^pl/pribor-za-stezaljke-i-sabirnice/156/l/HR/page/1/flt/0$ https://www.ellabo.hr/webshop/sklopna-tehnika/sabirnice-i-pribor/ [R=301,L]
+
+RewriteRule ^pd/sabirnica-136x16mm2-1m-1-e-e/BB2109022/g/153/l/HR$ https://www.ellabo.hr/webshop/sklopna-tehnika/sabirnice-i-pribor/ [R=301,L]
+
+RewriteRule ^pl/stezaljke-12p/148/l/HR/page/1/flt/0$ https://www.ellabo.hr/webshop/sklopna-tehnika/stezaljke-i-pribor/?limit=100 [R=301,L]
+
+RewriteRule ^nd/207/Spojni-pribor-Ellabo---predstavljamo.wshtml$ https://www.ellabo.hr/letak-Spojni-pribor [R=301,L]
+
+RewriteRule ^nd/58/Ellabo---CONECTO-automatski-osiguraci--sklopke--fidovke-FID.wshtml$ https://www.ellabo.hr/conecto-hr-hr/ [R=301,L]
+
+RewriteRule ^pl/osiguraci-automatski/84/l/HR/page/2/flt/0$ https://www.ellabo.hr/webshop/sklopna-tehnika/osiguraci-automatski/?limit=100 [R=301,L]
+
+RewriteRule ^cd/255/FID-sklopke.wshtml$ https://www.ellabo.hr/webshop/sklopna-tehnika/sklopke-fid-i-kzs/ [R=301,L]
+
+RewriteRule ^pl/prekidaci-nn/91/l/HR/page/1/flt/0$ https://www.ellabo.hr/webshop/sklopna-tehnika/prekidaci-nn/ [R=301,L]
+
+RewriteRule ^pl/instalacijski-kabeli-i-vodici/94/l/HR/page/2/flt/0$ https://www.ellabo.hr/webshop/kabeli-i-vodici/ [R=301,L]
+
+RewriteRule ^cd/346/Kabeli---razni.wshtml$ https://www.ellabo.hr/webshop/kabeli-i-vodici/ [R=301,L]
+
+RewriteRule ^pl/gumom-izolirani-kabeli/95/l/HR/page/1/flt/0$ https://www.ellabo.hr/webshop/kabeli-i-vodici/gumom-izolirani-kabeli/ [R=301,L]
+
+RewriteRule ^pl/prespojni-kabeli-bakreni-i-opticki/223/l/HR/page/1/flt/0$ https://www.ellabo.hr/webshop/strukturno-kabliranje/kabeli-prespojni-opticki-i-bakar/ [R=301,L]
+
+RewriteRule ^pl/energetski-kabeli/97/l/HR/page/2/flt/0$ https://www.ellabo.hr/webshop/kabeli-i-vodici/energetski-kabeli/ [R=301,L]
+
+RewriteRule ^pl/instalacijski-kabeli-i-vodici/94/l/HR/page/6/flt/0$ https://www.ellabo.hr/webshop/kabeli-i-vodici/instalacijski-kabeli-i-vodici/ [R=301,L]
+
+RewriteRule ^pl/kanali-plasticni/108/l/HR/page/3/flt/0$ https://www.ellabo.hr/webshop/kanali-konzole/plasticni-kanali-i-pribor/?limit=100 [R=301,L]
+ 
+RewriteRule ^pl/obujmice-og/118/l/HR/page/1/flt/0$ https://www.ellabo.hr/webshop/instalacijske-cijevi-kutije-i-pribor/obujmice/ [R=301,L]
+
+RewriteRule ^pl/trake-izolir/179/l/HR/page/1/flt/0$ https://www.ellabo.hr/webshop/instalacijske-cijevi-kutije-i-pribor/izolir-trake/ [R=301,L]
+
+RewriteRule ^cd/254/Fenomati.wshtml$ https://www.ellabo.hr/webshop/fenomati-ventilatori-grijalice/fenomati-za-ruke-i-kosu/ [R=301,L]
+
+RewriteRule ^cd/256/Grijalice.wshtml$ https://www.ellabo.hr/webshop/fenomati-ventilatori-grijalice/grijalice/ [R=301,L]
+
+RewriteRule ^pl/grijalice/184/l/HR/page/1/flt/0$ https://www.ellabo.hr/webshop/fenomati-ventilatori-grijalice/grijalice/ [R=301,L]
+
+RewriteRule ^cd/436/Portafoni.wshtml$ https://www.ellabo.hr/webshop/portafoni/?limit=100 [R=301,L]
+
+RewriteRule ^nd/135/Velika-ponuda-portafona-u-Ellabu---katalog.wshtml$ https://www.ellabo.hr/predstavljamo-portafoni-062020 [R=301,L]
+
+RewriteRule ^pl/rampe/241/l/HR/page/1/flt/0$ https://www.ellabo.hr/webshop/rampe-kontrola-prolaza/rampe/ [R=301,L]
+
+RewriteRule ^cl/94/Antenski-sustavi.wshtml$ https://www.ellabo.hr/webshop/antenski-sustavi/?limit=75 [R=301,L]
+
+RewriteRule ^pl/grijaci-kabeli/227/l/HR/page/2/flt/0$ https://www.ellabo.hr/webshop/elektricno-podno-grijanje/grijaci-kabeli/ [R=301,L]
+
+
+
+RewriteRule ^pl/svjetiljke-panik/30/l/HR/page/1/flt/0$ https://www.ellabo.hr/webshop/rasvjeta-svjetiljke/panik/[R=301,L]
+
+RewriteRule ^nd/58/Ellabo---CONECTO-automatski-osiguraci--sklopke--fidovke-FID.wshtml$ https://www.ellabo.hr/conecto-hr-hr/ [R=301,L]
+
+RewriteRule ^pl/komunikacijski-ormari/220/l/HR/page/1/flt/0$ https://www.ellabo.hr/webshop/strukturno-kabliranje/komunikacijski-ormari-i-oprema/ [R=301,L]
+
+RewriteRule ^pl/cijevi-betonske-ticino/123/l/HR/page/1/flt/0$ https://www.ellabo.hr/webshop/instalacijske-cijevi-kutije-i-pribor/cijevi-podzbukne-ticino/ [R=301,L]
+
+RewriteRule ^pl/koaksijalni-kabeli/103/l/HR/page/1/flt/0$ https://www.ellabo.hr/webshop/kabeli-i-vodici/koaksijalni-kabeli/ [R=301,L]
+
+RewriteRule ^pd/ventilator-ap3100-fi-80-120-visenamjenski-130m3-h-1-aspira/EH2701043/g/187/l/HR$ https://www.ellabo.hr/aspira-hr-hr/ [R=301,L]
+
+RewriteRule ^pd/cijev-kaoflex-gfe-fi40-30-ecgfe40/EB1005011/g/125/l/HR$ https://www.ellabo.hr/webshop/instalacijske-cijevi-kutije-i-pribor/cijevi-kaoflex-sapa/ [R=301,L]
+
+RewriteRule ^pl/cijevi-fluo/77/l/HR/page/2/flt/0$ https://www.ellabo.hr/webshop/zarulje-izvori-svjetla/fluo-cijevi-starteri/ [R=301,L]
+
+RewriteRule ^pl/okviri-4-modula/59/l/HR/page/2/flt/0$ https://www.ellabo.hr/webshop/prekidaci-i-uticnice/okviri-modularni/ [R=301,L]
+
+RewriteRule ^pl/trake-pocincane/215/l/HR/page/1/flt/0$ https://www.ellabo.hr/webshop/gromobranski-pribor-i-trake/trake-pocincane/ [R=301,L]
+
+RewriteRule ^pd/kabel-fg16or16-5x16/FJ1413207/g/97/l/HR$ https://www.ellabo.hr/webshop/kabeli-i-vodici/energetski-kabeli/ [R=301,L]
+
+RewriteRule ^pl/grijace-mrezice/226/l/HR/page/1/flt/0$ https://www.ellabo.hr/webshop/elektricno-podno-grijanje/grijace-mreze/ [R=301,L]
+
+RewriteRule ^pd/cijev-sapa-metalna-plastificirana-fi32/LB1005003/g/0/l/HR$ https://www.ellabo.hr/webshop/instalacijske-cijevi-kutije-i-pribor/cijevi-kaoflex-sapa/ [R=301,L]
+
+RewriteRule ^nd/92/Portafoni-COMELIT---novo-u-ponudi.wshtml$ https://www.ellabo.hr/comelit-hr-hr/ [R=301,L]
+
+RewriteRule ^cd/523/Unutarnja-rasvjeta.wshtml$ https://www.ellabo.hr/webshop/rasvjeta-svjetiljke/ [R=301,L]
+
+RewriteRule ^pl/svjetiljke-vanjske/25/l/HR/page/1/flt/0$ https://www.ellabo.hr/webshop/rasvjeta-svjetiljke/vanjske/ [R=301,L]
+
+RewriteRule ^nd/544/SPECTRO-LED-plafonjere---NOVO-u-ponudi.wshtml$ https://www.ellabo.hr/webshop/rasvjeta-svjetiljke/plafonjere/ [R=301,L]
+
+RewriteRule ^pd/led-panik-svjetiljka-3h-200lm-li-ion-ip65-ik10-spectro-m-nm/PZ1809012/g/30/l/HR$ https://www.ellabo.hr/webshop/rasvjeta-svjetiljke/panik/ [R=301,L]
+
+RewriteRule ^cd/472/Visilice.wshtml$ https://www.ellabo.hr/webshop/rasvjeta-svjetiljke/visilice/ [R=301,L]
+
+RewriteRule ^pl/prigusnice/36/l/HR/page/1/flt/0$ https://www.ellabo.hr/webshop/rasvjeta-svjetiljke/napajaci-led-kontroleri-i-prigusnice/ [R=301,L]
+
+RewriteRule ^cd/455/Cijevi---fluo-i-LED.wshtml$ https://www.ellabo.hr/webshop/zarulje-izvori-svjetla/led-cijevi/ [R=301,L]
+
+RewriteRule ^pl/led-svjetiljke-i-pribor/41/l/HR/page/3/flt/0$ https://www.ellabo.hr/index.php?route=product/search&search=led%20%C5%BEarulja [R=301,L]
+
+RewriteRule ^cd/508/Vimar-By-me.wshtml$ https://www.ellabo.hr/vimar-hr-hr/ [R=301,L]
+
+RewriteRule ^pl/prikljucnice-nz-i-og/68/l/HR/page/1/flt/0$ https://www.ellabo.hr/webshop/prekidaci-i-uticnice/prikljucnice-og-nadzbukne/ [R=301,L]
+
+RewriteRule ^pd/plana-tipkalo-14008-1m-1p-10a-obicno-50-500/EF1147034/g/47/l/HR$ https://www.ellabo.hr/webshop/prekidaci-i-uticnice/tipkala-podzbukna/ [R=301,L]
+
+RewriteRule ^pl/cijevi-fluo/77/l/HR/page/2/flt/0$ https://www.ellabo.hr/webshop/zarulje-izvori-svjetla/fluo-cijevi-starteri/ [R=301,L]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !.*\.(ico|gif|jpg|jpeg|png|js|css)
+RewriteRule ^([^?]*) index.php?_route_=$1 [L,QSA]
+
+### Additional Settings that may need to be enabled for some servers
+### Uncomment the commands by removing the # sign in front of it.
+### If you get an "Internal Server Error 500" after enabling any of the following settings, restore the # as this means your host doesn't allow that.
+
+# 1. If your cart only allows you to add one item at a time, it is possible register_globals is on. This may work to disable it:
+# php_flag register_globals off
+
+# 2. If your cart has magic quotes enabled, This may work to disable it:
+# php_flag magic_quotes_gpc Off
+
+# 3. Set max upload file size. Most hosts will limit this and not allow it to be overridden but you can try
+# php_value upload_max_filesize 999M
+
+# 4. set max post size. uncomment this line if you have a lot of product options or are getting errors where forms are not saving all fields
+# php_value post_max_size 999M
+
+# 5. set max time script can take. uncomment this line if you have a lot of product options or are getting errors where forms are not saving all fields
+# php_value max_execution_time 200
+
+# 6. set max time for input to be recieved. Uncomment this line if you have a lot of product options or are getting errors where forms are not saving all fields
+# php_value max_input_time 200
+
+# 7. disable open_basedir limitations
+# php_admin_value open_basedir none
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-SSL} !on
+RewriteCond %{HTTP_HOST} ^ellabo\.hr$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.ellabo\.hr$
+RewriteRule ^/?$ "https\:\/\/www\.ellabo\.hr\/" [R=301,L]

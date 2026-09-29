@@ -1,0 +1,117 @@
+header {
+	#top-bar {
+		.right {
+			ul.menu {
+				border-left: 1px solid rgba(0, 0, 0, 0.1);
+				font-size: 13px;
+				padding: 10px 0px 10px 29px;
+				margin: 0px 0px 0px 29px;
+				display: flex;
+				list-style: none;
+				li {
+					padding-left: 25px;
+					&:first-child {
+						padding-left: 0px;
+					}
+				}
+			}
+		}
+	}
+	#top {
+		.top-center {
+			position: relative;
+			padding: 25px 0px;
+			@media (max-width: 1280px) {
+				padding: 20px 0px;
+			}
+			.logo {
+
+			}
+			.desktop-menu {
+				padding: 0px 0px 0px 80px;
+				.megamenu-wrapper {
+					position: static;
+				}
+				ul.megamenu {
+					position: static;
+					> li {
+						> a {
+							padding-top: 12px;
+							&:before {
+								margin-bottom: -5px;
+							}
+							.megamenu-label {
+								top: -4px;
+							}
+						}
+					}
+				}
+			}
+			.right {
+				.desktop-search {
+					position: relative;
+					margin: 0px;
+					width: auto;
+					.open-search {
+						a {
+							cursor: pointer;
+							svg {
+								width: 26px;
+								height: 26px;
+							}
+						}
+					}
+					.search_form {
+						display: none;
+						width: 305px;
+						&.active {
+							display: block;
+							position: absolute;
+							background: #fff;
+							border: 1px solid rgba(0, 0, 0, 0.1);
+							right: -30px;
+							margin: 10px 0px 0px 0px;
+							padding: 15px;
+							.button-search {
+								right: 27px;
+							}
+						}
+					}
+				}
+				.my-account {
+					margin-left: 25px;
+				}
+			}
+		}
+	}
+}
+
+.is-sticky {
+	#top {
+		.pattern {
+			> .container {
+				display: block;
+				.top-center {
+					padding: 10px 0px;
+					display: flex !important;
+				}
+				.desktop-menu {
+					.horizontal {
+						padding-top: 0px !important;
+						ul.megamenu {
+							> li {
+								> a {
+									height: 50px;
+									padding-top: 12px;
+									.megamenu-label {
+										top: -4px;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

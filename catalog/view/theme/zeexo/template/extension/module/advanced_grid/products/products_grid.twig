@@ -1,0 +1,32 @@
+{% if (registry.has('theme_options') == constant('true')) %} 
+  <div class="box">
+    {% if (module['content']['title'] != '') %} 
+    <div class="box-heading">{{ theme_options.html_entity_decode(module['content']['title']) }}</div>
+    <div class="strip-line"></div>
+    {% endif %} 
+    <div class="clear"></div>
+    <div class="box-content products">
+      <div class="box-product">
+        <div class="product-grid">
+             <div class="row">
+              {% for product in module['content']['products'] %} 
+                {% if theme_options.get( 'load_styles' ) == 'market_1.css' or theme_options.get( 'load_styles' ) == 'market_light_7.css' or theme_options.get( 'load_styles' ) == 'clean_6.css' or theme_options.get( 'load_styles' ) == 'clean_7.css' %}
+                  <div class="col-6 col-md-3">
+                {% elseif theme_options.get( 'load_styles' ) == 'market_light_2.css' or theme_options.get( 'load_styles' ) == 'market_light_3.css' or theme_options.get( 'load_styles' ) == 'market_light_4.css' or theme_options.get( 'load_styles' ) == 'market_light_5.css' or theme_options.get( 'load_styles' ) == 'market_light_6.css' or theme_options.get( 'load_styles' ) == 'market_light_9.css' or theme_options.get( 'load_styles' ) == 'market_light_10.css' or theme_options.get( 'load_styles' ) == 'market_gray_2.css' or theme_options.get( 'load_styles' ) == 'market_gray_6.css' %}
+                  <div class="col-6 col-md-25">
+                {% elseif theme_options.get( 'load_styles' ) == 'fashion_simple_5.css' %}
+                  <div class="col-6 col-md-25 col-xl-2">
+                {% elseif theme_options.get( 'load_styles' ) == 'fashion_simple_6.css' %}
+                  <div class="col-6 col-md-25">
+                {% else %}
+                  <div class="col-6 col-md-4">
+                {% endif %}
+                  {% include 'zeexo/template/new_elements/product.twig' %}
+                </div>
+              {% endfor %} 
+          </div>
+       </div>
+     </div>
+    </div>
+  </div> 
+{% endif %}

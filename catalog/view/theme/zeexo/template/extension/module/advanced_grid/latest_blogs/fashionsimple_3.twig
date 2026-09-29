@@ -1,0 +1,43 @@
+<div class="box">
+  <div class="box-heading">{{ module['content']['title'] }}</div>
+  <div class="box-content">
+    <div class="owl-carousel blog-posts3">
+      {% for article in module['content']['articles'] %}
+        <div class="item">
+          {% if (article['thumb']) %}
+            <div class="image">
+              <a href="{{ article['href'] }}"><img src="{{ article['thumb'] }}" alt="{{ article['title'] }}"></a>
+            </div>
+          {% endif %}
+          <div class="item-content d-flex align-items-center">
+            <div class="wrap">
+              <div class="name"><a href="{{ article['href'] }}">{{ article['title'] }}</a></div>
+              <div class="date-published">{{ theme_options.date('d.m.Y', theme_options.strtotime(article['date_published'])) }}</div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $(".blog-posts3.owl-carousel").each(function () {
+      $(this).owlCarousel({
+        margin: 10,
+      responsive:{
+          0:{
+              items:1
+          },
+          600:{
+              items:1
+          },
+          1000:{
+              items:2
+          }
+      }
+      });
+    });
+});
+</script>

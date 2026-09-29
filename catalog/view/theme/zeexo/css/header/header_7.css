@@ -1,0 +1,86 @@
+header .search_form {
+  width: auto;
+  position: relative;
+  max-width: 230px;
+}
+header .search_form .search-query {
+  width: 100%;
+  margin: 0px;
+}
+header .search_form .button-search {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  cursor: pointer;
+}
+header .search_form .button-search:before {
+  content: "\f002";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+}
+header .logo {
+  text-align: center;
+}
+header .logo img {
+  margin: 0px auto;
+}
+header .right > .d-flex > *:first-child {
+  margin-left: auto;
+}
+header .right .switchers .dropdown {
+  margin: 8px 30px 8px 0px;
+}
+header .right .switchers .dropdown .dropdown-toggle {
+  font-size: 12px;
+  text-transform: uppercase;
+}
+header .right .switchers .dropdown .dropdown-toggle:after {
+  border-top-color: #b2b2b2;
+  margin-left: 6px;
+}
+header .right .my-account {
+  margin-left: 10px;
+}
+header .right .my-account svg,
+header .right .wishlist svg,
+header .right #cart_block .cart-heading .open-cart svg {
+  width: 20px !important;
+  height: 20px !important;
+}
+header .desktop-menu {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+header .desktop-menu ul.megamenu > li > a {
+  height: 73px;
+  padding-top: 22px;
+}
+header .desktop-menu ul.megamenu > li > a .megamenu-label {
+  top: 9px;
+}
+.is-sticky #top .pattern .desktop-menu .horizontal {
+  padding-top: 0px !important;
+}
+.is-sticky #top .pattern .desktop-menu .horizontal ul.megamenu > li > a {
+  height: 73px;
+  padding-top: 22px;
+}
+.is-sticky #top .pattern .desktop-menu .horizontal ul.megamenu > li > a .megamenu-label {
+  top: 9px;
+}
+.breadcrumb {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 15px;
+}
+.breadcrumb:before {
+  display: none;
+}

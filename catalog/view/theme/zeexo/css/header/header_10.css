@@ -1,0 +1,9 @@
+.header-type-10 ul.megamenu {
+  text-align: center;
+}
+.header-type-10 ul.megamenu > li {
+  float: none;
+  display: inline-block;
+  margin: 0px 18px;
+  text-align: left;
+}

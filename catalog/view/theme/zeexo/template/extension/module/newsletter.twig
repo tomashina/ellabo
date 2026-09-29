@@ -1,0 +1,60 @@
+<div class="box" id="newsletter{{ module_id }}">
+	{% if (module_title != '') %} 
+		<div class="box-heading">{{ module_title }}</div>
+		<div class="strip-line"></div>
+	{% endif %} 
+	<div class="box-content">
+		{% if (module_text != '') %} {{ module_text }}{% endif %} 
+		<input type="text" class="email" placeholder="{{ input_placeholder }}" style="margin: 5px 5px 5px 0px;height: 33px;vertical-align: top" />
+		<a class="button subscribe" style="margin: 5px 0px">{{ subscribe_text }}</a>
+		{% if (button_unsubscribe == 1) %} 
+			<a class="button unsubscribe" style="margin: 5px 0px">{{ unsubscribe_text }}</a>
+		{% endif %} 
+	</div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	function Unsubscribe() {
+		$.post('{{ unsubscribe_url }}', 
+			{ 
+				email: $('#newsletter{{ module_id }} .email').val() 
+			}, function (e) {
+				$('#newsletter{{ module_id }} .email').val('');
+				alert(e.message);
+			}
+		, 'json');
+	}
+	
+	function Subscribe() {
+		$.post('{{ subscribe_url }}', 
+			{ 
+				email: $('#newsletter{{ module_id }} .email').val() 
+			}, function (e) {
+				if(e.error === 1) {
+					var r = confirm(e.message);
+					if (r == true) {
+					    $.post('{{ unsubscribe_url }}', { 
+					    	email: $('#newsletter{{ module_id }} .email').val() 
+					    }, function (e) {
+					    	$('#newsletter{{ module_id }} .email').val('');
+					    	alert(e.message);
+					    }, 'json');
+					}
+				} else {
+					$('#newsletter{{ module_id }} .email').val('');
+					alert(e.message);
+				}
+			}
+		, 'json');
+	}
+	
+	$('#newsletter{{ module_id }} .subscribe').click(Subscribe);
+	$('#newsletter{{ module_id }} .unsubscribe').click(Unsubscribe);
+	$('#newsletter{{ module_id }} .email').keypress(function (e) {
+	    if (e.which == 13) {
+	        Subscribe();
+	    }
+	});
+});
+</script>

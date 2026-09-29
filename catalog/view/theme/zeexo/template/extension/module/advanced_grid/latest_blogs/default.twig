@@ -1,0 +1,23 @@
+<div class="box">
+  <div class="box-heading">{{ module['content']['title'] }}</div>
+  <div class="box-content">
+    <div class="owl-carousel blog-posts">
+      {% for article in module['content']['articles'] %}
+        <div class="item">
+          {% if (article['thumb']) %}
+            <div class="image">
+               <div class="tags">
+                    {% set s = 0 %} {% for tag in article['tags'] %} 
+                         {% if (s < 2) %}<a href="{{ tag['href'] }}">{{ tag['tag'] }}</a>{% endif %} 
+                    {% set s = s + 1 %} {% endfor %} 
+               </div>
+              <a href="{{ article['href'] }}"><img src="{{ article['thumb'] }}" alt="{{ article['title'] }}"></a>
+            </div>
+          {% endif %}
+          <div class="name"><a href="{{ article['href'] }}">{{ article['title'] }}</a></div>
+          <div class="date-published">{{ theme_options.date('d.m.Y', theme_options.strtotime(article['date_published'])) }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

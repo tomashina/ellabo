@@ -1,0 +1,73 @@
+<div class="footer-newsletter" id="newsletter{{ id }}">
+	<h5>{{ module['content']['title'] }}</h5>
+	<div class="line"></div>
+	<div class="content d-flex align-items-center">
+		<input type="text" class="email" placeholder="{{ module['content']['input_placeholder'] }}" />
+	</div>
+	{% if module['content']['text'] != '' %}
+		<div class="checkbox">
+			{% set content = module['content']['text']|split(",") %}
+			<label for="newsletterCheck">
+				<input type="checkbox" class="custom-control-input" id="newsletterCheck">
+				<span class="custom-control-indicator"></span>
+				{{ content[0] }}
+			</label>
+		</div>
+	{% endif %}
+	<a class="button subscribe">{{ module['content']['subscribe_text'] }}</a>
+</div> 
+
+<script type="text/javascript">
+$(document).ready(function() {
+	function Unsubscribe() {
+		$.post('{{ module['content']['unsubscribe_url'] }}', 
+			{ 
+				email: $('#newsletter{{ id }} .email').val() 
+			}, function (e) {
+				$('#newsletter{{ id }} .email').val('');
+				alert(e.message);
+			}
+		, 'json');
+	}
+	
+	function Subscribe() {
+		{% if module['content']['text'] != '' %}
+			if($("#newsletterCheck").is(":checked")) {
+		{% endif %}
+		$.post('{{ module['content']['subscribe_url'] }}', 
+			{ 
+				email: $('#newsletter{{ id }} .email').val() 
+			}, function (e) {
+				if(e.error === 1) {
+					var r = confirm(e.message);
+					if (r == true) {
+					    $.post('{{ module['content']['unsubscribe_url'] }}', { 
+					    	email: $('#newsletter{{ id }} .email').val() 
+					    }, function (e) {
+					    	$('#newsletter{{ id }} .email').val('');
+					    	alert(e.message);
+					    }, 'json');
+					}
+				} else {
+					$('#newsletter{{ id }} .email').val('');
+					alert(e.message);
+				}
+			}
+		, 'json');
+		{% if module['content']['text'] != '' %}
+			} else {
+				{% set content = module['content']['text']|split(",") %}
+				alert('{{ content[1]|replace("\n", "")|trim }}');
+			}
+		{% endif %}
+	}
+	
+	$('#newsletter{{ id }} .subscribe').click(Subscribe);
+	$('#newsletter{{ id }} .unsubscribe').click(Unsubscribe);
+	$('#newsletter{{ id }} .email').keypress(function (e) {
+	    if (e.which == 13) {
+	        Subscribe();
+	    }
+	});
+});
+</script>

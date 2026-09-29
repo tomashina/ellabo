@@ -1,0 +1,454 @@
+{{ header }} 
+{% set product_page = true %}
+{% include 'zeexo/template/new_elements/wrapper_top.twig' %}
+{% set theme_options = registry.get('theme_options') %}
+{% set config = registry.get('config') %} 
+
+{% if (theme_options.get( 'product_type' ) < 1) %} 
+	{% include 'zeexo/template/product/product_layout/product_01.twig' %}
+{% elseif (theme_options.get( 'product_type' ) == 1) %} 
+	{% include 'zeexo/template/product/product_layout/product_02.twig' %}
+{% elseif (theme_options.get( 'product_type' ) == 2) %} 
+	{% include 'zeexo/template/product/product_layout/product_03.twig' %}
+{% elseif (theme_options.get( 'product_type' ) == 3) %} 
+	{% include 'zeexo/template/product/product_layout/product_04.twig' %}
+{% elseif (theme_options.get( 'product_type' ) == 4) %} 
+	{% include 'zeexo/template/product/product_layout/product_05.twig' %}
+{% elseif (theme_options.get( 'product_type' ) == 5) %} 
+	{% include 'zeexo/template/product/product_layout/product_06.twig' %}
+{% elseif (theme_options.get( 'product_type' ) == 6) %} 
+	{% include 'zeexo/template/product/product_layout/product_07.twig' %}
+{% endif %}
+  
+<script type="text/javascript"><!--
+$('select[name=\'recurring_id\'], input[name="quantity"]').change(function(){
+	$.ajax({
+		url: 'index.php?route=product/product/getRecurringDescription',
+		type: 'post',
+		data: $('input[name=\'product_id\'], input[name=\'quantity\'], select[name=\'recurring_id\']'),
+		dataType: 'json',
+		beforeSend: function() {
+			$('#recurring-description').html('');
+		},
+		success: function(json) {
+			$('.alert, .text-danger').remove();
+			
+			if (json['success']) {
+				$('#recurring-description').html(json['success']);
+			}
+		}
+	});
+});
+//--></script> 
+<script type="text/javascript"><!--
+$('#button-cart2').on('click', function() {
+	$("input#quantity_wanted").val($("input#quantity_wanted2").val());
+	{% for option in options %} 
+		{% if (option['type'] == 'radio') %}
+			$("#input-option{{ option['product_option_id'] }}-2 .radio").each(function () {
+				if($(this).find("input").is(":checked")) {
+					var index = $(this).index();
+					$("#input-option{{ option['product_option_id'] }} .radio").eq(index).find("label").click();
+				}
+			});
+		{% endif %}
+		{% if (option['type'] == 'checkbox') %}
+			$("#input-option{{ option['product_option_id'] }}-2 .checkbox").each(function () {
+				if($(this).find("input").is(":checked")) {
+					var index = $(this).index();
+					$("#input-option{{ option['product_option_id'] }} .checkbox").eq(index).find('input').prop("checked", true);
+				} else {
+					var index = $(this).index();
+					$("#input-option{{ option['product_option_id'] }} .checkbox").eq(index).find('input').prop("checked", false);
+				}
+			});
+		{% endif %}
+		{% if (option['type'] == 'select') %}
+			$("#input-option{{ option['product_option_id'] }}").val($("#input-option{{ option['product_option_id'] }}-2").val());
+		{% endif %}
+	{% endfor %}
+	$("#button-cart").click();
+});
+$('#button-cart').on('click', function() {
+	$.ajax({
+		url: 'index.php?route=checkout/cart/add',
+		type: 'post',
+		data: $('#product input[type=\'text\'], #product input[type=\'hidden\'], #product input[type=\'radio\']:checked, #product input[type=\'checkbox\']:checked, #product select, #product textarea'),
+		dataType: 'json',
+		beforeSend: function() {
+			$('#product #button-cart').val($('#product #button-cart').attr("data-loading-text"));
+		},
+		complete: function() {
+			$('#product #button-cart').val($('#product #button-cart').attr("data-original-text"));
+		},
+		success: function(json) {
+			$('.alert, .text-danger').remove();
+			$('.form-group').removeClass('has-error');
+
+			if (json['error']) {
+				//stock error
+            $('.alert-danger').remove();
+            if (json['error']['stock']) {
+             $('#product').after('<div class="alert-danger alert" style="margin-top:2px;color:#ff0000">' + json['error']['stock'] + '</div>');
+            }
+       //stock error 
+
+				if (json['error']['option']) {
+					for (i in json['error']['option']) {
+						var element = $('#input-option' + i.replace('_', '-'));
+						
+						if (element.parent().hasClass('input-group')) {
+							element.parent().after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+						} else {
+							element.after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+						}
+					}
+				}
+				
+				if (json['error']['recurring']) {
+					$('select[name=\'recurring_id\']').after('<div class="text-danger">' + json['error']['recurring'] + '</div>');
+				}
+				
+				// Highlight any found errors
+				$('.text-danger').parent().addClass('has-error');
+			}
+			
+			if (json['success']) {
+              var product_id = $('#product input[name="product_id"]').val();
+              $('#modalAddToCartProduct').modal('show');
+              $('#modalAddToCartProduct .tt-img img').attr('src', $(".product-info").find("#image").attr("src"));
+              $('#modalAddToCartProduct .tt-title').html($(".product-info").find("h1").html());
+              $('#modalAddToCartProduct .tt-product-total .tt-price').html($(".product-info").find(".price .price-new").html());
+              $('#modalAddToCartProduct .tt-qty span').html($('.product-info input[name="quantity"]').val());
+              $('#modalAddToCartProduct .tt-cart-total .tt-price').html(' ').load('index.php?route=common/cart/info #total_amount_ajax');
+              $('#modalAddToCartProduct .tt-cart-total .text-total').text($('#modalAddToCartProduct .tt-cart-total .text-total').text().replace(/[0-9]+/, parseInt($('#total_count_ajax').html())+parseInt($('.product-info input[name="quantity"]').val())));
+				
+				$('#cart_block #cart_content').load('index.php?route=common/cart/info #cart_content_ajax');
+				$('#cart_block #total_count_ajax, .open-cart .cart-count').load('index.php?route=common/cart/info #total_count_ajax');
+			}
+		},
+        error: function(xhr, ajaxOptions, thrownError) {
+            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+	});
+});
+//--></script> 
+<script type="text/javascript"><!--
+$('.date').datetimepicker({
+	pickTime: false
+});
+
+$('.datetime').datetimepicker({
+	pickDate: true,
+	pickTime: true
+});
+
+$('.time').datetimepicker({
+	pickDate: false
+});
+		
+$('button[id^=\'button-upload\']').on('click', function() {
+	var node = this;
+	
+	$('#form-upload').remove();
+	
+	$('body').prepend('<form enctype="multipart/form-data" id="form-upload" style="display: none;"><input type="file" name="file" /></form>');
+	
+	$('#form-upload input[name=\'file\']').trigger('click');
+	
+	timer = setInterval(function() {
+		if ($('#form-upload input[name=\'file\']').val() != '') {
+			clearInterval(timer);
+			
+			$.ajax({
+				url: 'index.php?route=tool/upload',
+				type: 'post',
+				dataType: 'json',
+				data: new FormData($('#form-upload')[0]),
+				cache: false,
+				contentType: false,
+				processData: false,
+				beforeSend: function() {
+					$(node).button('loading');
+				},
+				complete: function() {
+					$(node).button('reset');
+				},
+				success: function(json) {
+					$('.text-danger').remove();
+					
+					if (json['error']) {
+						$(node).parent().find('input').after('<div class="text-danger">' + json['error'] + '</div>');
+					}
+					
+					if (json['success']) {
+						alert(json['success']);
+						
+						$(node).parent().find('input').attr('value', json['code']);
+					}
+				},
+				error: function(xhr, ajaxOptions, thrownError) {
+					alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+				}
+			});
+		}
+	}, 500);
+});
+//--></script> 
+<script type="text/javascript"><!--
+$('#review').delegate('.pagination a', 'click', function(e) {
+	e.preventDefault();
+	
+    $('#review').fadeOut('slow');
+        
+    $('#review').load(this.href);
+    
+    $('#review').fadeIn('slow');
+});         
+
+$('#review').load('index.php?route=product/product/review&product_id={{ product_id }}');
+
+$('#button-review').on('click', function() {
+    $.ajax({
+        url: 'index.php?route=product/product/write&product_id={{ product_id }}',
+        type: 'post',
+        dataType: 'json',
+        data: $("#form-review").serialize(),
+        beforeSend: function() {
+            $('#button-review').button('loading');
+        },
+        complete: function() {
+            $('#button-review').button('reset');
+        },
+        success: function(json) {
+			$('.alert-success, .alert-danger').remove();
+            
+			if (json['error']) {
+                $('#reply-block').before('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + '</div>');
+            }
+            
+            if (json['success']) {
+                $('#reply-block').before('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + '</div>');
+                                
+                $('input[name=\'name\']').val('');
+                $('textarea[name=\'text\']').val('');
+                $('input[name=\'rating\']:checked').prop('checked', false);
+            }
+        }
+    });
+});
+</script>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {    
+{% if (theme_options.get( 'product_type' ) == 4) %}  
+	$('.product-type-5 .popup-gallery').magnificPopup({
+		delegate: 'a.popup-image',
+		type: 'image',
+		tLoading: 'Loading image #%curr%...',
+		mainClass: 'mfp-with-zoom',
+		gallery: {
+			enabled: true,
+			navigateByImgClick: true,
+			preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+		},
+		image: {
+			tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+			titleSrc: function(item) {
+				return item.el.attr('title');
+			}
+		}
+	});
+	$('.product-type-5.popup-gallery').magnificPopup({
+		delegate: 'a.popup-image',
+		type: 'image',
+		tLoading: 'Loading image #%curr%...',
+		mainClass: 'mfp-with-zoom',
+		gallery: {
+			enabled: true,
+			navigateByImgClick: true,
+			preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+		},
+		image: {
+			tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+			titleSrc: function(item) {
+				return item.el.attr('title');
+			}
+		}
+	});
+{% elseif (theme_options.get( 'product_type' ) == 6) %}  
+	$('.product-type-7 .popup-gallery').magnificPopup({
+		delegate: 'a.popup-image',
+		type: 'image',
+		tLoading: 'Loading image #%curr%...',
+		mainClass: 'mfp-with-zoom',
+		gallery: {
+			enabled: true,
+			navigateByImgClick: true,
+			preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+		},
+		image: {
+			tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+			titleSrc: function(item) {
+				return item.el.attr('title');
+			}
+		}
+	});
+	$('.product-type-7.popup-gallery').magnificPopup({
+		delegate: 'a.popup-image',
+		type: 'image',
+		tLoading: 'Loading image #%curr%...',
+		mainClass: 'mfp-with-zoom',
+		gallery: {
+			enabled: true,
+			navigateByImgClick: true,
+			preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+		},
+		image: {
+			tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+			titleSrc: function(item) {
+				return item.el.attr('title');
+			}
+		}
+	});
+{% else %}
+	$('.popup-gallery').magnificPopup({
+		delegate: 'a.popup-image',
+		type: 'image',
+		tLoading: 'Loading image #%curr%...',
+		mainClass: 'mfp-with-zoom',
+		gallery: {
+			enabled: true,
+			navigateByImgClick: true,
+			preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+		},
+		image: {
+			tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+			titleSrc: function(item) {
+				return item.el.attr('title');
+			}
+		}
+	});
+{% endif %}
+});
+//--></script> 
+
+<script type="text/javascript">
+var ajax_price = function() {
+	$.ajax({
+		type: 'POST',
+		url: 'index.php?route=product/liveprice/index',
+		data: $('.product-info input[type=\'text\'], .product-info input[type=\'hidden\'], .product-info input[type=\'radio\']:checked, .product-info input[type=\'checkbox\']:checked, .product-info select, .product-info textarea'),
+		dataType: 'json',
+			success: function(json) {
+			if (json.success) {
+				change_price('#price-special', json.new_price.special);
+				change_price('#price-tax', json.new_price.tax);
+				change_price('#price-old', json.new_price.price);
+			}
+		}
+	});
+}
+
+var change_price = function(id, new_price) {
+	$(id).html(new_price);
+}
+
+$('.product-info input[type=\'text\'], .product-info input[type=\'hidden\'], .product-info input[type=\'radio\'], .product-info input[type=\'checkbox\'], .product-info select, .product-info textarea, .product-info input[name=\'quantity\']').on('change', function() {
+	ajax_price();
+});
+</script>
+
+<script type="text/javascript">
+$.fn.tabs = function() {
+	var selector = this;
+	
+	this.each(function() {
+		var obj = $(this); 
+		
+		$(obj.attr('href')).hide();
+		
+		$(obj).click(function() {
+			$(selector).removeClass('selected');
+			
+			$(selector).each(function(i, element) {
+				$($(element).attr('href')).hide();
+			});
+			
+			$(this).addClass('selected');
+			
+			$($(this).attr('href')).show();
+			
+			return false;
+		});
+	});
+
+	$(this).show();
+	
+	$(this).first().click();
+};
+</script>
+
+<script type="text/javascript"><!--
+$('#tabs a').tabs();
+//--></script> 
+
+{% if (theme_options.get( 'product_image_zoom' ) != 2) %} 
+<script type="text/javascript" src="catalog/view/theme/zeexo/js/jquery.elevateZoom-3.0.3.min.js"></script>
+{% endif %} 
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "{{ heading_title }}",
+  "image": [
+  	{% if (thumb) %} 
+    	"{{ thumb }}",
+    {% else %}
+    	"image/no_image.jpg"{% if images|length > 0 %},{% endif %}
+    {% endif %}
+    {% for image in images %} 
+    	"{{ image['popup'] }}"{% if not loop.last %},{% endif %}
+    {% endfor %}
+   ],
+  "description": "{{ description|striptags|raw|trim }}",
+  {% if manufacturer %}
+  "brand": {
+    "@type": "Thing",
+    "name": "{{ manufacturer }}"
+  },
+  {% endif %}
+  {% if (review_status) %} 
+	{% if (rating > 0) %} 
+      "reviewRating": {
+        "@type": "Rating",
+        "bestRating": "5",
+        "ratingValue": "{{ rating }}",
+        "worstRating": "4"
+      }
+	  "aggregateRating": {
+	    "@type": "AggregateRating",
+	    "ratingValue": "{{ rating }}",
+	    "reviewCount": "100"
+	  },
+	{% endif %}
+  {% endif %}
+  "offers": {
+    "@type": "Offer",
+    "url": "https://example.com/anvil",
+    {% if (not special) %} 
+    	"price": "{{ price }}",
+    {% else %}
+    	"price": "{{ special }}",
+    {% endif %}
+    "itemCondition": "https://schema.org/UsedCondition",
+    "availability": "https://schema.org/{% if stock == 'Out Of Stock' %}OutOfStock{% else %}InStock{% endif %}"
+  }
+}
+</script>
+<div class="clear"></div>
+
+{% include 'zeexo/template/new_elements/wrapper_bottom.twig' %}
+<div class="clear"></div>
+{{ footer }}

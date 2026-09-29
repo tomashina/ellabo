@@ -1,0 +1,60 @@
+.carousel-brands {
+  margin: 10px 0px 0px 0px;
+  border: none;
+}
+.standard-body .footer .background {
+  background: #fff;
+}
+.footer .background {
+  background: #fff;
+  color: #000;
+}
+.footer .background a {
+  color: #000;
+}
+.footer .background a:hover {
+  color: #000;
+}
+.footer .background h4 {
+  color: #06bec7;
+}
+.footer .background .footer-newsletter h5 {
+  color: #000;
+}
+.footer .background .footer-newsletter .line {
+  background: rgba(0, 0, 0, 0.1);
+}
+.footer .background .footer-newsletter .content {
+  background: #fff;
+}
+.footer .background .footer-newsletter .content input {
+  background: #e6e6e6;
+  color: #000;
+}
+.footer .background .footer-newsletter .checkbox label .custom-control-indicator {
+  background: #e6e6e6;
+}
+.footer .background .open-footer-menu .icon span {
+  background: #000;
+}
+.footer .background .open-footer-menu .text {
+  color: #000;
+}
+.standard-body .copyright .background {
+  background: #fff;
+}
+.copyright .background {
+  background: #fff;
+}
+.copyright .background .pattern {
+  color: #666666;
+}
+.copyright .background .pattern .social-payments .left ul li a {
+  color: #b2b2b1;
+}
+.copyright .background .pattern .social-payments .left ul li a:hover {
+  color: #000;
+}
+.copyright .background .pattern a {
+  color: #666666;
+}

@@ -1,0 +1,62 @@
+{{ header }} 
+{% include 'zeexo/template/new_elements/wrapper_top.twig' %}
+
+<div style="padding-bottom: 10px">{{ description }}</div>
+
+
+
+ <!-- <div style="padding-bottom: 10px">{{ custom_field_3.text }}</div>
+
+
+   <div style="padding-bottom: 10px"> {{ custom_field_4.text }}</div> -->
+
+
+
+
+       
+
+      {% for autor in autors %}
+       <div style="padding-bottom: 10px">
+           <div class="row">
+            <div class="col-12 ">
+
+
+               <div class="card">
+                <div class="card-body">
+                      
+                        
+                  
+
+          
+
+			              <div class="media">
+			                      
+			                             <div class="thumb-holder">
+			                                <img alt="{{ autor['name']}}" class="kontakt" src="{{ autor['thumb']}}">
+			                            </div>
+			                             
+			                            <div class="media-body">
+			                              <h3>Kontakt</h3>
+			                                <p> <strong>{{ autor['name']}}</strong></p>
+			                                <div class="date-published"> {{ autor['description']}}</div>
+			                            </div>
+			                      
+			                  </div>
+
+                      
+                    </div>
+                      </div>
+            </div>
+          </div>
+        </div>
+    
+  {% endfor %}
+
+   
+
+
+ 
+
+
+{% include 'zeexo/template/new_elements/wrapper_bottom.twig' %}
+{{ footer }}

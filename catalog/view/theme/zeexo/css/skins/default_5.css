@@ -1,0 +1,209 @@
+.common-home .main-content .pattern > .container,
+.common-home .standard-body .main-content .pattern > .container {
+  padding-bottom: 0px;
+}
+.footer .background .about-us {
+  padding-top: 80px;
+}
+@media (max-width: 767px) {
+  .footer .background .about-us {
+    padding-top: 40px;
+    text-align: center;
+  }
+}
+.footer .background .about-us img {
+  margin-bottom: 0px;
+}
+.footer .background .about-us p {
+  padding: 10px 0px 0px 0px;
+  font-size: 15px;
+  line-height: 22px;
+}
+@media (max-width: 767px) {
+  .footer .background .about-us p {
+    font-size: 14px;
+    line-height: 21px;
+    padding-top: 15px;
+  }
+}
+.footer .background .about-us p span {
+  color: #007470;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+@media (max-width: 767px) {
+  .footer .background .about-us p span {
+    font-size: 15px;
+  }
+}
+.footer .background .about-us .social-links {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 15px 0px 0px 0px;
+  margin: 0px;
+}
+@media (max-width: 767px) {
+  .footer .background .about-us .social-links {
+    padding-top: 20px;
+  }
+}
+.footer .background .about-us .social-links li {
+  margin: 0px 23px 0px 0px;
+}
+@media (max-width: 767px) {
+  .footer .background .about-us .social-links li {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .footer .background .about-us .social-links li:first-child {
+    margin-left: auto;
+  }
+  .footer .background .about-us .social-links li:last-child {
+    margin-right: auto;
+  }
+}
+.footer .background .about-us .social-links li a {
+  color: #808080;
+  font-size: 20px;
+}
+.footer .background .about-us .social-links li a:hover {
+  color: #fff;
+}
+.footer .background .open-footer-menu .icon span {
+  background: #fff;
+}
+.footer .background .open-footer-menu .text {
+  color: #fff;
+}
+.footer .background h4 {
+  color: #808080;
+}
+.footer .background ul a {
+  color: #fff;
+}
+.footer .background .bar3 {
+  margin: 57px 0 0px 0;
+  padding: 35px 0 0px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+@media (max-width: 767px) {
+  .footer .background .bar3 {
+    padding-top: 15px;
+    margin-top: 40px;
+  }
+}
+.footer .background .bar3 .line {
+  display: none;
+}
+.footer .background .bar3 .item {
+  text-align: left;
+  padding-left: 70px;
+}
+@media (max-width: 767px) {
+  .footer .background .bar3 .item {
+    padding-left: 100px;
+  }
+}
+.footer .background .bar3 .item .icon {
+  position: absolute;
+  margin: 1px 0px 0px -70px;
+  background: none;
+  padding: 0px;
+}
+@media (max-width: 767px) {
+  .footer .background .bar3 .item .icon {
+    margin: 0px;
+  }
+}
+.footer .background .bar3 .item h4 {
+  color: #fff;
+  text-align: left;
+}
+.footer .background .bar3 .item p {
+  padding: 10px 0px 0px 0px;
+  color: #808080;
+}
+.copyright .pattern {
+  color: #999999;
+}
+.copyright .pattern a {
+  color: #999;
+}
+.copyright .pattern a:hover {
+  color: #999;
+}
+.default3-copyright .links-info {
+  padding: 20px 0px 25px 0px;
+  margin: 0px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+@media (max-width: 767px) {
+  .default3-copyright .links-info {
+    flex-wrap: wrap;
+  }
+}
+.default3-copyright .links-info ul {
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 10px 0px 0px 0px;
+  margin: 0px;
+}
+@media (max-width: 767px) {
+  .default3-copyright .links-info ul {
+    width: 100%;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    overflow: scroll;
+    text-align: center;
+  }
+}
+.default3-copyright .links-info ul li {
+  padding-right: 23px;
+  padding-top: 5px;
+}
+@media (max-width: 767px) {
+  .default3-copyright .links-info ul li {
+    margin: 0px auto;
+    padding-right: 25px;
+    padding-left: 0px;
+  }
+}
+.default3-copyright .links-info ul li a {
+  font-size: 13px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.default3-copyright .links-info ul li a:hover {
+  color: #fff;
+}
+.default3-copyright .links-info .info {
+  margin-left: auto;
+  margin-right: 0px;
+  color: #fff;
+  padding: 15px 0px 0px 0px;
+}
+@media (max-width: 767px) {
+  .default3-copyright .links-info .info {
+    margin: 0px;
+    text-align: center;
+    width: 100%;
+  }
+}
+.default3-copyright .links-info .info a {
+  color: #06bec7;
+  text-decoration: underline;
+}
+.default3-copyright .payment {
+  padding: 10px 0px 15px 0px;
+}
+.default3-copyright .payment a {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 7px;
+}
+.default3-copyright .payment a img {
+  max-height: 25px;
+}

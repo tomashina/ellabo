@@ -1,0 +1,62 @@
+{% if (registry.has('theme_options') == constant('true')) %} 
+  {% set id = random(50000)*random(50000) %}
+
+  <div class="box">
+        <!-- Carousel nav -->
+        <a class="next" href="#myCarousel{{ id }}" id="myCarousel{{ id }}_next"><span></span></a>
+        <a class="prev" href="#myCarousel{{ id }}" id="myCarousel{{ id }}_prev"><span></span></a>
+
+        <script type="text/javascript">
+        $(document).ready(function() {
+          var owl{{ id }} = $(".box #myCarousel{{ id }} .owl-carousel");
+          
+          $("#myCarousel{{ id }}_next").click(function(){
+              owl{{ id }}.trigger('next.owl.carousel');
+              return false;
+            })
+          $("#myCarousel{{ id }}_prev").click(function(){
+              owl{{ id }}.trigger('prev.owl.carousel');
+              return false;
+          });
+  
+            owl{{ id }}.owlCarousel({
+              slideSpeed: 500,
+              margin: 30,
+              nav: false,
+              dots: false,
+              responsiveClass:true,
+              responsive:{
+                  0:{
+                      items:2
+                  },
+                  600:{
+                      items:2
+                  },
+                  1000:{
+                      items:3
+                  }
+              }
+             });
+        });
+        </script>
+
+    {% if (module['content']['title'] != '') %} 
+    <div class="box-heading">{{ module['content']['title'] }}</div>
+    <div class="strip-line"></div>
+    {% endif %} 
+    <div class="clear"></div>
+    <div class="box-content products">
+      <div class="box-product">
+        <div id="myCarousel{{ id }}">
+             <div class="owl-carousel">
+              {% for product in module['content']['products'] %} 
+                <div class="item">
+                  <div class="product-grid">{% include 'zeexo/template/new_elements/product.twig' %}</div>
+                </div>
+              {% endfor %} 
+          </div>
+       </div>
+     </div>
+    </div>
+  </div> 
+{% endif %}

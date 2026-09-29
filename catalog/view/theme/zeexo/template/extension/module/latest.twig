@@ -1,0 +1,98 @@
+{% if (registry.has('theme_options') == constant('true')) %} 
+  {% set id = random(5000) * random(50000) %}
+  {% set theme_options = registry.get('theme_options') %}
+  {% set config = registry.get('config') %}
+  <div class="box clearfix box-with-products {% if (theme_options.get( 'product_scroll_latest' ) != '0') %} {{ 'with-scroll' }} {% endif %}">
+    {% if (theme_options.get( 'product_scroll_latest' ) != '0') %} 
+    <!-- Carousel nav -->
+    <a class="next" href="#myCarousel{{ id }}" id="myCarousel{{ id }}_next"><span></span></a>
+    <a class="prev" href="#myCarousel{{ id }}" id="myCarousel{{ id }}_prev"><span></span></a>
+    {% endif %} 
+    
+    <div class="box-heading">{{ heading_title }}</div>
+    <div class="strip-line"></div>
+    <div class="clear"></div>
+    <div class="box-content products">
+      <div class="box-product">
+        <div id="myCarousel{{ id }}">
+          {% if (theme_options.get( 'product_scroll_latest' ) != '0') %} 
+            <div class="owl-carousel">
+                <div class="item">
+                  <div class="product-grid">
+                    {% for product in products %}
+                      {% if loop.index > 1 %}</div></div><div class="item"><div class="product-grid">{% endif %}
+                      {% include 'zeexo/template/new_elements/product.twig' %}
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+          {% else %}
+              <div class="active item">
+                <div class="product-grid">
+                  <div class="row">
+                  {% set class = 'col-6 col-md-4 col-lg-3' %} 
+                  {% if (itemsperpage == 6) %} {% set class = 'col-6 col-md-3 col-lg-2' %} {% endif %}
+                  {% if (itemsperpage == 5) %} {% set class = 'col-6 col-md-3 col-lg-25' %} {% endif %}
+                  {% if (itemsperpage == 3) %} {% set class = 'col-6 col-md-6 col-lg-4' %} {% endif %}
+                  {% if (itemsperpage == 2) %} {% set class = 'col-12 col-md-6' %} {% endif %}
+                    {% for product in products %}
+                      <div class="{{ class }}">
+                        {% include 'zeexo/template/new_elements/product.twig' %}
+                      </div>
+                    {% endfor %} 
+                  </div>
+                </div>
+              </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% if (theme_options.get( 'product_scroll_latest' ) != '0') %} 
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var owl{{ id }} = $(".box #myCarousel{{ id }} .owl-carousel");
+      
+      $("#myCarousel{{ id }}_next").click(function(){
+          owl{{ id }}.trigger('next.owl.carousel');
+          return false;
+        })
+      $("#myCarousel{{ id }}_prev").click(function(){
+          owl{{ id }}.trigger('prev.owl.carousel');
+          return false;
+      });
+
+    {% set itemsmobile = 2 %}
+    {% set itemstablet = 3 %}
+
+    {% if theme_options.get( 'product_per_pow' ) == 2 %}
+      {% set itemsmobile = 1 %}
+      {% set itemstablet = 2 %}
+    {% endif %}
+
+    {% set itemsperpage = 4 %} 
+    {% if (theme_options.get( 'product_per_pow' ) > 1) %}{% set itemsperpage = theme_options.get( 'product_per_pow' ) %}{% endif %} 
+   
+      owl{{ id }}.owlCarousel({
+        slideSpeed: 500,
+        margin: 30,
+        nav: false,
+        dots: false,
+        responsiveClass:true,
+        responsive:{
+            0:{
+                items:{{ itemsmobile }},
+            },
+            600:{
+                items:{{ itemstablet }},
+            },
+            1000:{
+                items:{{ itemsperpage }},
+            }
+        }
+       });
+    });
+  </script>
+  {% endif %}
+{% endif %}

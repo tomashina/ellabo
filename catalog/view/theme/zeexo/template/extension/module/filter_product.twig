@@ -1,0 +1,272 @@
+{% set theme_options = registry.get('theme_options') %}
+{% set config = registry.get('config') %}
+{% set page_direction = theme_options.get( 'page_direction' ) %}
+{% set language_id = config.get( 'config_language_id' ) %}
+{% set id = random(50000)*random(500000) %}
+
+{% if (tabs|length > 1 ) %} 
+	<div class="filter-product">
+		<div class="filter-tabs">
+			<div class="bg-filter-tabs"><div class="bg-filter-tabs2 clearfix">
+				<ul class="nav nav-tabs" id="tab{{ id }}" role="tablist">
+					{% for tab in tabs %} 
+						<li class="nav-item">
+							<a class="nav-link {% if loop.index == 1 %}active{% endif %}" id="{{ tab['title'] }}-{{ id }}-{{ loop.index }}-tab" data-toggle="tab" href="#{{ tab['title'] }}-{{ id }}-{{ loop.index }}" role="tab" aria-controls="{{ tab['title'] }}-{{ id }}-{{ loop.index }}" aria-selected="true">{{ tab['heading'] }}</a>
+						</li>
+					{% endfor %} 
+				</ul>
+			</div></div>
+		</div>
+		
+		<div class="tab-content" id="tab{{ id }}Content">
+			{% set s = 1 %} 
+			{% for tab in tabs %} 
+				<div class="tab-pane fade {% if (s == 1) %}show active{% endif %}" id="{{ tab['title'] }}-{{ id }}-{{ loop.index }}" role="tabpanel" aria-labelledby="{{ tab['title'] }}-{{ id }}-{{ loop.index }}-tab">
+					{% if (carousel != 0) %} 
+						<!-- Carousel nav -->
+						<a class="next-button" href="#myCarousel{{ id~'-'~s }}" id="myCarousel{{ id~'-'~s }}_next"><span></span></a>
+						<a class="prev-button" href="#myCarousel{{ id~'-'~s }}" id="myCarousel{{ id~'-'~s }}_prev"><span></span></a>
+
+						<script type="text/javascript">
+						$(document).ready(function() {
+						  var owl{{ id ~ '_' ~ s }} = $(".filter-product #myCarousel{{ id~'-'~s }} .owl-carousel");
+							
+						  $("#myCarousel{{ id~'-'~s }}_next").click(function(){
+						      owl{{ id ~ '_' ~ s }}.trigger('next.owl.carousel');
+						      return false;
+						    })
+						  $("#myCarousel{{ id~'-'~s }}_prev").click(function(){
+						      owl{{ id ~ '_' ~ s }}.trigger('prev.owl.carousel');
+						      return false;
+						  });
+
+						  {% set itemsmobile = 2 %}
+						  {% set itemstablet = 3 %}
+
+						  {% if itemsperpage == 2 %}
+						  	{% set itemsmobile = 1 %}
+						  	{% set itemstablet = 2 %}
+						  {% endif %}
+						    
+						    {% if itemsperpage == 7 %}
+							    owl{{ id ~ '_' ~ s }}.owlCarousel({
+							    	slideSpeed: 500,
+							    	{% if theme_options.get( 'load_styles' ) == 'fashion_modern_1.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_2.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_3.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_4.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_5.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_6.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_7.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_8.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_1.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_2.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_3.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_4.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_5.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_6.css' %}
+							    		margin: 10,
+							    	{% else %}
+							    		margin: 30,
+							    	{% endif %}
+							    	nav: false,
+							    	dots: false,
+								    responsiveClass:true,
+								    responsive:{
+								        0:{
+								            items:{{ itemsmobile }},
+								        },
+								        600:{
+								            items:{{ itemstablet }},
+								        },
+								        1000:{
+								            items: 5,
+								        },
+								        1280:{
+								        	items: 6
+								        },
+								        1450:{
+								        	items: 7
+								        }
+								    }
+							     });
+						    {% else %}
+							  owl{{ id ~ '_' ~ s }}.owlCarousel({
+						    	slideSpeed: 500,
+						    	{% if theme_options.get( 'load_styles' ) == 'fashion_modern_1.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_2.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_3.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_4.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_5.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_6.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_7.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_8.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_1.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_2.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_3.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_4.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_5.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_6.css' %}
+						    		margin: 10,
+						    	{% else %}
+						    		margin: 30,
+						    	{% endif %}
+						    	nav: false,
+						    	dots: false,
+							    responsiveClass:true,
+							    responsive:{
+							        0:{
+							            items:{{ itemsmobile }},
+							        },
+							        600:{
+							            items:{{ itemstablet }},
+							        },
+							        1000:{
+							            items:{{ itemsperpage }},
+							        }
+							    }
+							   });
+							 {% endif %}
+						});
+						</script>
+					 {% endif %}
+					
+					<div class="box-product">
+						<div id="myCarousel{{ id~'-'~s }}">
+							{% if (carousel != 0) %} 
+								<div class="owl-carousel">
+					    			<div class="item">
+					    				<div class="product-grid">
+						    				{% for product in tab['products'] %}
+						    					{% if loop.index > 1 and (loop.index % cols == 1 or cols == 1) %}</div></div><div class="item"><div class="product-grid">{% endif %}
+						    					{% include 'zeexo/template/new_elements/product.twig' %}
+						    				{% endfor %}
+						    			</div>
+						    		</div>
+						    	</div>
+							{% else %}
+				    			<div class="active item">
+				    				<div class="product-grid">
+				    					<div class="row">
+											{% set class = 'col-6 col-md-4 col-lg-3' %} 
+											{% if (itemsperpage == 6) %} {% set class = 'col-6 col-md-3 col-lg-2' %} {% endif %}
+											{% if (itemsperpage == 5) %} {% set class = 'col-6 col-md-3 col-lg-25' %} {% endif %}
+											{% if (itemsperpage == 3) %} {% set class = 'col-6 col-md-6 col-lg-4' %} {% endif %}
+											{% if (itemsperpage == 2) %} {% set class = 'col-12 col-md-6' %} {% endif %}
+							    			{% for product in tab['products'] %}
+							    				<div class="{{ class }}">
+								    				{% include 'zeexo/template/new_elements/product.twig' %}
+								    			</div>
+							    			{% endfor %} 
+							    		</div>
+							    	</div>
+							    </div>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			{% set s = s + 1 %} 
+			{% endfor %} 
+		</div>
+	</div>
+{% else %} 
+	{% for tab in tabs %} 
+		<div class="box clearfix box-with-products {% if (carousel != '0') %}with-scroll{% endif %} box-no-advanced">
+		  {% if (carousel != 0) %} 
+			  <!-- Carousel nav -->
+			  <a class="next" href="#myCarousel{{ id }}" id="myCarousel{{ id }}_next"><span></span></a>
+			  <a class="prev" href="#myCarousel{{ id }}" id="myCarousel{{ id }}_prev"><span></span></a>
+
+			  <script type="text/javascript">
+			  $(document).ready(function() {
+			    var owl{{ id }} = $(".box #myCarousel{{ id }} .owl-carousel");
+			  	
+			    $("#myCarousel{{ id }}_next").click(function(){
+			        owl{{ id }}.trigger('next.owl.carousel');
+			        return false;
+			      })
+			    $("#myCarousel{{ id }}_prev").click(function(){
+			        owl{{ id }}.trigger('prev.owl.carousel');
+			        return false;
+			    });
+
+			  {% set itemsmobile = 2 %}
+			  {% set itemstablet = 3 %}
+
+			  {% if itemsperpage == 2 %}
+			  	{% set itemsmobile = 1 %}
+			  	{% set itemstablet = 2 %}
+			  {% endif %}
+
+			    {% if itemsperpage == 7 %}
+				    owl{{ id }}.owlCarousel({
+				    	slideSpeed: 500,
+				    	{% if theme_options.get( 'load_styles' ) == 'fashion_modern_1.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_2.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_3.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_4.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_5.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_6.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_7.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_8.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_1.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_2.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_3.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_4.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_5.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_6.css' %}
+				    		margin: 10,
+				    	{% else %}
+				    		margin: 30,
+				    	{% endif %}
+				    	nav: false,
+				    	dots: false,
+					    responsiveClass:true,
+					    responsive:{
+					        0:{
+					            items:{{ itemsmobile }},
+					        },
+					        600:{
+					            items:{{ itemstablet }},
+					        },
+					        1000:{
+					            items: 5,
+					        },
+					        1280:{
+					        	items: 6
+					        },
+					        1450:{
+					        	items: 7
+					        }
+					    }
+				     });
+			    {% else %}
+				    owl{{ id }}.owlCarousel({
+				    	slideSpeed: 500,
+				    	{% if theme_options.get( 'load_styles' ) == 'fashion_modern_1.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_2.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_3.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_4.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_5.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_6.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_7.css' or theme_options.get( 'load_styles' ) == 'fashion_modern_8.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_1.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_2.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_3.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_4.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_5.css' or theme_options.get( 'load_styles' ) == 'fashion_simple_6.css' %}
+				    		margin: 10,
+				    	{% else %}
+				    		margin: 30,
+				    	{% endif %}
+				    	nav: false,
+				    	dots: false,
+					    responsiveClass:true,
+					    responsive:{
+					        0:{
+					            items:{{ itemsmobile }},
+					        },
+					        600:{
+					            items:{{ itemstablet }},
+					        },
+					        1000:{
+					            items:{{ itemsperpage }},
+					        }
+					    }
+				     });
+			    {% endif %}
+			  });
+			  </script>
+		  {% endif %}
+			
+		  <div class="box-heading">{{ tab['heading'] }}</div>
+		  <div class="strip-line"></div>
+		  <div class="clear"></div>
+		  <div class="box-content products">
+		    <div class="box-product">
+		    	<div id="myCarousel{{ id }}">
+					{% if (carousel != 0) %} 
+						<div class="owl-carousel">
+			    			<div class="item">
+			    				<div class="product-grid">
+				    				{% for product in tab['products'] %}
+				    					{% if loop.index > 1 and (loop.index % cols == 1 or cols == 1) %}</div></div><div class="item"><div class="product-grid">{% endif %}
+				    					{% include 'zeexo/template/new_elements/product.twig' %}
+				    				{% endfor %}
+				    			</div>
+				    		</div>
+				    	</div>
+					{% else %}
+		    			<div class="active item">
+		    				<div class="product-grid">
+		    					<div class="row">
+									{% set class = 'col-6 col-md-4 col-lg-3' %} 
+									{% if (itemsperpage == 6) %} {% set class = 'col-6 col-md-3 col-lg-2' %} {% endif %}
+									{% if (itemsperpage == 5) %} {% set class = 'col-6 col-md-3 col-lg-25' %} {% endif %}
+									{% if (itemsperpage == 3) %} {% set class = 'col-6 col-md-6 col-lg-4' %} {% endif %}
+									{% if (itemsperpage == 2) %} {% set class = 'col-12 col-md-6' %} {% endif %}
+					    			{% for product in tab['products'] %}
+					    				<div class="{{ class }}">
+						    				{% include 'zeexo/template/new_elements/product.twig' %}
+						    			</div>
+					    			{% endfor %} 
+					    		</div>
+					    	</div>
+					    </div>
+					{% endif %}
+				</div>
+		    </div>
+		  </div>
+		</div>
+	{% endfor %}
+{% endif %} 

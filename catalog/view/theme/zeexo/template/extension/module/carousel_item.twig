@@ -1,0 +1,38 @@
+{% set id = random(5000)*random(5000) %}
+<div class="box carouselItem">
+  <div class="background-carouselItem">
+    <div class="box-heading">{{ block_heading }}</div>
+    <div class="strip-line"></div>
+    <div class="box-content">
+      <div id="myCarousel{{ id }}">
+        <div class="owl-carousel">
+        {% set i = 0 %} {% for item in carousel_item %} 
+        <div class="item{% if (i == 0) %} {{ ' active' }} {% endif %}">
+          {{ item['content'] }} 
+        </div>
+        {% set i = i + 1 %} {% endfor %} 
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript"><!--
+var owl{{ id }} = $(".box #myCarousel{{ id }} .owl-carousel");
+
+$("#myCarousel{{ id }}_next").click(function(){
+    owl{{ id }}.trigger('next.owl.carousel');
+    return false;
+});
+
+$("#myCarousel{{ id }}_prev").click(function(){
+    owl{{ id }}.trigger('prev.owl.carousel');
+    return false;
+});
+
+owl{{ id }}.owlCarousel({
+  items: 1,
+  nav: false,
+  dots: true
+});
+--></script>

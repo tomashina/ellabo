@@ -1,0 +1,74 @@
+header.header-type-3 .desktop-menu {
+  background: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+header.header-type-3 .desktop-menu ul.megamenu {
+  margin-top: -1px;
+}
+header.header-type-3 .desktop-menu ul.megamenu > li > a {
+  color: #000;
+}
+.header-type-3 + .breadcrumb {
+  margin-top: 0px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 10px;
+}
+.common-home .main-content .pattern > .container,
+.common-home .standard-body .main-content .pattern > .container {
+  padding-bottom: 0px;
+}
+.standard-body .footer .background {
+  background: #fff;
+}
+.common-home .footer {
+  border-top: none;
+}
+.footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.footer .background {
+  background: #fff;
+}
+.footer .background .pattern a {
+  color: #000;
+}
+.footer .background .pattern a:hover {
+  color: #000;
+}
+.footer .background .pattern h4 {
+  color: #06bec7;
+}
+.footer .background .footer-newsletter h5 {
+  color: #000;
+}
+.footer .background .footer-newsletter .content {
+  background: #fff;
+}
+.footer .background .footer-newsletter .content input {
+  background: #e6e6e6;
+  color: #000;
+}
+.footer .background .footer-newsletter .checkbox label .custom-control-indicator {
+  background: #e6e6e6;
+}
+.footer .background .footer-newsletter .line {
+  background: rgba(0, 0, 0, 0.1);
+}
+.footer .background .open-footer-menu .icon span {
+  background: #000;
+}
+.footer .background .open-footer-menu .text {
+  color: #000;
+}
+.standard-body .copyright .background {
+  background: #fff;
+}
+.copyright .background {
+  background: #fff;
+}
+.copyright .background .social-payments .left ul li a {
+  color: #b2b2b1;
+}
+.copyright .background .social-payments .left ul li a:hover {
+  color: #000;
+}

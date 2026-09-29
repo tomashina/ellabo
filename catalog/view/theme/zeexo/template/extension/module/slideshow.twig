@@ -1,0 +1,27 @@
+<div class="container">
+     <div class="camera_slider">
+      <div class="camera_wrap owl-carousel" id="camera_wrap_{{ module+20 }}">
+        {% for banner in banners %} 
+        {% if (banner['link']) %} 
+        <div><a href="{{ banner['link'] }}"><img src="{{ banner['image'] }}" alt="{{ banner['title'] }}" /></a></div>
+        {% else %} 
+        <div><img src="{{ banner['image'] }}" alt="{{ banner['title'] }}" /></div>
+        {% endif %} 
+        {% endfor %} 
+      </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  var camera_slider = $("#camera_wrap_{{ module+20 }}");
+    
+  camera_slider.owlCarousel({
+    items: 1,
+    margin: 0,
+    autoHeight: true,
+    nav: true,
+    dots: true
+  });
+});
+</script>

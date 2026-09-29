@@ -1,0 +1,56 @@
+#top .top-center {
+  position: relative;
+  padding: 25px 0px;
+}
+#top .top-center .switchers {
+  padding-right: 25px;
+}
+#top .top-center .switchers .dropdown {
+  margin: 8px 30px 8px 0px;
+}
+@media (max-width: 1098px) {
+  #top .top-center .switchers .dropdown {
+    margin-right: 20px;
+  }
+}
+#top .top-center .switchers .dropdown .dropdown-toggle {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+#top .top-center .switchers .dropdown .dropdown-toggle:after {
+  border-top-color: #b2b2b2;
+  margin-left: 6px;
+}
+#top .top-center .right .desktop-search {
+  position: relative;
+  margin: 0px;
+  width: auto;
+}
+#top .top-center .right .desktop-search .open-search a {
+  cursor: pointer;
+}
+#top .top-center .right .desktop-search .open-search a svg {
+  width: 26px;
+  height: 26px;
+}
+#top .top-center .right .desktop-search .search_form {
+  display: none;
+  width: 305px;
+}
+#top .top-center .right .desktop-search .search_form.active {
+  display: block;
+  position: absolute;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  right: -30px;
+  margin: 10px 0px 0px 0px;
+  padding: 15px;
+  z-index: 30;
+}
+#top .top-center .right .desktop-search .search_form.active .button-search {
+  right: 27px;
+}
+#top .top-center .right .my-account {
+  margin-left: 25px;
+}

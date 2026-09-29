@@ -1,0 +1,41 @@
+#top {
+	.top-center {
+		.desktop-search {
+			margin: 0px auto;
+			width: 450px;
+			padding: 0px 30px;
+			.search_form {
+				width: auto;
+				position: relative;
+				.search-query {
+					width: 100%;
+					margin: 0px;
+				}
+				.button-search {
+					position: absolute;
+					top: 50%;
+					right: 12px;
+					transform: translateY(-50%);
+					-webkit-transform: translateY(-50%);
+					-moz-transform: translateY(-50%);
+					cursor: pointer;
+					&:before {
+						content: "\f002";
+						font-family: "Font Awesome 5 Free";
+						font-weight: 900;
+						-moz-osx-font-smoothing: grayscale;
+						-webkit-font-smoothing: antialiased;
+						display: inline-block;
+						font-style: normal;
+						font-variant: normal;
+						text-rendering: auto;
+						line-height: 1;
+					}
+				}
+			}
+		}
+		.right {
+			margin: 0px;
+		}
+	}
+}

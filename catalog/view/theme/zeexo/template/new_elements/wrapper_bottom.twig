@@ -1,0 +1,77 @@
+{% if (registry.has('theme_options') == constant('true')) %} 
+	{% set theme_options = registry.get('theme_options') %}
+	{% set config = registry.get('config') %}
+							</div>
+							
+							{% set grid_content_right = 3 %}
+							{% set column_right = theme_options.getModules('column_right') %} 
+							{% set column_left = theme_options.getModules('column_right') %} 
+							{% if ( column_right|length > 0 ) %}
+								{% if (columnleft|length > 0) %}
+									{% set grid_content_right = 4 %}
+								{% else %} 
+									{% set grid_content_right = 3 %}
+								{% endif %}
+							{% endif %}
+
+							{% if ( column_right|length > 0 ) %} 
+							<div class="col-md-{{ grid_content_right }} {% if category_page %}aside{% endif %}" id="column-right"><div class="sticky-top {% if (theme_options.get( 'fixed_header' ) == 1) %} fixed-on{% endif %}">
+								{% if category_page %}
+									<div class="d-none close-aside-box2"><i class="fas fa-times"></i></div>
+								    <div class="sort d-flex align-items-center">
+								      {{ text_sort }} 
+								      <div class="select">
+								        <select onchange="location = this.value;">
+								          {% for sorts in sorts %} 
+								          {% if (sorts['value'] == sort ~ '-' ~ order) %} 
+								          <option value="{{ sorts['href'] }}" selected="selected">{{ sorts['text'] }}</option>
+								          {% else %} 
+								          <option value="{{ sorts['href'] }}">{{ sorts['text'] }}</option>
+								          {% endif %} 
+								          {% endfor %} 
+								        </select>
+								      </div>
+								    </div>
+								    
+								    <div class="limit d-flex align-items-center">
+								      {{ text_limit }} 
+								      <div class="select">
+								        <select onchange="location = this.value;">
+								          {% for limits in limits %} 
+								          {% if (limits['value'] == limit) %} 
+								          <option value="{{ limits['href'] }}" selected="selected">{{ limits['text'] }}</option>
+								          {% else %} 
+								          <option value="{{ limits['href'] }}">{{ limits['text'] }}</option>
+								          {% endif %} 
+								          {% endfor %} 
+								        </select>
+								      </div>
+								    </div>
+								{% endif %}
+								{% for module in column_right %} 
+									{{ module }}
+								{% endfor %} 
+							</div>
+							</div>
+							{% endif %} 
+						</div>
+					</div>
+				</div>
+
+				<div class="clear"></div>
+				
+				<div class="row" style="display:block">	
+					<div class="col-md-12">	
+						{% set contentbottom = theme_options.getModules('content_bottom') %}
+						{% if ( contentbottom|length > 0 ) %} 
+							{% for module in contentbottom %} 
+								{{ module }}
+							{% endfor %}
+						{% endif %} 
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>				  
+</div>
+{% endif %}

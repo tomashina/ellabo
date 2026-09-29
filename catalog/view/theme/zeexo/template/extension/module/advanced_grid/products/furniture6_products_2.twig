@@ -1,0 +1,46 @@
+{% if (registry.has('theme_options') == constant('true')) %} 
+  {% set id = random(50000)*random(50000) %}
+
+  <div class="furniture6-box-products-1 orange">
+        <script type="text/javascript">
+        $(document).ready(function() {
+          var owl{{ id }} = $(".furniture6-box-products-1 #myCarousel{{ id }} .owl-carousel");
+  
+            owl{{ id }}.owlCarousel({
+              slideSpeed: 500,
+              margin: 30,
+              nav: false,
+              dots: false,
+              responsiveClass:true,
+              responsive:{
+                  0:{
+                      items:2
+                  },
+                  600:{
+                      items:2
+                  },
+                  1000:{
+                      items:3
+                  }
+              }
+             });
+        });
+        </script>
+
+    {{ theme_options.html_entity_decode(module['content']['title']) }}
+
+    <div class="box-content products">
+      <div class="box-product">
+        <div id="myCarousel{{ id }}">
+             <div class="owl-carousel">
+              {% for product in module['content']['products'] %} 
+                <div class="item">
+                  <div class="product-grid">{% include 'zeexo/template/new_elements/product.twig' %}</div>
+                </div>
+              {% endfor %} 
+          </div>
+       </div>
+     </div>
+    </div>
+  </div> 
+{% endif %}

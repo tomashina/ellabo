@@ -1,0 +1,41 @@
+{% if (articles|length > 0) %}
+
+    <div class="news row">
+     {% for article in articles %} 
+          {% if (loop.index == 1) %} 
+          <div class="col-12 col-md-4 item">
+              {% if (article['thumb']) %}
+                <div class="image">
+                   <div class="tags">
+                        {% set s = 0 %} {% for tag in article['tags'] %} 
+                             {% if (s < 2) %}<a href="{{ tag['href'] }}">{{ tag['tag'] }}</a>{% endif %} 
+                        {% set s = s + 1 %} {% endfor %} 
+                   </div>
+                  <a href="{{ article['href'] }}"><img src="{{ article['thumb'] }}" alt="{{ article['title'] }}"></a>
+                </div>
+              {% endif %}
+              <div class="name"><a href="{{ article['href'] }}">{{ article['title'] }}</a></div>
+              <div class="date-published">{{ theme_options.date('d.m.Y', theme_options.strtotime(article['date_published'])) }}</div>
+            </div>
+          {% endif %} 
+     {% endfor %} 
+     
+
+        {% for article in articles %}
+            <div class="col-12 col-md-4 item">
+              {% if (article['thumb']) %}
+                <div class="image">
+                   <div class="tags">
+                        {% set s = 0 %} {% for tag in article['tags'] %} 
+                             {% if (s < 2) %}<a href="{{ tag['href'] }}">{{ tag['tag'] }}</a>{% endif %} 
+                        {% set s = s + 1 %} {% endfor %} 
+                   </div>
+                  <a href="{{ article['href'] }}"><img src="{{ article['thumb'] }}" alt="{{ article['title'] }}"></a>
+                </div>
+              {% endif %}
+              <div class="name"><a href="{{ article['href'] }}">{{ article['title'] }}</a></div>
+              <div class="date-published">{{ theme_options.date('d.m.Y', theme_options.strtotime(article['date_published'])) }}</div>
+            </div>
+        {% endfor %} 
+    </div>
+{% endif %}

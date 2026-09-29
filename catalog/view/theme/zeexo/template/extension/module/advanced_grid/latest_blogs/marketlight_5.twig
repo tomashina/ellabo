@@ -1,0 +1,24 @@
+<div class="marketlight5-posts">
+  <div class="blog-posts row">
+    {% for article in module['content']['articles'] %}
+      <div class="col-12 col-md-6">
+        <div class="d-flex item align-items-center">
+          {% if (article['thumb']) %}
+            <div class="image">
+               <div class="tags">
+                    {% set s = 0 %} {% for tag in article['tags'] %} 
+                         {% if (s < 2) %}<a href="{{ tag['href'] }}">{{ tag['tag'] }}</a>{% endif %} 
+                    {% set s = s + 1 %} {% endfor %} 
+               </div>
+              <a href="{{ article['href'] }}"><img src="{{ article['thumb'] }}" alt="{{ article['title'] }}"></a>
+            </div>
+          {% endif %}
+          <div class="right">
+            <div class="name"><a href="{{ article['href'] }}">{{ article['title'] }}</a></div>
+            <div class="date-published">{{ theme_options.date('d.m.Y', theme_options.strtotime(article['date_published'])) }}</div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>

@@ -1,0 +1,149 @@
+{{ header }} 
+{% set theme_options = registry.get('theme_options') %}
+{% set config = registry.get('config') %} 
+{% set grid_center = 12 %} 
+{% if (column_left != '') %} {% set grid_center = grid_center-3 %}{% endif %} 
+{% if (column_right != '') %} {% set grid_center = grid_center-3 %}{% endif %}
+
+<!-- MAIN CONTENT
+	================================================== -->
+<div class="main-content {% if (theme_options.get( 'content_layout' ) == 1) %} {{ 'full-width' }} {% else %} {{ 'fixed' }} {% endif %} home">
+	<div class="background-content"></div>
+	<div class="background">
+		<div class="shadow"></div>
+		<div class="pattern">
+			<div class="container">
+				
+				{% if theme_options.get( 'load_styles' ) == 'market_light_7.css' %}
+					{% set preface_left = theme_options.getModules('preface_left') %}
+					{% set preface_right = theme_options.getModules('preface_right') %}
+					
+					{% if ( preface_left|length > 0 or preface_right|length > 0 ) %} 
+					<div class="row">
+						<div class="col-md-8">
+							{% if ( preface_left|length > 0 ) %}
+								{% for module in preface_left %} 
+									{{ module }}
+								{% endfor %}
+							{% endif %} 
+						</div>
+						
+						<div class="col-md-4">
+							{% if ( preface_right|length > 0 ) %}
+								{% for module in preface_right %} 
+									{{ module }}
+								{% endfor %}
+							{% endif %} 
+						</div>
+					</div>
+					{% endif %} 
+				{% else %}
+					{% set preface_left = theme_options.getModules('preface_left') %}
+					{% set preface_right = theme_options.getModules('preface_right') %}
+					
+					{% if ( preface_left|length > 0 or preface_right|length > 0 ) %} 
+					<div class="row">
+						<div class="col-md-9">
+							{% if ( preface_left|length > 0 ) %}
+								{% for module in preface_left %} 
+									{{ module }}
+								{% endfor %}
+							{% endif %} 
+						</div>
+						
+						<div class="col-md-3">
+							{% if ( preface_right|length > 0 ) %}
+								{% for module in preface_right %} 
+									{{ module }}
+								{% endfor %}
+							{% endif %} 
+						</div>
+					</div>
+					{% endif %} 
+				{% endif %}
+				
+				
+				{% set preface_fullwidth = theme_options.getModules('preface_fullwidth') %}
+				{% if ( preface_fullwidth|length > 0 ) %} 
+				<div class="row">
+					<div class="col-md-12">
+						{% for module in preface_fullwidth %} 
+							{{ module }}
+						{% endfor %}
+					</div>
+				</div>
+				{% endif %} 
+				
+				<div class="row">				
+					
+					{% set columnleft = theme_options.getModules('column_left') %}
+					{% if ( columnleft|length > 0 ) %} 
+					<div class="col-md-3" id="column_left">
+						{% for module in columnleft %} 
+							{{ module }}
+						{% endfor %}
+					</div>
+					{% endif %} 
+					{% set grid_center = 12 %} {% if ( columnleft|length > 0 ) %} {% set grid_center = 9 %} {% endif %} 
+					<div class="col-md-{{ grid_center }}">
+						
+						{% set content_big_column = theme_options.getModules('content_big_column') %}
+						{% if ( content_big_column|length > 0 ) %} 
+							{% for module in content_big_column %} 
+								{{ module }}
+							{% endfor %}
+						{% endif %} 
+						
+						<div class="row">
+							
+							{% set grid_content_top = 12 %} 
+							{% set grid_content_right = 3 %}
+							{% set column_right = theme_options.getModules('column_right') %} 
+							{% if ( column_right|length > 0 ) %}
+								{% if (grid_center == 9) %}
+									{% set grid_content_top = 8 %}
+									{% set grid_content_right = 4 %}
+								{% else %} 
+									{% set grid_content_top = 9 %}
+									{% set grid_content_right = 3 %}
+								{% endif %}
+							{% endif %}
+							
+							<div class="col-md-{{ grid_content_top }}">
+								
+								{% set content_top = theme_options.getModules('content_top') %}
+								{% if ( content_top|length > 0 ) %} 
+									{% for module in content_top %} 
+										{{ module }}
+									{% endfor %}
+								{% endif %} 
+							</div>
+							
+							{% if ( column_right|length > 0 ) %} 
+							<div class="col-md-{{ grid_content_right }}">
+								{% for module in column_right %} 
+									{{ module }}
+								{% endfor %} 
+							</div>
+							{% endif %} 
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">	
+					<div class="col-md-12">	
+						
+						{% set contentbottom = theme_options.getModules('content_bottom') %}
+						{% if ( contentbottom|length > 0 ) %} 
+							{% for module in contentbottom %} 
+								{{ module }}
+							{% endfor %}
+						{% endif %} 
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{{ footer }}

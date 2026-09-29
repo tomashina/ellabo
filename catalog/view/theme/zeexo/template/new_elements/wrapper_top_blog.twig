@@ -1,0 +1,165 @@
+{% if (registry.has('theme_options') == constant('true')) %} 
+	{% set theme_options = registry.get('theme_options') %}
+	{% set config = registry.get('config') %}
+	<!-- BREADCRUMB
+		================================================== -->
+	<div class="breadcrumb {% if (theme_options.get( 'breadcrumb_layout' ) == 1) %} {{ 'full-width' }} {% else %} {{ 'fixed' }} {% endif %}">
+		<div class="background-breadcrumb"></div>
+		<div class="background">
+			<div class="shadow"></div>
+			<div class="pattern">
+				<div class="container">
+					<div class="clearfix">
+						<ul>
+							{% for breadcrumb in breadcrumbs %} 
+								<li><a href="{{ breadcrumb['href'] }}">{% if (breadcrumb['text'] != '<i class="fa fa-home"></i>') %} {{ breadcrumb['text'] }} {% else %} {% if (theme_options.get( 'home_text', config.get( 'config_language_id' ) ) != '') %} {{ theme_options.get( 'home_text', config.get( 'config_language_id' ) ) }} {% else %} {{ 'Home' }} {% endif %} {% endif %}</a></li>
+								{% set heading_title = breadcrumb['text'] %}
+							{% endfor %} 
+						</ul>
+					</div>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- MAIN CONTENT
+		================================================== -->
+	<div class="main-content {% if (theme_options.get( 'content_layout' ) == 1) %} {{ 'full-width' }} {% else %} {{ 'fixed' }} {% endif %} inner-page">
+		<div class="background-content"></div>
+		<div class="background">
+			<div class="shadow"></div>
+			<div class="pattern">
+				<div class="container">
+					
+					{% set preface_left = theme_options.getModules('preface_left') %}
+					{% set preface_right = theme_options.getModules('preface_right') %}
+					
+					{% if ( preface_left|length > 0 or preface_right|length > 0 ) %} 
+					<div class="row">
+						<div class="col-md-9">
+							{% if ( preface_left|length > 0 ) %}
+								{% for module in preface_left %} 
+									{{ module }}
+								{% endfor %}
+							{% endif %} 
+						</div>
+						
+						<div class="col-md-3">
+							{% if ( preface_right|length > 0 ) %}
+								{% for module in preface_right %} 
+									{{ module }}
+								{% endfor %}
+							{% endif %} 
+						</div>
+					</div>
+					{% endif %} 
+					
+					
+					{% set preface_fullwidth = theme_options.getModules('preface_fullwidth') %}
+					{% if ( preface_fullwidth|length > 0 ) %}
+						{{ '<div class="row"><div class="col-md-12">' }}
+						{% for module in preface_fullwidth %} 
+							{{ module }}
+						{% endfor %}
+						{{ '</div></div>' }}
+					{% endif %} 
+					
+					<div class="row sticky-stop">
+						{% if category_page %}<div class="close-aside-box"></div>{% endif %}
+
+						{% set columnleft = theme_options.getModules('column_left') %}
+						{% if ( columnleft|length > 0 ) %} 
+						<div class="col-md-3 sticky-top {% if category_page %}aside{% endif %}" id="column-left"><div class="sticky-top {% if (theme_options.get( 'fixed_header' ) == 1) %} fixed-on{% endif %}">
+							{% if category_page %}
+								<div class="d-none close-aside-box2"><i class="fas fa-times"></i></div>
+							    <div class="sort d-flex align-items-center">
+							      {{ text_sort }} 
+							      <div class="select">
+							        <select onchange="location = this.value;">
+							          {% for sorts in sorts %} 
+							          {% if (sorts['value'] == sort ~ '-' ~ order) %} 
+							          <option value="{{ sorts['href'] }}" selected="selected">{{ sorts['text'] }}</option>
+							          {% else %} 
+							          <option value="{{ sorts['href'] }}">{{ sorts['text'] }}</option>
+							          {% endif %} 
+							          {% endfor %} 
+							        </select>
+							      </div>
+							    </div>
+							    
+							    <div class="limit d-flex align-items-center">
+							      {{ text_limit }} 
+							      <div class="select">
+							        <select onchange="location = this.value;">
+							          {% for limits in limits %} 
+							          {% if (limits['value'] == limit) %} 
+							          <option value="{{ limits['href'] }}" selected="selected">{{ limits['text'] }}</option>
+							          {% else %} 
+							          <option value="{{ limits['href'] }}">{{ limits['text'] }}</option>
+							          {% endif %} 
+							          {% endfor %} 
+							        </select>
+							      </div>
+							    </div>
+							{% endif %}
+							{% for module in columnleft %} 
+								{{ module }}
+							{% endfor %}
+						</div>
+						</div>
+						{% endif %} 
+						
+						{% set grid_center = 12 %} {% if ( columnleft|length > 0 ) %} {% set grid_center = 9 %} {% endif %} 
+						<div class="col-md-{{ grid_center }}">
+							
+							{% set content_big_column = theme_options.getModules('content_big_column') %}
+							{% if ( content_big_column|length > 0 ) %} 
+								{% for module in content_big_column %} 
+									{{ module }}
+								{% endfor %}
+							{% endif %} 
+							
+							
+							{% set content_top = theme_options.getModules('content_top') %}
+							{% if ( content_top|length > 0 ) %} 
+								{% for module in content_top %} 
+									{{ module }}
+								{% endfor %}
+							{% endif %} 
+							
+							<div class="row">
+								
+								{% set grid_content_top = 12 %} 
+								{% set grid_content_right = 3 %}
+								{% set column_right = theme_options.getModules('column_right') %} 
+								{% if ( column_right|length > 0 ) %}
+									{% if (grid_center == 9) %}
+										{% set grid_content_top = 8 %}
+										{% set grid_content_right = 4 %}
+									{% else %} 
+										{% set grid_content_top = 9 %}
+										{% set grid_content_right = 3 %}
+									{% endif %}
+								{% endif %}
+								
+								<div class="col-md-{{ grid_content_top }} center-column" id="content">
+
+									{% if (error_warning is defined) %} 
+										{% if (error_warning) %} 
+										<div class="warning">
+											<button type="button" class="close" data-dismiss="alert">&times;</button>
+											{{ error_warning }} 
+										</div>
+										{% endif %} 
+									{% endif %} 
+									
+									{% if (success is defined) %} 
+										{% if (success) %} 
+										<div class="success">
+											<button type="button" class="close" data-dismiss="alert">&times;</button>
+											{{ success }} 
+										</div>
+										{% endif %} 
+									{% endif %}
+{% endif %}

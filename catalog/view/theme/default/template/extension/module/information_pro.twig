@@ -1,0 +1,63 @@
+<div class="list-group">
+{% for info_category_1 in information_categories %}
+{% if info_category_1['information_category_id'] == information_category_id %}
+<a href="{{ info_category_1['href'] }}" class="list-group-item active">{{ info_category_1['name'] }}</a>
+  {% if info_category_1['informations'] is not empty %}
+      {% for information in info_category_1['informations'] %}
+        {% if information['information_id'] == information_id %}
+      <a href="{{ information['href'] }}" class="list-group-item active">&nbsp;&nbsp;&nbsp;- {{ information['title'] }}</a>
+      {% else %}
+        <a href="{{ information['href'] }}" class="list-group-item">&nbsp;&nbsp;&nbsp;- {{ information['title'] }}</a>
+      {% endif %}
+      {% endfor %}
+  {% endif %}
+  {% if info_category_1['children'] is not empty %}
+    {% for info_category_2 in info_category_1['children'] %}
+        {% if info_category_2['information_category_id'] == child_id_1 %}
+    <a href="{{ info_category_2['href'] }}" class="list-group-item active">&nbsp;&nbsp;&nbsp;- {{ info_category_2['name'] }}</a>
+      {% if info_category_2['informations'] is not empty %}
+          {% for information in info_category_2['informations'] %}
+            {% if information['information_id'] == information_id %}
+          <a href="{{ information['href'] }}" class="list-group-item active">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- {{ information['title'] }}</a>
+          {% else %}
+            <a href="{{ information['href'] }}" class="list-group-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- {{ information['title'] }}</a>
+          {% endif %}
+         {% endfor %}
+     {% endif %}                  
+      {% if info_category_2['children'] is not empty %}
+       {% for info_category_3 in info_category_2['children'] %}
+            {% if info_category_3['information_category_id'] == child_id_2 %}
+          <a href="{{ info_category_3['href'] }}" class="list-group-item active">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- {{ info_category_3['name'] }}</a>
+          {% if info_category_3['informations'] is not empty %}
+              {% for information in info_category_3['informations'] %}
+                {% if information['information_id'] == information_id %}
+              <a href="{{ information['href'] }}" class="list-group-item active">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- {{ information['title'] }}</a>
+              {% else %}
+                <a href="{{ information['href'] }}" class="list-group-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- {{ information['title'] }}</a>
+              {% endif %}
+              {% endfor %}
+          {% endif %}                        
+        {% else %}
+            <a href="{{ info_category_3['href'] }}" class="list-group-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- {{ info_category_3['name'] }}</a>
+        {% endif %}
+        {% endfor %}
+      {% endif %}
+      {% else %}
+        <a href="{{ info_category_2['href'] }}"  class="list-group-item">&nbsp;&nbsp;&nbsp;- {{ info_category_2['name'] }}</a>
+      {% endif %}
+      {% endfor %}
+    {% endif %}
+    {% else %}
+        <a href="{{ info_category_1['href'] }}" class="list-group-item">{{ info_category_1['name'] }}</a>
+  {% endif %}
+{% endfor %}
+{% for information in informations %}
+{% if information['information_id'] == information_id %}
+    <a href="{{ information['href'] }}" class="list-group-item active">{{ information['title'] }}</a>
+{% else %}
+    <a href="{{ information['href'] }}" class="list-group-item">{{ information['title'] }}</a>
+{% endif %}
+{% endfor %}
+<a href="{{ contact }}" class="list-group-item">{{ text_contact }}</a>
+<a href="{{ sitemap }}" class="list-group-item">{{ text_sitemap }}</a>
+</div>

@@ -1,0 +1,22 @@
+{% if (registry.has('theme_options') == constant('true')) %} 
+  <div class="box">
+    {% if (module['content']['title'] != '') %} 
+    <div class="box-heading">{{ theme_options.html_entity_decode(module['content']['title']) }}</div>
+    <div class="strip-line"></div>
+    {% endif %} 
+    <div class="clear"></div>
+    <div class="box-content products">
+      <div class="box-product">
+        <div class="product-grid">
+             <div class="row">
+              {% for product in module['content']['products'] %} 
+                <div class="col-6 col-md-6 col-xl-4">
+                  {% include 'zeexo/template/new_elements/product.twig' %}
+                </div>
+              {% endfor %} 
+          </div>
+       </div>
+     </div>
+    </div>
+  </div> 
+{% endif %}

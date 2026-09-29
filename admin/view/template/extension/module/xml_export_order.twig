@@ -1,0 +1,210 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <style type="text/css">
+    #xml_export_order tr td input[type=checkbox] {float: left;cursor: pointer;}
+    #xml_export_order #items {padding: 7px 0px;}
+    #xml_export_order label {font-weight: normal;line-height: 13px;padding: 7px 0px 0px 2px;cursor: pointer;}
+    #xml_export_order label.highlighted {color: #1e91cf;}
+    #xml_export_order h4 {font-size: 18px; margin: 0px 0px 10px 0px; padding: 0px 0px 0px 0px;}
+    #xml_export_order .radio-box {display: block;}
+    #xml_export_order .radio-box label {display: inline-block; padding: 0px; margin: 0px; line-height: auto;}
+    .export-line {height: 1px;width: 100%;margin: 10px 0px;border-bottom: 1px dotted #dedede;}
+    #xml_export_order-copyright {color: #333; display: block; text-align: center;}
+    #xml_export_order .buttons .btn {display: block; width: 100%; margin-bottom: 5px;}
+  </style>
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a>
+      </div>
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <form action="{{ action }}" method="post" enctype="multipart/form-data" id="xml_export_order">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"><i class="fa fa-check"></i> {{ text_export_items }}</h3>
+            </div>
+            <div class="panel-body" id="items">
+              {% if items %}
+                {% for index, item in items %}
+                <div class="col-md-3">
+                  <input type="checkbox" name="xml_export_order_items[]" id="{{ index }}" value="{{ index }}" />
+                  <label for="{{ index }}">{{ item }}</label>
+                </div>
+                {% endfor %}
+              {% endif %}
+            </div>
+          </div>
+              
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="cron-link">
+                <b>{{ text_cron_link }}</b>: <a href="{{ cron_link }}" target="_blank">{{ cron_link }}</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="export-line"></div>
+          <p id="xml_export_order-copyright">&copy; 2014-{{ year }} by <a href="https://www.deawid.com" target="_blank">DEAWid</a> | <a href="https://www.deawid.com/support" target="_blank">Support</a></p>
+
+        </div>
+        <div class="col-md-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"><i class="fa fa-check"></i> {{ text_filter }}</h3>
+            </div>
+            <div class="panel-body">
+              
+              <h4><label>{{ text_item_type }}:</label></h4>
+              <div class="radio-box"><input type="radio" name="item_type" value="1" id="item_type_1" /><label for="item_type_1" class="radio">{{ text_item_type_1 }}</label></div>
+              <div class="radio-box"><input type="radio" name="item_type" value="2" id="item_type_2" /><label for="item_type_2" class="radio">{{ text_item_type_2 }}</label></div>
+              <div class="radio-box"><input type="radio" name="item_type" value="3" id="item_type_3" /><label for="item_type_3" class="radio">{{ text_item_type_3 }}</label></div>
+              <div class="radio-box"><input type="radio" name="item_type" value="4" id="cron_items"{% if checked_items %} checked="checked"{% endif %} /><label for="cron_items" class="radio">{{ text_cron_items }}</label></div>
+
+              <div class="export-line"></div>
+
+              <h4><label for="filter_order_store">{{ text_store }}:</label></h4>
+              <select name="filter[order_store]" class="form-control" id="filter_order_store">
+                <option value="-">{{ text_all_stores }}</option>
+                {% if stores %}
+                  {% for store in stores %}
+                    <option value="{{ store.store_id }}">{{ store.name }}</option>
+                  {% endfor %}
+                {% endif %}
+              </select>
+
+              <div class="export-line"></div>
+
+              <h4><label for="filter_order_status">{{ text_order_status }}:</label></h4>
+              <select name="filter[order_status]" class="form-control" id="filter_order_status">
+                <option value="-">{{ text_order_status_all }}</option>
+                {% if order_status %}
+                  {% for status in order_status %}
+                    <option value="{{ status.order_status_id }}">{{ status.name }}</option>
+                  {% endfor %}
+                {% endif %}
+              </select>
+
+              <div class="export-line"></div>
+     
+              <h4><label for="filter_order_date_start">{{ text_order_date }}:</label></h4>
+              <div class="input-group date">
+                <input type="text" name="filter[order_date_start]" value="" placeholder="{{ text_date_start }}" data-date-format="YYYY-MM-DD" id="filter_order_date_start" class="form-control" />
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                </span>
+              </div>
+              <div class="input-group date">
+                <input type="text" name="filter[order_date_stop]" value="" placeholder="{{ text_date_stop }}" data-date-format="YYYY-MM-DD" class="form-control" />
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                </span>
+              </div>
+
+              <div class="export-line"></div>
+
+              <h4><label for="filter_currency_code">{{ text_price_currency_code }}:</label></h4>
+              <select name="filter[currency_code]" class="form-control" id="filter_currency_code">
+                <option value="1">{{ text_yes }}</option>
+                <option value="0">{{ text_no }}</option>
+              </select>
+
+              <div class="export-line"></div>
+  
+              <div class="buttons">
+                <span class="btn btn-default" id="saveCronItems">{{ text_save_cron_items }}</span>
+                <button type="submit" form="xml_export_order" class="btn btn-primary">{{ text_export }}</button>
+              </div>
+
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<script type="text/javascript"><!--
+
+//check all
+$("#item_type_1").click(function(){
+  $("#content input[type=checkbox]").prop("checked",true);
+});
+
+//uncheck all
+$("#item_type_2").click(function(){
+  $("#content input[type=checkbox]").prop("checked",false);
+});
+
+//uncheck all
+$("#item_type_3").click(function(){
+
+  $("#content input[type=checkbox]").prop("checked",false);
+
+  $("#invoice_no").prop("checked",true);
+  $("#order_products").prop("checked",true);
+  $("#total").prop("checked",true);
+  $("#currency_value").prop("checked",true);
+  $("#order_status_id").prop("checked",true);
+  $("#firstname").prop("checked",true);
+  $("#lastname").prop("checked",true);
+  $("#email").prop("checked",true);
+  $("#date_added").prop("checked",true);
+  $("#customer_id").prop("checked",true);
+  $("#product_name").prop("checked",true);
+  $("#product_quantity").prop("checked",true);
+  $("#product_total").prop("checked",true);
+  $("#payment_method").prop("checked",true);
+  $("#shipping_method").prop("checked",true);
+
+});
+
+
+$("#cron_items").click(function(){
+  $("#content input[type=checkbox]").prop("checked",false);
+
+{% if cron_items %}
+  {% for item in cron_items %}
+    $("#{{ item }}").prop("checked",true);
+  {% endfor %}
+{% endif %}
+});
+
+$("#saveCronItems").click(function(){
+  $("#saveCronItems").html('<span class="fa fa-spinner fa-spin"></span>');
+	$.ajax({
+		url: '{{ link_cron_items }}',
+		type: 'post',
+		data: $('#items input[type=checkbox]:checked'),
+		dataType: 'json',
+		crossDomain: true,
+		beforeSend: function() {},
+		complete: function() {},
+		success: function(json) {
+      if(json['success']){
+        $("#saveCronItems").html('<span class="fa fa-check"></span> {{ text_cron_items_saved }}');
+      }
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+
+});
+
+
+$('.date').datetimepicker({
+	language: document.cookie.match(new RegExp('language=([^;]+)'))[1],
+	pickTime: false
+});		
+//--></script>
+{{ footer }}

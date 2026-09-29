@@ -1,0 +1,29 @@
+{{ header }} 
+{% include 'zeexo/template/new_elements/wrapper_top.twig' %}
+
+{% if categories %}
+<p><strong>{{ text_index }}</strong> {% for category in categories %}
+  &nbsp;&nbsp;&nbsp;<a href="index.php?route=product/publisher#{{ category.name }}">{{ category.name }}</a> {% endfor %} </p>
+{% for category in categories %}
+<div class="publisher-list">
+<div class="publisher-heading" id="{{ category.name }}">{{ category.name }}</div>
+<div class="publisher-content">
+{% if category.publisher %}
+{% for publishers in category.publisher|batch(4) %}
+<div class="row"> {% for publisher in publishers %}
+  <div class="col-md-3"><ul style="width: 100% !important"><li><a href="{{ publisher.href }}">{{ publisher.name }}</a></li></ul></div>
+  {% endfor %} </div>
+{% endfor %}
+{% endif %}
+</div>
+</div>
+{% endfor %}
+{% else %}
+<p>{{ text_empty }}</p>
+<div class="buttons clearfix">
+  <div class="pull-right"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>
+</div>
+{% endif %}
+
+{% include 'zeexo/template/new_elements/wrapper_bottom.twig' %}
+{{ footer }}

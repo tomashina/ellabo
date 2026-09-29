@@ -1,0 +1,16 @@
+<div class="clean-posts">
+  {% for article in module['content']['articles'] %}
+    <div class="item row align-items-center">
+      <div class="col-12 col-md-4 item-content">
+        <div class="name"><a href="{{ article['href'] }}">{{ article['title'] }}</a></div>
+        <div class="date-published">{{ theme_options.date('d.m.Y', theme_options.strtotime(article['date_published'])) }}</div>
+        <div class="read-more"><a href="{{ article['href'] }}" class="btn">{{ module['content']['title'] }}</a></div>
+      </div>
+      {% if (article['thumb']) %}
+        <div class="col-12 col-md-8 image">
+          <a href="{{ article['href'] }}"><img src="{{ article['thumb'] }}" alt="{{ article['title'] }}"></a>
+        </div>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
