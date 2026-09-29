@@ -133,7 +133,14 @@
                          {% set bottom = theme_options.getModules('bottom') %}
                          {% if ( bottom|length > 0 ) %} 
                               {% for module in bottom %} 
-                                   {{ module }}
+                                   {% if (footer_center|length > 0 and 'default3-copyright' in module and '</ul>' in module and 'account/return/add' not in module) %}
+                                        {% set module_parts = module|split('</ul>', 2) %}
+                                        {{ module_parts[0] }}
+                                             <li><a href="{{ return }}">{{ text_return }}</a></li>
+                                        </ul>{{ module_parts[1] }}
+                                   {% else %}
+                                        {{ module }}
+                                   {% endif %}
                               {% endfor %}
                          {% endif %}             
                     </div>
