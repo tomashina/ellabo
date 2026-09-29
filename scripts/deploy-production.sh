@@ -34,7 +34,7 @@ git ls-files -z | while IFS= read -r -d '' tracked_file; do
         | admin/view/javascript/ckeditor_full/plugins/leaflet/* \
         | system/fmanager/config/config*.php \
         | image/* | xml/* | data_sample/* | system/cache_mfp/* \
-        | system/storage/cache/* | system/storage/logs/* \
+        | system/storage/cache/* | system/storage/logs/* | system/storage/locks/* \
         | system/storage/modification/* | system/storage/session/* \
         | system/storage/upload/* | system/storage/download/* \
         | catalog/view/theme/zeexo/skins/store_default/*/settings.json)

@@ -34,6 +34,8 @@
 !/system/storage/cache/.gitkeep
 /system/storage/logs/*
 !/system/storage/logs/.gitkeep
+/system/storage/locks/*
+!/system/storage/locks/.gitkeep
 /system/storage/modification/*
 !/system/storage/modification/.gitkeep
 /system/storage/session/*
