@@ -11,9 +11,10 @@ if [[ ! -d "$deploy_root" || ! -f "$deploy_root/index.php" ]]; then
 fi
 
 rsync_options=(
-    --archive
-    --no-owner
-    --no-group
+    --recursive
+    --links
+    --safe-links
+    --perms
     --checksum
     --from0
     --files-from=-
