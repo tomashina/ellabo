@@ -878,7 +878,7 @@ class ControllerSaleReturn extends Controller {
 			$data['histories'][] = array(
 				'notify'     => $result['notify'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
 				'status'     => $result['status'],
-				'comment'    => nl2br($result['comment']),
+				'comment'    => nl2br(htmlspecialchars((string)$result['comment'], ENT_QUOTES, 'UTF-8')),
 				'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added']))
 			);
 		}

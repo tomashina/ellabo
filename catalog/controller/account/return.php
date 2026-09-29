@@ -146,7 +146,7 @@ class ControllerAccountReturn extends Controller {
 			$data['quantity'] = $return_info['quantity'];
 			$data['reason'] = $return_info['reason'];
 			$data['opened'] = $return_info['opened'] ? $this->language->get('text_yes') : $this->language->get('text_no');
-			$data['comment'] = nl2br($return_info['comment']);
+			$data['comment'] = nl2br(htmlspecialchars((string)$return_info['comment'], ENT_QUOTES, 'UTF-8'));
 			$data['action'] = $return_info['action'];
 
 			$data['histories'] = array();
@@ -157,7 +157,7 @@ class ControllerAccountReturn extends Controller {
 				$data['histories'][] = array(
 					'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
 					'status'     => $result['status'],
-					'comment'    => nl2br($result['comment'])
+					'comment'    => nl2br(htmlspecialchars((string)$result['comment'], ENT_QUOTES, 'UTF-8'))
 				);
 			}
 
@@ -220,17 +220,20 @@ class ControllerAccountReturn extends Controller {
 
 		$this->load->model('account/return');
 
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$this->model_account_return->addReturn($this->request->post);
+		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
+			$this->request->post = $this->sanitizeReturnInput($this->request->post);
 
-			$this->response->redirect($this->url->link('account/return/success', '', true));
+			if ($this->validate()) {
+				$return_data = $this->prepareReturnData($this->request->post);
+				$return_id = $this->model_account_return->addReturn($return_data);
+
+				$this->sendReturnEmails($return_id, $return_data);
+
+				$this->response->redirect($this->url->link('account/return/success', '', true));
+			}
 		}
 
 		$this->document->setTitle($this->language->get('heading_title'));
-		$this->document->addScript('catalog/view/javascript/jquery/datetimepicker/moment/moment.min.js');
-		$this->document->addScript('catalog/view/javascript/jquery/datetimepicker/moment/moment-with-locales.min.js');
-		$this->document->addScript('catalog/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.js');
-		$this->document->addStyle('catalog/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.css');
 
 		$data['breadcrumbs'] = array();
 
@@ -261,6 +264,12 @@ class ControllerAccountReturn extends Controller {
 			$data['error_order_id'] = '';
 		}
 
+		if (isset($this->error['date_ordered'])) {
+			$data['error_date_ordered'] = $this->error['date_ordered'];
+		} else {
+			$data['error_date_ordered'] = '';
+		}
+
 		if (isset($this->error['firstname'])) {
 			$data['error_firstname'] = $this->error['firstname'];
 		} else {
@@ -285,22 +294,22 @@ class ControllerAccountReturn extends Controller {
 			$data['error_telephone'] = '';
 		}
 
-		if (isset($this->error['product'])) {
-			$data['error_product'] = $this->error['product'];
+		if (isset($this->error['return_products'])) {
+			$data['error_return_products'] = $this->error['return_products'];
 		} else {
-			$data['error_product'] = '';
-		}
-
-		if (isset($this->error['model'])) {
-			$data['error_model'] = $this->error['model'];
-		} else {
-			$data['error_model'] = '';
+			$data['error_return_products'] = '';
 		}
 
 		if (isset($this->error['reason'])) {
 			$data['error_reason'] = $this->error['reason'];
 		} else {
 			$data['error_reason'] = '';
+		}
+
+		if (isset($this->error['refund_iban'])) {
+			$data['error_refund_iban'] = $this->error['refund_iban'];
+		} else {
+			$data['error_refund_iban'] = '';
 		}
 
 		$data['action'] = $this->url->link('account/return/add', '', true);
@@ -317,20 +326,30 @@ class ControllerAccountReturn extends Controller {
 			$product_info = $this->model_catalog_product->getProduct($this->request->get['product_id']);
 		}
 
-		if (isset($this->request->post['order_id'])) {
-			$data['order_id'] = $this->request->post['order_id'];
+		if (isset($this->request->post['invoice_number'])) {
+			$data['invoice_number'] = $this->request->post['invoice_number'];
+		} elseif (!empty($order_info) && !empty($order_info['invoice_no'])) {
+			$data['invoice_number'] = $order_info['invoice_prefix'] . $order_info['invoice_no'];
 		} elseif (!empty($order_info)) {
-			$data['order_id'] = $order_info['order_id'];
+			$data['invoice_number'] = $order_info['order_id'];
 		} else {
-			$data['order_id'] = '';
+			$data['invoice_number'] = '';
 		}
 
-		if (isset($this->request->post['date_ordered'])) {
-			$data['date_ordered'] = $this->request->post['date_ordered'];
+		if (isset($this->request->post['order_id'])) {
+			$data['order_id'] = (int)$this->request->post['order_id'];
 		} elseif (!empty($order_info)) {
-			$data['date_ordered'] = date('Y-m-d', strtotime($order_info['date_added']));
+			$data['order_id'] = (int)$order_info['order_id'];
 		} else {
-			$data['date_ordered'] = '';
+			$data['order_id'] = 0;
+		}
+
+		if (isset($this->request->post['invoice_date'])) {
+			$data['invoice_date'] = $this->request->post['invoice_date'];
+		} elseif (!empty($order_info)) {
+			$data['invoice_date'] = date('Y-m-d', strtotime($order_info['date_added']));
+		} else {
+			$data['invoice_date'] = '';
 		}
 
 		if (isset($this->request->post['firstname'])) {
@@ -365,32 +384,28 @@ class ControllerAccountReturn extends Controller {
 			$data['telephone'] = $this->customer->getTelephone();
 		}
 
-		if (isset($this->request->post['product'])) {
-			$data['product'] = $this->request->post['product'];
+		if (isset($this->request->post['product_id'])) {
+			$data['product_id'] = (int)$this->request->post['product_id'];
 		} elseif (!empty($product_info)) {
-			$data['product'] = $product_info['name'];
+			$data['product_id'] = (int)$product_info['product_id'];
 		} else {
-			$data['product'] = '';
+			$data['product_id'] = 0;
 		}
 
-		if (isset($this->request->post['model'])) {
-			$data['model'] = $this->request->post['model'];
+		if (isset($this->request->post['return_products'])) {
+			$data['return_products'] = $this->getReturnProducts($this->request->post, true);
 		} elseif (!empty($product_info)) {
-			$data['model'] = $product_info['model'];
+			$data['return_products'] = array(array(
+				'code'     => $product_info['model'],
+				'quantity' => '1',
+				'price'    => ''
+			));
 		} else {
-			$data['model'] = '';
-		}
-
-		if (isset($this->request->post['quantity'])) {
-			$data['quantity'] = $this->request->post['quantity'];
-		} else {
-			$data['quantity'] = 1;
-		}
-
-		if (isset($this->request->post['opened'])) {
-			$data['opened'] = $this->request->post['opened'];
-		} else {
-			$data['opened'] = false;
+			$data['return_products'] = array(array(
+				'code'     => '',
+				'quantity' => '1',
+				'price'    => ''
+			));
 		}
 
 		if (isset($this->request->post['return_reason_id'])) {
@@ -401,12 +416,18 @@ class ControllerAccountReturn extends Controller {
 
 		$this->load->model('localisation/return_reason');
 
-		$data['return_reasons'] = $this->model_localisation_return_reason->getReturnReasons();
+		$data['return_reasons'] = $this->localizeReturnReasons($this->model_localisation_return_reason->getReturnReasons());
 
 		if (isset($this->request->post['comment'])) {
 			$data['comment'] = $this->request->post['comment'];
 		} else {
 			$data['comment'] = '';
+		}
+
+		if (isset($this->request->post['refund_iban'])) {
+			$data['refund_iban'] = $this->request->post['refund_iban'];
+		} else {
+			$data['refund_iban'] = '';
 		}
 
 		// Captcha
@@ -448,37 +469,384 @@ class ControllerAccountReturn extends Controller {
 		$this->response->setOutput($this->load->view('account/return_form', $data));
 	}
 
+	protected function sanitizeReturnInput($data) {
+		$single_line_fields = array(
+			'invoice_number' => 64,
+			'invoice_date'   => 10,
+			'firstname'      => 32,
+			'lastname'       => 32,
+			'email'          => 96,
+			'telephone'      => 32,
+			'refund_iban'    => 64
+		);
+
+		foreach ($single_line_fields as $field => $max_length) {
+			$data[$field] = $this->sanitizePlainText(isset($data[$field]) ? $data[$field] : '', $max_length);
+		}
+
+		$data['comment'] = $this->sanitizePlainText(isset($data['comment']) ? $data['comment'] : '', 2000, true);
+		$data['order_id'] = isset($data['order_id']) ? (int)$data['order_id'] : 0;
+		$data['product_id'] = isset($data['product_id']) ? (int)$data['product_id'] : 0;
+		$data['return_reason_id'] = isset($data['return_reason_id']) ? (int)$data['return_reason_id'] : 0;
+		$data['return_products'] = $this->getReturnProducts($data, true);
+
+		return $data;
+	}
+
+	protected function sanitizePlainText($value, $max_length = 0, $multiline = false) {
+		$value = html_entity_decode((string)$value, ENT_QUOTES, 'UTF-8');
+		$value = strip_tags($value);
+		$value = str_replace(array("\r\n", "\r"), "\n", $value);
+		$value = preg_replace('/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/u', '', $value);
+
+		if (!$multiline) {
+			$value = preg_replace('/\s+/u', ' ', $value);
+		}
+
+		$value = trim($value);
+
+		if ($max_length && utf8_strlen($value) > $max_length) {
+			$value = utf8_substr($value, 0, $max_length);
+		}
+
+		return $value;
+	}
+
+	protected function prepareReturnData($data) {
+		$return_products = $this->getReturnProducts($data);
+		$first_product = reset($return_products);
+		$order_id = 0;
+
+		if (!empty($data['order_id'])) {
+			$this->load->model('account/order');
+			$order_info = $this->model_account_order->getOrder((int)$data['order_id']);
+
+			if ($order_info) {
+				$order_id = (int)$order_info['order_id'];
+			}
+		}
+
+		$product_codes = array();
+
+		foreach ($return_products as $product) {
+			$product_codes[] = $product['code'];
+		}
+
+		$product_summary = implode(', ', $product_codes);
+
+		if (utf8_strlen($product_summary) > 255) {
+			$product_summary = utf8_substr($product_summary, 0, 252) . '...';
+		}
+
+		$data['order_id'] = $order_id;
+		$data['date_ordered'] = $data['invoice_date'];
+		$data['product_id'] = isset($data['product_id']) ? (int)$data['product_id'] : 0;
+		$data['product'] = $product_summary;
+		$data['model'] = utf8_substr($first_product['code'], 0, 64);
+		$data['quantity'] = (int)$first_product['quantity'];
+		$data['opened'] = 0;
+		$data['return_products'] = $return_products;
+		$data['customer_comment'] = $data['comment'];
+		$data['comment'] = $this->buildReturnStoredComment($data, $return_products);
+
+		return $data;
+	}
+
+	protected function getReturnProducts($data, $include_empty = false) {
+		$return_products = array();
+		$products = isset($data['return_products']) && is_array($data['return_products']) ? $data['return_products'] : array();
+
+		foreach (array_slice($products, 0, 20) as $product) {
+			if (!is_array($product)) {
+				continue;
+			}
+
+			$return_product = array(
+				'code'     => $this->sanitizePlainText(isset($product['code']) ? $product['code'] : '', 64),
+				'quantity' => $this->sanitizePlainText(isset($product['quantity']) ? $product['quantity'] : '', 10),
+				'price'    => $this->sanitizePlainText(isset($product['price']) ? $product['price'] : '', 32)
+			);
+
+			if ($include_empty || $return_product['code'] !== '' || $return_product['quantity'] !== '' || $return_product['price'] !== '') {
+				$return_products[] = $return_product;
+			}
+		}
+
+		if ($include_empty && !$return_products) {
+			$return_products[] = array(
+				'code'     => '',
+				'quantity' => '1',
+				'price'    => ''
+			);
+		}
+
+		return $return_products;
+	}
+
+	protected function validateReturnProducts($return_products) {
+		if (!$return_products) {
+			return false;
+		}
+
+		foreach ($return_products as $product) {
+			if ($product['code'] === '' || utf8_strlen($product['code']) > 64) {
+				return false;
+			}
+
+			if (!ctype_digit($product['quantity']) || (int)$product['quantity'] < 1 || (int)$product['quantity'] > 9999) {
+				return false;
+			}
+
+			if ($product['price'] === '' || utf8_strlen($product['price']) > 32) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	protected function buildReturnStoredComment($data, $return_products) {
+		$lines = array(
+			$this->language->get('entry_invoice_number') . ': ' . $data['invoice_number'],
+			$this->language->get('entry_invoice_date') . ': ' . $data['invoice_date'],
+			$this->language->get('entry_refund_iban') . ': ' . $data['refund_iban'],
+			'',
+			$this->language->get('text_return_products_title') . ':'
+		);
+
+		foreach ($return_products as $index => $product) {
+			$lines[] = ($index + 1) . '. ' . $this->language->get('entry_product_code') . ': ' . $product['code'] . ', ' . $this->language->get('entry_quantity') . ': ' . $product['quantity'] . ', ' . $this->language->get('entry_price') . ': ' . $product['price'];
+		}
+
+		if ($data['customer_comment'] !== '') {
+			$lines[] = '';
+			$lines[] = $this->language->get('entry_fault_detail') . ':';
+			$lines[] = $data['customer_comment'];
+		}
+
+		return implode("\n", $lines);
+	}
+
+	protected function localizeReturnReasons($return_reasons) {
+		$language_keys = array(
+			'dead on arrival'               => 'return_reason_dead_on_arrival',
+			'faulty, please supply details' => 'return_reason_faulty',
+			'order error'                   => 'return_reason_order_error',
+			'other, please supply details'  => 'return_reason_other',
+			'received wrong item'           => 'return_reason_wrong_item'
+		);
+
+		foreach ($return_reasons as &$return_reason) {
+			$name = isset($return_reason['name']) ? trim($return_reason['name']) : '';
+			$lookup = function_exists('utf8_strtolower') ? utf8_strtolower($name) : strtolower($name);
+
+			if (isset($language_keys[$lookup])) {
+				$translated = $this->language->get($language_keys[$lookup]);
+
+				if ($translated !== $language_keys[$lookup]) {
+					$return_reason['name'] = $translated;
+				}
+			}
+		}
+		unset($return_reason);
+
+		return $return_reasons;
+	}
+
+	protected function sendReturnEmails($return_id, $data) {
+		try {
+			$store_name = html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8');
+			$customer_email = isset($data['email']) ? $data['email'] : '';
+			$mail_from = $this->getReturnMailFrom();
+			$return_reason = '';
+
+			$this->load->model('localisation/return_reason');
+
+			foreach ($this->localizeReturnReasons($this->model_localisation_return_reason->getReturnReasons()) as $reason) {
+				if ((int)$reason['return_reason_id'] === (int)$data['return_reason_id']) {
+					$return_reason = $reason['name'];
+					break;
+				}
+			}
+
+			$message_details = $this->buildReturnEmailDetails($return_id, $data, $return_reason);
+			$admin_message = html_entity_decode($this->language->get('mail_return_admin_intro'), ENT_QUOTES, 'UTF-8') . "\n\n" . $message_details;
+			$admin_subject = sprintf($this->language->get('mail_return_admin_subject'), $store_name, $return_id);
+
+			$admin_recipients = $this->getReturnAdminRecipients();
+
+			if (!$admin_recipients) {
+				$this->log->write('Return form mail warning: no valid admin email recipient configured.');
+			}
+
+			foreach ($admin_recipients as $admin_email) {
+				try {
+					$mail = $this->createReturnMail();
+					$mail->setTo($admin_email);
+					$mail->setFrom($mail_from);
+					$mail->setSender($store_name);
+
+					if (filter_var($customer_email, FILTER_VALIDATE_EMAIL)) {
+						$mail->setReplyTo($customer_email);
+					}
+
+					$mail->setSubject($admin_subject);
+					$mail->setText($admin_message);
+					$mail->send();
+				} catch (Exception $e) {
+					$this->log->write('Return form admin mail error: ' . $e->getMessage());
+				}
+			}
+
+			if (filter_var($customer_email, FILTER_VALIDATE_EMAIL)) {
+				$customer_message = html_entity_decode($this->language->get('mail_return_customer_intro'), ENT_QUOTES, 'UTF-8') . "\n\n";
+				$customer_message .= $message_details;
+				$customer_message .= "\n" . html_entity_decode($this->language->get('mail_return_customer_footer'), ENT_QUOTES, 'UTF-8') . "\n";
+
+				$mail = $this->createReturnMail();
+				$mail->setTo($customer_email);
+				$mail->setFrom($mail_from);
+				$mail->setSender($store_name);
+				$mail->setSubject(sprintf($this->language->get('mail_return_customer_subject'), $store_name, $return_id));
+				$mail->setText($customer_message);
+				$mail->send();
+			}
+		} catch (Exception $e) {
+			$this->log->write('Return form mail error: ' . $e->getMessage());
+		}
+	}
+
+	protected function getReturnMailFrom() {
+		$smtp_username = trim((string)$this->config->get('config_mail_smtp_username'));
+		$store_email = trim((string)$this->config->get('config_email'));
+
+		if (filter_var($smtp_username, FILTER_VALIDATE_EMAIL)) {
+			return $smtp_username;
+		}
+
+		return $store_email;
+	}
+
+	protected function getReturnAdminRecipients() {
+		$recipients = array();
+		$emails = array_merge(
+			array((string)$this->config->get('config_email')),
+			preg_split('/[\s,;]+/', (string)$this->config->get('config_mail_alert_email'), -1, PREG_SPLIT_NO_EMPTY)
+		);
+
+		foreach ($emails as $email) {
+			$email = trim($email);
+
+			if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+				$recipients[] = $email;
+			}
+		}
+
+		return array_values(array_unique($recipients));
+	}
+
+	protected function createReturnMail() {
+		$mail = new Mail($this->config->get('config_mail_engine'));
+		$mail->parameter = $this->config->get('config_mail_parameter');
+		$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
+		$mail->smtp_username = $this->config->get('config_mail_smtp_username');
+		$mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
+		$mail->smtp_port = $this->config->get('config_mail_smtp_port');
+		$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
+
+		return $mail;
+	}
+
+	protected function buildReturnEmailDetails($return_id, $data, $return_reason) {
+		$fields = array(
+			$this->language->get('mail_return_label_return_id') => $return_id,
+			$this->language->get('entry_invoice_number') => $data['invoice_number'],
+			$this->language->get('entry_invoice_date') => $data['invoice_date'],
+			$this->language->get('entry_firstname') => $data['firstname'],
+			$this->language->get('entry_lastname') => $data['lastname'],
+			$this->language->get('entry_email') => $data['email'],
+			$this->language->get('entry_telephone') => $data['telephone'],
+			$this->language->get('entry_reason') => $return_reason,
+			$this->language->get('entry_refund_iban') => $data['refund_iban']
+		);
+		$message = '';
+
+		foreach ($fields as $label => $value) {
+			$message .= $label . ': ' . $this->sanitizePlainText($value, 255) . "\n";
+		}
+
+		$message .= "\n" . $this->language->get('text_return_products_title') . ":\n";
+
+		foreach ($data['return_products'] as $index => $product) {
+			$message .= ($index + 1) . '. ' . $this->language->get('entry_product_code') . ': ' . $product['code'] . ', ' . $this->language->get('entry_quantity') . ': ' . $product['quantity'] . ', ' . $this->language->get('entry_price') . ': ' . $product['price'] . "\n";
+		}
+
+		if ($data['customer_comment'] !== '') {
+			$message .= "\n" . $this->language->get('entry_fault_detail') . ":\n" . $data['customer_comment'] . "\n";
+		}
+
+		return $message;
+	}
+
 	protected function validate() {
-		if (!$this->request->post['order_id']) {
+		$invoice_number = isset($this->request->post['invoice_number']) ? $this->request->post['invoice_number'] : '';
+		$invoice_date = isset($this->request->post['invoice_date']) ? $this->request->post['invoice_date'] : '';
+
+		if ($invoice_number === '' || utf8_strlen($invoice_number) > 64) {
 			$this->error['order_id'] = $this->language->get('error_order_id');
 		}
 
-		if ((utf8_strlen(trim($this->request->post['firstname'])) < 1) || (utf8_strlen(trim($this->request->post['firstname'])) > 32)) {
+		$date = DateTime::createFromFormat('Y-m-d', $invoice_date);
+
+		if (!$date || $date->format('Y-m-d') !== $invoice_date) {
+			$this->error['date_ordered'] = $this->language->get('error_date_ordered');
+		}
+
+		$firstname = isset($this->request->post['firstname']) ? $this->request->post['firstname'] : '';
+		$lastname = isset($this->request->post['lastname']) ? $this->request->post['lastname'] : '';
+		$email = isset($this->request->post['email']) ? $this->request->post['email'] : '';
+		$telephone = isset($this->request->post['telephone']) ? $this->request->post['telephone'] : '';
+
+		if ((utf8_strlen($firstname) < 1) || (utf8_strlen($firstname) > 32)) {
 			$this->error['firstname'] = $this->language->get('error_firstname');
 		}
 
-		if ((utf8_strlen(trim($this->request->post['lastname'])) < 1) || (utf8_strlen(trim($this->request->post['lastname'])) > 32)) {
+		if ((utf8_strlen($lastname) < 1) || (utf8_strlen($lastname) > 32)) {
 			$this->error['lastname'] = $this->language->get('error_lastname');
 		}
 
-		if ((utf8_strlen($this->request->post['email']) > 96) || !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
+		if ((utf8_strlen($email) > 96) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
 			$this->error['email'] = $this->language->get('error_email');
 		}
 
-		if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
+		if ((utf8_strlen($telephone) < 3) || (utf8_strlen($telephone) > 32)) {
 			$this->error['telephone'] = $this->language->get('error_telephone');
 		}
 
-		if ((utf8_strlen($this->request->post['product']) < 1) || (utf8_strlen($this->request->post['product']) > 255)) {
-			$this->error['product'] = $this->language->get('error_product');
+		if (!$this->validateReturnProducts($this->getReturnProducts($this->request->post))) {
+			$this->error['return_products'] = $this->language->get('error_return_products');
 		}
 
-		if ((utf8_strlen($this->request->post['model']) < 1) || (utf8_strlen($this->request->post['model']) > 64)) {
-			$this->error['model'] = $this->language->get('error_model');
+		$return_reason_id = isset($this->request->post['return_reason_id']) ? (int)$this->request->post['return_reason_id'] : 0;
+		$valid_reason = false;
+
+		$this->load->model('localisation/return_reason');
+
+		foreach ($this->model_localisation_return_reason->getReturnReasons() as $reason) {
+			if ((int)$reason['return_reason_id'] === $return_reason_id) {
+				$valid_reason = true;
+				break;
+			}
 		}
 
-		if (empty($this->request->post['return_reason_id'])) {
+		if (!$valid_reason) {
 			$this->error['reason'] = $this->language->get('error_reason');
+		}
+
+		$iban = strtoupper(preg_replace('/\s+/', '', isset($this->request->post['refund_iban']) ? $this->request->post['refund_iban'] : ''));
+
+		if (!preg_match('/^[A-Z]{2}[0-9A-Z]{13,32}$/', $iban)) {
+			$this->error['refund_iban'] = $this->language->get('error_refund_iban');
 		}
 
 		if ($this->config->get('captcha_' . $this->config->get('config_captcha') . '_status') && in_array('return', (array)$this->config->get('config_captcha_page'))) {

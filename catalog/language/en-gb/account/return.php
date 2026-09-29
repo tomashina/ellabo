@@ -1,29 +1,37 @@
 <?php
 // Heading
-$_['heading_title']      = 'Product Returns';
+$_['heading_title']      = 'Contract Withdrawal';
 
 // Text
 $_['text_account']       = 'Account';
-$_['text_return']        = 'Return Information';
-$_['text_return_detail'] = 'Return Details';
-$_['text_description']   = 'Please complete the form below to request an RMA number.';
-$_['text_order']         = 'Order Information';
-$_['text_product']       = 'Product Information';
+$_['text_return']        = 'Contract Withdrawal';
+$_['text_return_detail'] = 'Withdrawal Details';
+$_['text_description']   = '<p>Please complete the return form below. A confirmation will be sent to your e-mail address.</p><p>Consumers may withdraw from the contract within 14 days of receiving the goods without giving a reason.</p>';
+$_['text_order']         = 'Customer and Invoice Details';
+$_['text_product']       = 'Products to Return';
 $_['text_reason']        = 'Reason for Return';
 $_['text_message']       = '<p>Thank you for submitting your return request. Your request has been sent to the relevant department for processing.</p><p> You will be notified via e-mail as to the status of your request.</p>';
 $_['text_return_id']     = 'Return ID:';
-$_['text_order_id']      = 'Order ID:';
-$_['text_date_ordered']  = 'Order Date:';
+$_['text_order_id']      = 'Invoice Number:';
+$_['text_date_ordered']  = 'Invoice Date:';
 $_['text_status']        = 'Status:';
 $_['text_date_added']    = 'Date Added:';
 $_['text_comment']       = 'Return Comments';
 $_['text_history']       = 'Return History';
 $_['text_empty']         = 'You have not made any previous returns!';
 $_['text_agree']         = 'I have read and agree to the <a href="%s" class="agree"><b>%s</b></a>';
+$_['text_return_products_title'] = 'Products being returned';
+
+$_['mail_return_admin_subject']    = '%s - new contract withdrawal request #%s';
+$_['mail_return_customer_subject'] = '%s - we received your contract withdrawal request #%s';
+$_['mail_return_admin_intro']      = 'A new contract withdrawal request was submitted through the online form.';
+$_['mail_return_customer_intro']   = 'We received your contract withdrawal request. A copy of the submitted details is below.';
+$_['mail_return_customer_footer']  = 'We will contact you after reviewing the request.';
+$_['mail_return_label_return_id']  = 'Request ID';
 
 // Column
 $_['column_return_id']   = 'Return ID';
-$_['column_order_id']    = 'Order ID';
+$_['column_order_id']    = 'Invoice Number';
 $_['column_status']      = 'Status';
 $_['column_date_added']  = 'Date Added';
 $_['column_customer']    = 'Customer';
@@ -37,22 +45,29 @@ $_['column_reason']      = 'Reason';
 $_['column_action']      = 'Action';
 
 // Entry
-$_['entry_order_id']     = 'Order ID';
-$_['entry_date_ordered'] = 'Order Date';
+$_['entry_order_id']     = 'Invoice Number';
+$_['entry_date_ordered'] = 'Invoice Date';
+$_['entry_invoice_number'] = 'Invoice Number';
+$_['entry_invoice_date']   = 'Invoice Date';
 $_['entry_firstname']    = 'First Name';
 $_['entry_lastname']     = 'Last Name';
 $_['entry_email']        = 'E-Mail';
 $_['entry_telephone']    = 'Telephone';
 $_['entry_product']      = 'Product Name';
 $_['entry_model']        = 'Product Code';
+$_['entry_product_code'] = 'Product Code';
 $_['entry_quantity']     = 'Quantity';
+$_['entry_price']        = 'Price';
 $_['entry_reason']       = 'Reason for Return';
 $_['entry_opened']       = 'Product is opened';
-$_['entry_fault_detail'] = 'Faulty or other details';
+$_['entry_fault_detail'] = 'Note';
+$_['entry_refund_iban']  = 'IBAN for the refund';
+$_['button_add_product'] = 'Add product';
 
 // Error
 $_['text_error']         = 'The returns you requested could not be found!';
-$_['error_order_id']     = 'Order ID required!';
+$_['error_order_id']     = 'Invoice number is required!';
+$_['error_date_ordered'] = 'Enter a valid invoice date!';
 $_['error_firstname']    = 'First Name must be between 1 and 32 characters!';
 $_['error_lastname']     = 'Last Name must be between 1 and 32 characters!';
 $_['error_email']        = 'E-Mail Address does not appear to be valid!';
@@ -60,4 +75,12 @@ $_['error_telephone']    = 'Telephone must be between 3 and 32 characters!';
 $_['error_product']      = 'Product Name must be greater than 3 and less than 255 characters!';
 $_['error_model']        = 'Product Model must be greater than 3 and less than 64 characters!';
 $_['error_reason']       = 'You must select a return product reason!';
+$_['error_return_products'] = 'Enter at least one product with its code, quantity and price.';
+$_['error_refund_iban']     = 'Enter a valid IBAN for the refund.';
 $_['error_agree']        = 'Warning: You must agree to the %s!';
+
+$_['return_reason_dead_on_arrival'] = 'Product did not work on arrival';
+$_['return_reason_faulty']          = 'Faulty or damaged product';
+$_['return_reason_order_error']     = 'Order error';
+$_['return_reason_other']           = 'Other';
+$_['return_reason_wrong_item']      = 'Received the wrong product';

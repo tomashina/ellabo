@@ -169,11 +169,11 @@
                       <input type="checkbox" name="selected[]" value="{{ return.return_id }}" />
                       {% endif %}</td>
                     <td class="text-right">{{ return.return_id }}</td>
-                    <td class="text-right">{{ return.order_id }}</td>
-                    <td class="text-left">{{ return.customer }}</td>
-                    <td class="text-left">{{ return.product }}</td>
-                    <td class="text-left">{{ return.model }}</td>
-                    <td class="text-left">{{ return.return_status }}</td>
+                    <td class="text-right">{{ return.order_id|e }}</td>
+                    <td class="text-left">{{ return.customer|e }}</td>
+                    <td class="text-left">{{ return.product|e }}</td>
+                    <td class="text-left">{{ return.model|e }}</td>
+                    <td class="text-left">{{ return.return_status|e }}</td>
                     <td class="text-left">{{ return.date_added }}</td>
                     <td class="text-left">{{ return.date_modified }}</td>
                     <td class="text-right"><a href="{{ return.edit }}" data-toggle="tooltip" title="{{ button_edit }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
@@ -321,4 +321,4 @@ $('.date').datetimepicker({
 });
 //--></script> 
 </div>
-{{ footer }} 
+{{ footer }}
