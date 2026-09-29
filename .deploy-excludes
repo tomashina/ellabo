@@ -1,28 +1,28 @@
 # Repository metadata and local documentation
-/.git*
-/.cpanel.yml
-/.deploy-excludes
-/README.md
-/scripts/***
+.git*
+.cpanel.yml
+.deploy-excludes
+README.md
+scripts/***
 
 # Environment-specific configuration and credentials
-/config.php
-/admin/config.php
-/config.example.php
-/admin/config.example.php
-/admin/model/extension/payment/pp_express.php
-/admin/view/javascript/ckeditor_full/plugins/leaflet/***
-/system/fmanager/config/config*.php
+config.php
+admin/config.php
+config.example.php
+admin/config.example.php
+admin/model/extension/payment/pp_express.php
+admin/view/javascript/ckeditor_full/plugins/leaflet/***
+system/fmanager/config/config*.php
 
 # Production-owned media, exports, and runtime state
-/image/***
-/xml/***
-/data_sample/***
-/system/cache_mfp/***
-/system/storage/cache/***
-/system/storage/logs/***
-/system/storage/modification/***
-/system/storage/session/***
-/system/storage/upload/***
-/system/storage/download/***
-/catalog/view/theme/zeexo/skins/store_default/*/settings.json
+image/***
+xml/***
+data_sample/***
+system/cache_mfp/***
+system/storage/cache/***
+system/storage/logs/***
+system/storage/modification/***
+system/storage/session/***
+system/storage/upload/***
+system/storage/download/***
+catalog/view/theme/zeexo/skins/store_default/*/settings.json

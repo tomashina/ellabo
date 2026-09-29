@@ -26,4 +26,22 @@ if [[ "${1:-}" == "--dry-run" ]]; then
 fi
 
 cd "$repo_root"
-git ls-files -z | /usr/bin/rsync "${rsync_options[@]}" "$repo_root/" "$deploy_root/"
+while IFS= read -r -d '' tracked_file; do
+    case "$tracked_file" in
+        .git* | .cpanel.yml | .deploy-excludes | README.md | scripts/* \
+        | config.php | admin/config.php | config.example.php | admin/config.example.php \
+        | admin/model/extension/payment/pp_express.php \
+        | admin/view/javascript/ckeditor_full/plugins/leaflet/* \
+        | system/fmanager/config/config*.php \
+        | image/* | xml/* | data_sample/* | system/cache_mfp/* \
+        | system/storage/cache/* | system/storage/logs/* \
+        | system/storage/modification/* | system/storage/session/* \
+        | system/storage/upload/* | system/storage/download/* \
+        | catalog/view/theme/zeexo/skins/store_default/*/settings.json)
+            continue
+            ;;
+    esac
+
+    printf '%s\0' "$tracked_file"
+done < <(git ls-files -z) \
+    | /usr/bin/rsync "${rsync_options[@]}" "$repo_root/" "$deploy_root/"
