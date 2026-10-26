@@ -2687,7 +2687,7 @@ class ControllerExtensionModuleCatalogProduct extends ControllerExtensionModuleP
 		if (in_array("descriptions", $displayed_actions)) {
 			$this->document->addScript('view/javascript/summernote/summernote.js');
 		}
-		$this->document->addScript('view/javascript/pqe/catalog.min.js?v=' . EXTENSION_VERSION);
+		$this->document->addScript('view/javascript/pqe/catalog.min.js?v=' . EXTENSION_VERSION . '-ajax-recovery-1');
 
 		$data['search'] = $search;
 

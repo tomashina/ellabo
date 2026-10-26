@@ -80,7 +80,31 @@ $registry->set('response', $response);
 
 // Database
 if ($config->get('db_autostart')) {
-	$registry->set('db', new DB($config->get('db_engine'), $config->get('db_hostname'), $config->get('db_username'), $config->get('db_password'), $config->get('db_database'), $config->get('db_port')));
+	try {
+		$registry->set('db', new DB($config->get('db_engine'), $config->get('db_hostname'), $config->get('db_username'), $config->get('db_password'), $config->get('db_database'), $config->get('db_port')));
+	} catch (\DB\ConnectionException $e) {
+		if ($config->get('error_log')) {
+			$log->write('Database connection failed. MySQL error: ' . $e->getCode());
+		}
+
+		$message = 'Baza podataka trenutačno nije dostupna. Pokušajte ponovno za nekoliko trenutaka.';
+		$ajax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+		$json = isset($_SERVER['HTTP_ACCEPT']) && stripos($_SERVER['HTTP_ACCEPT'], 'application/json') !== false;
+
+		$response->addHeader('HTTP/1.1 503 Service Unavailable');
+		$response->addHeader('Retry-After: 5');
+
+		if ($ajax || $json) {
+			$response->addHeader('Content-Type: application/json; charset=utf-8');
+			$response->setOutput(json_encode(array('success' => false, 'error' => $message)));
+		} else {
+			$response->addHeader('Content-Type: text/plain; charset=utf-8');
+			$response->setOutput($message);
+		}
+
+		$response->output();
+		return;
+	}
 }
 
 // Session

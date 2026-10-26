@@ -225,7 +225,7 @@ class ThemeOptions {
   				'filter_sub_category' => true
   			);
   			
-  			$product_total = $product->getTotalProducts($data);		
+			$product_total = $config->get('config_product_count') ? $product->getTotalProducts($data) : 0;
   			
   			$output[] = array(
   				'thumb' => $result['image'],

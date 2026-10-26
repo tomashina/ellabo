@@ -4,12 +4,25 @@ final class MySQLi {
 	private $connection;
 
 	public function __construct($hostname, $username, $password, $database, $port = '3306') {
-		$this->connection = new \mysqli($hostname, $username, $password, $database, $port);
+		// Connection warnings contain account details and would corrupt AJAX JSON.
+		// A local handler also works with OpenCart's custom warning handler.
+		set_error_handler(function() {
+			return true;
+		});
 
-		if ($this->connection->connect_error) {
-			throw new \Exception('Error: ' . $this->connection->error . '<br />Error No: ' . $this->connection->errno);
+		try {
+			$connection = new \mysqli($hostname, $username, $password, $database, $port);
+		} catch (\mysqli_sql_exception $e) {
+			throw new ConnectionException($e->getCode());
+		} finally {
+			restore_error_handler();
 		}
 
+		if ($connection->connect_errno) {
+			throw new ConnectionException($connection->connect_errno);
+		}
+
+		$this->connection = $connection;
 		$this->connection->set_charset("utf8");
 		$this->connection->query("SET SQL_MODE = ''");
 	}
@@ -58,6 +71,8 @@ final class MySQLi {
 	}
 	
 	public function __destruct() {
-		$this->connection->close();
+		if ($this->connection) {
+			$this->connection->close();
+		}
 	}
 }
