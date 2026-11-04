@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "verified_on": "2026-11-04",
+  "timezone": "Europe/Zagreb",
+  "deployed_commit": "5394dba18f15e90808d7b131e5fccb77b84ba9bb",
+  "effective_source_and_overrides": "matched",
+  "production_feed_validation": {
+    "configuration_scope": "admin_feed_locations",
+    "transport": "local_files",
+    "profiles": {
+      "products": 7043,
+      "stock": 7043,
+      "specials_first": 3853,
+      "specials_second": 3190
+    },
+    "result": "passed",
+    "code_commit": "35f89f00716ffdb588d0c190e3cd02726f01828a"
+  },
+  "cloudflare": {
+    "configuration_rule_id": "0e6afea5ec8d487b8a86c645f0245680",
+    "configuration_rule_status": "active_confirmed",
+    "global_security_level": "under_attack",
+    "global_under_attack_ui": "on_confirmed",
+    "bot_fight_mode": "on_confirmed",
+    "public_requests": [
+      {
+        "host": "www.ellabo.hr",
+        "method": "GET",
+        "cookies": "none",
+        "http_status": 403,
+        "cf_mitigated": "challenge",
+        "result": "protection_confirmed"
+      },
+      {
+        "host": "ellabo.hr",
+        "method": "GET",
+        "cookies": "none",
+        "http_status": 403,
+        "cf_mitigated": "challenge",
+        "result": "protection_confirmed"
+      }
+    ]
+  },
+  "jobs": [
+    {
+      "job": "products",
+      "provider": "cron-job.org",
+      "baseline": {
+        "observed_at": "2026-11-04T16:28:09Z",
+        "duration_seconds": 2.28,
+        "http_status": 200,
+        "application_result": [
+          0
+        ],
+        "result": "passed",
+        "code_commit": "35f89f00716ffdb588d0c190e3cd02726f01828a"
+      },
+      "under_attack": {
+        "observed_at": "2026-11-04T16:34:36Z",
+        "duration_seconds": 1.75,
+        "http_status": 200,
+        "content_type": "application/json",
+        "application_result": [
+          0
+        ],
+        "result": "passed",
+        "code_commit": "35f89f00716ffdb588d0c190e3cd02726f01828a"
+      }
+    },
+    {
+      "job": "stock",
+      "provider": "EasyCron",
+      "baseline": {
+        "observed_from": "2026-11-04T16:27:10Z",
+        "observed_until": "2026-11-04T16:27:12Z",
+        "duration_seconds": 1.642029,
+        "http_status": 200,
+        "content_type": "application/json",
+        "application_result": [
+          true
+        ],
+        "result": "passed",
+        "code_commit": "35f89f00716ffdb588d0c190e3cd02726f01828a"
+      },
+      "under_attack": {
+        "observed_from": "2026-11-04T16:35:03Z",
+        "observed_until": "2026-11-04T16:35:06Z",
+        "duration_seconds": 2.537734,
+        "http_status": 200,
+        "content_type": "application/json",
+        "application_result": [
+          true
+        ],
+        "result": "passed",
+        "code_commit": "35f89f00716ffdb588d0c190e3cd02726f01828a"
+      }
+    },
+    {
+      "job": "specials",
+      "provider": "EasyCron",
+      "baseline": {
+        "observed_from": "2026-11-04T16:27:30Z",
+        "observed_until": "2026-11-04T16:27:33Z",
+        "duration_seconds": 2.997561,
+        "application_result": {
+          "status": "ok",
+          "updated": true
+        },
+        "result": "passed",
+        "code_commit": "35f89f00716ffdb588d0c190e3cd02726f01828a"
+      },
+      "under_attack": {
+        "attempts": [
+          {
+            "deployed_commit": "35f89f00716ffdb588d0c190e3cd02726f01828a",
+            "observed_from": "2026-11-04T16:35:27Z",
+            "observed_until": "2026-11-04T16:35:28Z",
+            "duration_seconds": 0.781141,
+            "http_status": 503,
+            "content_type": "application/json",
+            "application_result": {
+              "error": "Update failed",
+              "msg": "Remote import feed could not be downloaded successfully."
+            },
+            "result": "failed",
+            "diagnosis": "The catalog specials configuration uses an apex-host feed that the initial reader treated as remote HTTP."
+          },
+          {
+            "deployed_commit": "5394dba18f15e90808d7b131e5fccb77b84ba9bb",
+            "observed_from": "2026-11-04T16:38:41Z",
+            "observed_until": "2026-11-04T16:38:44Z",
+            "duration_seconds": 2.547475,
+            "http_status": 200,
+            "content_type": "application/json",
+            "application_result": {
+              "status": "ok",
+              "updated": true
+            },
+            "result": "passed"
+          }
+        ],
+        "result": "passed"
+      }
+    }
+  ],
+  "result": "passed",
+  "pending_checks": [],
+  "evidence_notes": [
+    "Timestamps use UTC; the baseline stock and specials observation intervals were supplied in CET and converted to UTC.",
+    "Product result [0] is a successful import with no new products, not an error.",
+    "This record contains only configuration identifiers, public hosts, aggregate counts and application status summaries; authenticated URLs, keys, credentials, cookies and raw logs are excluded.",
+    "All three scheduled jobs returned successful application responses with Under Attack mode enabled. The failed initial specials attempt is preserved; the successful retry used deployed commit 5394dba."
+  ],
+  "catalog_specials_validation": {
+    "code_commit": "5394dba18f15e90808d7b131e5fccb77b84ba9bb",
+    "execution": "production_cli_read_only",
+    "under_attack_mode": "on",
+    "transport": "local_files",
+    "feeds": [
+      {
+        "host": "www.ellabo.hr",
+        "path": "/xml/xml_ellabo_artikli1.xml",
+        "profile": "specials",
+        "product_rows": 7043,
+        "result": "passed"
+      },
+      {
+        "host": "ellabo.hr",
+        "path": "/xml/xml_ellabo_artikli2.xml",
+        "profile": "specials",
+        "product_rows": 7043,
+        "result": "passed"
+      }
+    ],
+    "result": "passed"
+  },
+  "completed_at": "2026-11-04T16:38:44Z"
+}

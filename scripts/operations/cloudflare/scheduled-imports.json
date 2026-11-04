@@ -69,13 +69,37 @@
   "zone_setting_after_cron_verification": {
     "security_level": "under_attack"
   },
+  "production_feed_mapping": {
+    "verified_on": "2026-11-04",
+    "self_hosts": ["www.ellabo.hr", "ellabo.hr"],
+    "allowed_local_paths": [
+      "/xml/xml_ellabo_artikli1.xml",
+      "/xml/xml_ellabo_artikli2.xml",
+      "/xml/xml_ellabo_artikli11.xml",
+      "/xml/xml_ellabo_artikli12.xml"
+    ],
+    "admin": {
+      "products": {"host": "www.ellabo.hr", "path": "/xml/xml_ellabo_artikli2.xml", "profile": "products"},
+      "stock": {"host": "www.ellabo.hr", "path": "/xml/xml_ellabo_artikli1.xml", "profile": "stock"},
+      "specials": [
+        {"host": "www.ellabo.hr", "path": "/xml/xml_ellabo_artikli11.xml", "profile": "specials"},
+        {"host": "www.ellabo.hr", "path": "/xml/xml_ellabo_artikli12.xml", "profile": "specials"}
+      ]
+    },
+    "catalog": {
+      "specials": [
+        {"host": "www.ellabo.hr", "path": "/xml/xml_ellabo_artikli1.xml", "profile": "specials"},
+        {"host": "ellabo.hr", "path": "/xml/xml_ellabo_artikli2.xml", "profile": "specials"}
+      ]
+    }
+  },
   "verification_required_before_global_under_attack": [
     "Review, validate, commit and push this manifest before applying its Cloudflare configuration rule.",
     "Confirm the rule is accepted and enabled with no later conflicting configuration rule.",
     "Verify each existing scheduled job retains its backend key and reaches the application from its bound provider.",
     "Verify production feed locations and successful XML downloads from the application server before running any import under global Under Attack mode.",
     "Confirm successful application responses for all three imports, then enable the target global Under Attack setting and verify normal public traffic remains protected.",
-    "Production confirmed on 2026-11-04: all four configured same-host XML feeds exist under the local xml directory; publish and validate the local ImportFeed reader before enabling global Under Attack mode."
+    "Production confirmed on 2026-11-04: admin and catalog use different specials feed mappings. Validate both www.ellabo.hr and ellabo.hr against the same four local paths before testing or retrying imports under global Under Attack mode."
   ],
   "security_notes": [
     "Provider IPs are public shared execution addresses, not authentication; the existing IMPORT_XML_KEY checks remain required.",
