@@ -79,14 +79,16 @@ try {
 	$valid = feedDocument(feedProduct() . feedProduct(array('Sifra' => 'SECOND-SKU')));
 	foreach (array(1, 2, 11, 12) as $suffix) {
 		file_put_contents($root . '/xml/xml_ellabo_artikli' . $suffix . '.xml', $valid);
-		$xml = ImportFeed::load('https://www.ellabo.hr/xml/xml_ellabo_artikli' . $suffix . '.xml');
-		feedExpect($xml instanceof SimpleXMLElement, 'All four configured mirrors must load as XML.');
-		feedExpect($xml->getName() === 'PRODUCTS' && count($xml->PRODUCT) === 2, 'Accept a valid multi-PRODUCT contract.');
-		feedExpect((string)$xml->PRODUCT->Sifra === 'SYNTHETIC-SKU', 'The feed must come from the local fixture.');
+		foreach (array('www.ellabo.hr', 'ellabo.hr') as $host) {
+			$xml = ImportFeed::load('https://' . $host . '/xml/xml_ellabo_artikli' . $suffix . '.xml');
+			feedExpect($xml instanceof SimpleXMLElement, 'Both local hosts must load all four configured mirrors as XML.');
+			feedExpect($xml->getName() === 'PRODUCTS' && count($xml->PRODUCT) === 2, 'Accept a valid multi-PRODUCT contract.');
+			feedExpect((string)$xml->PRODUCT->Sifra === 'SYNTHETIC-SKU', 'The feed must come from the local fixture.');
+		}
 	}
 	ImportFeed::load('http://www.ellabo.hr/xml/xml_ellabo_artikli1.xml', 'specials');
 	ImportFeed::load('https://www.ellabo.hr/xml/xml_ellabo_artikli2.xml', 'products');
-	echo "PASS all configured mirror paths load local fixtures and accept stock/products/specials schemas\n";
+	echo "PASS both local hosts load all configured mirror paths and accept stock/products/specials schemas\n";
 
 	$file = $root . '/xml/xml_ellabo_artikli1.xml';
 	$url = 'https://www.ellabo.hr/xml/xml_ellabo_artikli1.xml';
@@ -143,6 +145,8 @@ try {
 
 	unlink($file);
 	feedFails($url);
+	$missing_apex = feedFails('https://ellabo.hr/xml/xml_ellabo_artikli1.xml');
+	feedExpect($missing_apex instanceof ImportFeedException && strpos($missing_apex->getMessage(), 'Local import feed') === 0, 'A missing apex mirror must fail locally without trying HTTP.');
 	mkdir($file, 0700);
 	feedFails($url);
 	rmdir($file);
@@ -161,12 +165,14 @@ try {
 	feedFails($url);
 	unlink($file);
 	file_put_contents($file, $valid);
-	foreach (array(
-		'https://www.ellabo.hr/xml/../xml/xml_ellabo_artikli1.xml',
-		'https://www.ellabo.hr/xml/%2e%2e/xml/xml_ellabo_artikli1.xml',
-		'https://www.ellabo.hr/xml/xml_ellabo_artikli3.xml'
-	) as $unsafe) {
-		feedFails($unsafe);
+	foreach (array('www.ellabo.hr', 'ellabo.hr') as $host) {
+		foreach (array(
+			'/xml/../xml/xml_ellabo_artikli1.xml',
+			'/xml/%2e%2e/xml/xml_ellabo_artikli1.xml',
+			'/xml/xml_ellabo_artikli3.xml'
+		) as $unsafe) {
+			feedFails('https://' . $host . $unsafe);
+		}
 	}
 	rename($root . '/xml', $root . '/xml-original');
 	mkdir($temporary . '/outside-root', 0700);

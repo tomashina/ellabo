@@ -14,7 +14,7 @@ class ImportFeed {
 			throw new ImportFeedException('Import feed must use an HTTP or HTTPS location.');
 		}
 
-		if (strtolower(rtrim($parts['host'], '.')) === 'www.ellabo.hr') {
+		if (in_array(strtolower(rtrim($parts['host'], '.')), array('ellabo.hr', 'www.ellabo.hr'), true)) {
 			$allowed = array('/xml/xml_ellabo_artikli1.xml', '/xml/xml_ellabo_artikli2.xml', '/xml/xml_ellabo_artikli11.xml', '/xml/xml_ellabo_artikli12.xml');
 			$default_port = strtolower($parts['scheme']) === 'https' ? 443 : 80;
 			if (!isset($parts['path']) || !in_array($parts['path'], $allowed, true) || isset($parts['user']) || isset($parts['pass']) || isset($parts['fragment']) || (isset($parts['port']) && $parts['port'] !== $default_port)) {
