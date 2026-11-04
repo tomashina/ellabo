@@ -82,4 +82,9 @@ class DB {
 	public function connected() {
 		return $this->adaptor->connected();
 	}
+
+	public function close() {
+		// Drop the adaptor once; its destructor closes the underlying connection.
+		$this->adaptor = null;
+	}
 }

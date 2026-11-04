@@ -18,4 +18,16 @@ Deploy only reviewed commits. Keep XML order exports and all OpenCart runtime st
 
 Run `node scripts/tests/product-grid-ajax.test.js`, `php scripts/tests/database-unavailable.php`, and `php scripts/tests/theme-options-refine-search.php` before deploying changes to the product grid or database bootstrap.
 
-The generated OCMOD MySQLi driver can override the source driver. After backing it up and deploying the source, run `php scripts/patch-generated-mysqli.php /home/ellabohr/public_html/system/storage/modification/system/library/db/mysqli.php` if that file exists. The helper preserves OCMOD settings, refuses unknown blocks, and is safe to repeat. A future modification refresh generates the same connection fix from the source driver.
+## Database capacity protection
+
+Catalog requests acquire a nonblocking request slot before connecting to the database. The default of 12 leaves room below the observed 30-connection account limit, including catalog routes that also open a lazy Eloquent connection. Administration bypasses this catalog limit. Excess catalog traffic receives HTTP 503 and a retry hint, rather than consuming the remaining database connections. Sessions are written and existing database clients closed before a slot is released. `CATALOG_DB_REQUEST_LIMIT` may override the default with a positive integer once hosting capacity is known.
+
+Malformed category chains redirect to the final category's real ancestry before rendering. Theme settings load once per request, avoiding repeated JSON parsing.
+
+Additional checks: `php scripts/tests/catalog-request-gate.php`, `php scripts/tests/category-path-canonical.php`, `php scripts/tests/theme-options-settings.php`, and `php scripts/tests/modification-overrides.php`.
+
+## Git deployment
+
+Review and test changes locally, commit and push, then update the server's managed repository with a fast-forward pull. Run `bash scripts/deploy-production.sh --dry-run` and inspect the result before invoking the same tracked script without `--dry-run`. Do not copy or edit production source files separately.
+
+The deployment script validates reviewed source deltas against active OCMOD overrides before publishing, preserves extension additions, backs up changed runtime files outside the document root, and publishes dependencies before the framework. Unknown override changes stop deployment. The script also maintains the sanitized MySQLi connection fix. The individual override helpers are internal deployment steps, not alternate publication procedures. A future OCMOD refresh rebuilds the same fixes from tracked source.

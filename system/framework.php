@@ -79,15 +79,39 @@ $response->addHeader('Pragma: no-cache');
 $registry->set('response', $response);
 
 // Database
+$catalogRequestGate = null;
+$databaseUnavailable = false;
+$catalogRequestDenied = false;
 if ($config->get('db_autostart')) {
 	try {
+		if ($application_config === 'catalog') {
+			// Twelve requests leave headroom below a 30-connection account cap,
+			// including routes using a second, lazy Eloquent connection.
+			$limit = defined('CATALOG_DB_REQUEST_LIMIT') ? CATALOG_DB_REQUEST_LIMIT : 12;
+			$identity = implode('|', array($config->get('db_engine'), $config->get('db_hostname'), $config->get('db_port'), $config->get('db_username'), $config->get('db_database')));
+			$catalogRequestGate = CatalogRequestGate::acquire(DIR_STORAGE . 'locks', $identity, $limit);
+		}
 		$registry->set('db', new DB($config->get('db_engine'), $config->get('db_hostname'), $config->get('db_username'), $config->get('db_password'), $config->get('db_database'), $config->get('db_port')));
 	} catch (\DB\ConnectionException $e) {
+		$databaseUnavailable = true;
 		if ($config->get('error_log')) {
 			$log->write('Database connection failed. MySQL error: ' . $e->getCode());
 		}
+	} catch (CatalogRequestGateException $e) {
+		$databaseUnavailable = true;
+		$catalogRequestDenied = true;
+		if ($config->get('error_log')) {
+			$log->write($e->getMessage());
+		}
+	}
 
-		$message = 'Baza podataka trenutačno nije dostupna. Pokušajte ponovno za nekoliko trenutaka.';
+	if ($databaseUnavailable) {
+		if ($catalogRequestGate) {
+			$catalogRequestGate->release();
+		}
+		$message = $catalogRequestDenied
+			? 'Webshop je trenutačno opterećen. Pokušajte ponovno za nekoliko trenutaka.'
+			: 'Baza podataka trenutačno nije dostupna. Pokušajte ponovno za nekoliko trenutaka.';
 		$ajax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
 		$json = isset($_SERVER['HTTP_ACCEPT']) && stripos($_SERVER['HTTP_ACCEPT'], 'application/json') !== false;
 
@@ -110,6 +134,27 @@ if ($config->get('db_autostart')) {
 // Session
 $session = new Session($config->get('session_engine'), $registry);
 $registry->set('session', $session);
+
+if ($catalogRequestGate) {
+	// The Session constructor registered its write callback first. Close the
+	// existing clients after that write, and only then admit another request.
+	$capsule = isset($GLOBALS['capsule']) ? $GLOBALS['capsule'] : null;
+	register_shutdown_function(function() use ($registry, $catalogRequestGate, $capsule) {
+		try {
+			if ($capsule) {
+				foreach ($capsule->getDatabaseManager()->getConnections() as $connection) {
+					$connection->disconnect();
+				}
+			}
+		} finally {
+			try {
+				$registry->get('db')->close();
+			} finally {
+				$catalogRequestGate->release();
+			}
+		}
+	});
+}
 
 if ($config->get('session_autostart')) {
 	/*

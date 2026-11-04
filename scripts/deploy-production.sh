@@ -10,6 +10,24 @@ if [[ ! -d "$deploy_root" || ! -f "$deploy_root/index.php" ]]; then
     exit 1
 fi
 
+cd "$repo_root"
+if ! git diff --quiet || ! git diff --cached --quiet; then
+    echo "Refusing to deploy uncommitted source changes." >&2
+    exit 1
+fi
+
+# OCMOD files override tracked source. Validate reviewed deltas before publication.
+php "$repo_root/scripts/sync-modification-overrides.php" "$deploy_root" --check
+mysqli_override="$deploy_root/system/storage/modification/system/library/db/mysqli.php"
+if [[ -f "$mysqli_override" ]]; then
+    mysqli_check_dir="$(mktemp -d)"
+    trap 'rm -rf "$mysqli_check_dir"' EXIT
+    cp -p "$mysqli_override" "$mysqli_check_dir/mysqli.php"
+    php "$repo_root/scripts/patch-generated-mysqli.php" "$mysqli_check_dir/mysqli.php"
+    rm -rf "$mysqli_check_dir"
+    trap - EXIT
+fi
+
 rsync_options=(
     --recursive
     --links
@@ -23,6 +41,26 @@ rsync_options=(
 
 if [[ "${1:-}" == "--dry-run" ]]; then
     rsync_options+=(--dry-run --itemize-changes)
+else
+    backup_root="/home/ellabohr/deploy-backups"
+    mkdir -p "$backup_root"
+    chmod 700 "$backup_root"
+    backup_dir="$(mktemp -d "$backup_root/$(git rev-parse --short HEAD)-XXXXXX")"
+    git rev-parse HEAD > "$backup_dir/deploy-commit.txt"
+    tar -cf "$backup_dir/source-before.tar" -C "$deploy_root" \
+        system/framework.php system/library/db.php system/library/themeoptions.php \
+        catalog/controller/startup/seo_url.php
+    if [[ -f "$mysqli_override" ]]; then
+        tar -rf "$backup_dir/source-before.tar" -C "$deploy_root" \
+            system/storage/modification/system/library/db/mysqli.php
+    fi
+    php "$repo_root/scripts/sync-modification-overrides.php" "$deploy_root" --apply "$backup_dir"
+
+    # Publish dependencies before framework.php starts admitting requests with them.
+    /usr/bin/rsync --perms --checksum \
+        "$repo_root/system/library/catalogrequestgate.php" "$deploy_root/system/library/"
+    /usr/bin/rsync --perms --checksum \
+        "$repo_root/system/library/db.php" "$deploy_root/system/library/"
 fi
 
 cd "$repo_root"
@@ -44,3 +82,11 @@ git ls-files -z | while IFS= read -r -d '' tracked_file; do
 
     printf '%s\0' "$tracked_file"
 done | /usr/bin/rsync "${rsync_options[@]}" "$repo_root/" "$deploy_root/"
+
+if [[ "${1:-}" != "--dry-run" ]]; then
+    if [[ -f "$deploy_root/system/storage/modification/system/library/db/mysqli.php" ]]; then
+        php "$repo_root/scripts/patch-generated-mysqli.php" \
+            "$deploy_root/system/storage/modification/system/library/db/mysqli.php"
+    fi
+    echo "DEPLOYED $(git rev-parse --short HEAD); backup: $backup_dir"
+fi

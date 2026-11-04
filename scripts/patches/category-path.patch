@@ -1,0 +1,79 @@
+diff --git a/catalog/controller/startup/seo_url.php b/catalog/controller/startup/seo_url.php
+index ee02323..b8bd825 100755
+--- a/catalog/controller/startup/seo_url.php
++++ b/catalog/controller/startup/seo_url.php
+@@ -168,10 +168,66 @@ $this->request->get['route'] = 'information/information';
+  
+  
+ }
+- 
++
++$this->canonicalizeCategoryPath();
+ }
+  
+  
++	private function canonicalizeCategoryPath() {
++		if (!isset($this->request->get['route'], $this->request->get['path']) || $this->request->get['route'] !== 'product/category' || !is_scalar($this->request->get['path'])) {
++			return;
++		}
++
++		$path = array_map('intval', explode('_', (string)$this->request->get['path']));
++
++		// Single-category links are valid partial paths and need no extra query.
++		if (count($path) < 2 || end($path) < 1) {
++			return;
++		}
++
++		$query = $this->db->query("SELECT path_id FROM " . DB_PREFIX . "category_path WHERE category_id = '" . (int)end($path) . "' ORDER BY level ASC");
++		$canonical_path = array();
++
++		foreach ($query->rows as $row) {
++			$canonical_path[] = (int)$row['path_id'];
++		}
++
++		// Leave unknown categories to the normal not-found handler. A valid path
++		// may start below the root, but its remaining ancestors must be in order.
++		if (!$canonical_path || end($canonical_path) !== end($path) || count(array_unique($canonical_path)) !== count($canonical_path) || array_slice($canonical_path, -count($path)) === $path) {
++			return;
++		}
++
++		$arguments = array('path' => implode('_', $canonical_path));
++		$filter_parameter = $this->config->get('mfilter_url_param');
++		$parameters = array('filter', 'sort', 'order', 'page', 'limit', 'mfp');
++
++		if ($filter_parameter && !in_array($filter_parameter, array('route', '_route_', 'path', 'token', 'user_token', 'api_token'), true)) {
++			$parameters[] = $filter_parameter;
++		}
++
++		// Carry category controls only; routing fields and login tokens must not
++		// be copied into a public, permanently cached redirect.
++		foreach ($parameters as $parameter) {
++			if (isset($this->request->get[$parameter]) && is_scalar($this->request->get[$parameter])) {
++				$arguments[$parameter] = $this->request->get[$parameter];
++			}
++		}
++
++		$secure = !empty($this->request->server['HTTPS']) && $this->request->server['HTTPS'] !== 'off';
++		$redirect = $this->url->link('product/category', $arguments, $secure);
++		$target = parse_url(str_replace('&amp;', '&', $redirect));
++		$target_uri = $target['path'] . (isset($target['query']) ? '?' . $target['query'] : '');
++
++		// An ambiguous SEO keyword must never redirect back to the same URL.
++		if (isset($this->request->server['REQUEST_URI']) && html_entity_decode($this->request->server['REQUEST_URI'], ENT_QUOTES, 'UTF-8') === $target_uri) {
++			$this->request->get['route'] = 'error/not_found';
++			return;
++		}
++
++		$this->response->redirect($redirect, 301);
++	}
++
+ public function rewrite($link) {
+  
+ $url_info = parse_url(str_replace('&amp;', '&', $link));
+@@ -293,4 +349,4 @@ return $link;
+  
+ }
+  
+-}
+\ No newline at end of file
++}

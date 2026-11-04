@@ -1,0 +1,16 @@
+diff --git a/system/library/db.php b/system/library/db.php
+index f2febac..c47a38b 100755
+--- a/system/library/db.php
++++ b/system/library/db.php
+@@ -82,4 +82,9 @@ class DB {
+ 	public function connected() {
+ 		return $this->adaptor->connected();
+ 	}
+-}
+\ No newline at end of file
++
++	public function close() {
++		// Drop the adaptor once; its destructor closes the underlying connection.
++		$this->adaptor = null;
++	}
++}

@@ -11,6 +11,7 @@ class ThemeOptions {
 	private $data = array();
 	private $registry = array();
 	private $loader = array();
+	private $settingsLoaded = false;
 	
 	public function __construct($registry, $loader) {
 		$this->data['registry'] = $registry;
@@ -18,7 +19,7 @@ class ThemeOptions {
 	}
 	
   	public function get($key, $array1 = '', $array2 = '', $array3 = '') {
-  	     if(empty($data)) {
+		if (!$this->settingsLoaded) {
   	            $registry = $this->data['registry'];
   	            $config = $registry->get('config');
   	            
@@ -32,13 +33,16 @@ class ThemeOptions {
   	            }
   	            
   	            if(file_exists(DIR_TEMPLATE.$template.'/skins/store_'.$store.'/'.$skin.'/settings.json')) {
-  	            	$template = json_decode(file_get_contents(DIR_TEMPLATE.$template.'/skins/store_'.$store.'/'.$skin.'/settings.json'), true);
-  	            	foreach ($template as $option => $value) { 
-  	            		$this->data[$option] = $value;
-  	            	}
+				$settings = json_decode(file_get_contents(DIR_TEMPLATE.$template.'/skins/store_'.$store.'/'.$skin.'/settings.json'), true);
+				if (is_array($settings)) {
+					foreach ($settings as $option => $value) {
+						$this->data[$option] = $value;
+					}
+				}
   	            }
   	            $this->data['store'] = $store;
   	            $this->data['skin']  = $skin;
+			$this->settingsLoaded = true;
   	     }
   	     
   		if($key == 'payment') {
