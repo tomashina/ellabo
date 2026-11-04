@@ -907,9 +907,8 @@ class ControllerExtensionModuleProductQuickEdit extends Controller {
         }
 
         try {
+            $xml = new ImportXML(ImportFeed::load(IMPORT_XML_PRODUCTS_URL, 'products'));
             $this->ensureProductPriceMpColumn();
-            
-            $xml = new ImportXML(simplexml_load_file(IMPORT_XML_PRODUCTS_URL));
         
             $xml->setDiffCodes();
 
@@ -941,6 +940,11 @@ class ControllerExtensionModuleProductQuickEdit extends Controller {
         
             $this->response->addHeader('Content-Type: application/json');
             $this->response->setOutput(collect($xml->diff_codes->count())->toJson());
+            return;
+        } catch (ImportFeedException $e) {
+            $this->response->addHeader('HTTP/1.1 503 Service Unavailable');
+            $this->response->addHeader('Content-Type: application/json');
+            $this->response->setOutput(json_encode(['error' => $e->getMessage()]));
             return;
         } finally {
             $this->releaseImportLock($lockHandle);
@@ -1057,12 +1061,14 @@ class ControllerExtensionModuleProductQuickEdit extends Controller {
         }
 
         try {
-            $this->ensureProductPriceMpColumn();
-        
-            $xml = new ImportXML(simplexml_load_file(IMPORT_XML_STANJE));
-        
+            $xml = new ImportXML(ImportFeed::load(IMPORT_XML_STANJE, 'stock'));
             $exist_codes  = Product::pluck('model')->flatten();
             $loaded       = $xml->collect()->whereIn('Sifra', $exist_codes);
+
+            if ($loaded->isEmpty()) {
+                throw new ImportFeedException('Stock feed contains no matching products; catalog unchanged.');
+            }
+            $this->ensureProductPriceMpColumn();
 
             $stageTable = DB_PREFIX . 'stage_stock_' . uniqid('', true);
             $this->db->query("
@@ -1109,6 +1115,11 @@ class ControllerExtensionModuleProductQuickEdit extends Controller {
             
             $this->response->addHeader('Content-Type: application/json');
             $this->response->setOutput(collect($id)->toJson());
+            return;
+        } catch (ImportFeedException $e) {
+            $this->response->addHeader('HTTP/1.1 503 Service Unavailable');
+            $this->response->addHeader('Content-Type: application/json');
+            $this->response->setOutput(json_encode(['error' => $e->getMessage()]));
             return;
         } finally {
             $this->releaseImportLock($lockHandle);
@@ -1303,6 +1314,10 @@ class ControllerExtensionModuleProductQuickEdit extends Controller {
         $pidTable   = $stageTable . '_pid';
 
         try {
+            $imports = [];
+            foreach ($feeds as $url) {
+                $imports[] = new ImportXML(ImportFeed::load($url, 'specials'));
+            }
             $this->db->query("START TRANSACTION");
 
             // TEMPORARY staging s obje cijene
@@ -1318,8 +1333,7 @@ class ControllerExtensionModuleProductQuickEdit extends Controller {
 
             $batchSize = 1000;
 
-            foreach ($feeds as $url) {
-                $xml = new ImportXML(simplexml_load_file($url));
+            foreach ($imports as $xml) {
                 $rows = $xml->setSpecialCodes(); // očekuje: Sifra, Raspolozivo, MlpOsnovica (new), MlpOsnovicaOld (old)
 
                 $batch = [];
@@ -1419,6 +1433,9 @@ class ControllerExtensionModuleProductQuickEdit extends Controller {
 
             return ['status' => 'ok', 'updated' => true];
 
+        } catch (ImportFeedException $e) {
+            $this->response->addHeader('HTTP/1.1 503 Service Unavailable');
+            return ['error' => 'Update failed', 'msg' => $e->getMessage()];
         } catch (\Throwable $e) {
             $this->db->query("ROLLBACK");
             if (class_exists('Log') && method_exists('Log', 'stockPile')) {

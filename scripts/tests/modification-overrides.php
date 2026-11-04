@@ -7,7 +7,12 @@ $root = $temporary . '/shop';
 $backup = $temporary . '/backup';
 mkdir($root, 0700);
 mkdir($backup, 0700);
-$files = array('system/library/db.php' => 'database-close.patch', 'catalog/controller/startup/seo_url.php' => 'category-path.patch');
+$files = array(
+	'system/library/db.php' => 'database-close.patch',
+	'catalog/controller/startup/seo_url.php' => 'category-path.patch',
+	'admin/controller/extension/module/product_quick_edit.php' => 'local-import-feed.patch',
+	'catalog/controller/extension/module/ag_specials_cron.php' => 'local-specials-feed.patch'
+);
 $originals = array();
 
 function expectOverride($condition, $message) {

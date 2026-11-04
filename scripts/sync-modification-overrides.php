@@ -10,7 +10,9 @@ $apply = $argv[2] === '--apply';
 $backup = isset($argv[3]) ? rtrim($argv[3], '/') : null;
 $patches = array(
 	'system/library/db.php' => 'database-close.patch',
-	'catalog/controller/startup/seo_url.php' => 'category-path.patch'
+	'catalog/controller/startup/seo_url.php' => 'category-path.patch',
+	'admin/controller/extension/module/product_quick_edit.php' => 'local-import-feed.patch',
+	'catalog/controller/extension/module/ag_specials_cron.php' => 'local-specials-feed.patch'
 );
 $temporary = array();
 

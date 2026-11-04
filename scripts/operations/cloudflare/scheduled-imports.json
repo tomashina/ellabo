@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "zone": "ellabo.hr",
+  "prepared_on": "2026-11-04",
+  "providers": {
+    "easycron": {
+      "sources": [
+        "https://www.easycron.com/ips.json",
+        "https://www.easycron.com/ips"
+      ],
+      "retrieved_on": "2026-11-04",
+      "ipv4": [
+        "198.27.83.222",
+        "192.99.21.124",
+        "167.114.64.88",
+        "167.114.64.21"
+      ],
+      "ipv6": [
+        "2607:5300:60:24de::",
+        "2607:5300:60:467c::",
+        "2607:5300:60:6558::",
+        "2607:5300:60:6515::"
+      ],
+      "endpoints": [
+        {
+          "path": "/admin/index.php",
+          "route": "extension/module/product_quick_edit/updateStockFromXML"
+        },
+        {
+          "path": "/index.php",
+          "route": "extension/module/ag_specials_cron/updateSpecialPricesUnified"
+        }
+      ]
+    },
+    "cron_job_org": {
+      "sources": [
+        "https://api.cron-job.org/executor-nodes.json",
+        "https://cron-job.org/en/faq/"
+      ],
+      "retrieved_on": "2026-11-04",
+      "ipv4": [
+        "116.203.129.16",
+        "116.203.134.67",
+        "23.88.105.37",
+        "128.140.8.200",
+        "91.99.23.109"
+      ],
+      "ipv6": [],
+      "endpoints": [
+        {
+          "path": "/admin/index.php",
+          "route": "extension/module/product_quick_edit/importProductsFromXML"
+        }
+      ]
+    }
+  },
+  "configuration_rule": {
+    "phase": "http_config_settings",
+    "ref": "ellabo_scheduled_imports_under_attack_exception",
+    "description": "Allow scheduled imports from verified scheduler IPs during Under Attack mode",
+    "enabled": true,
+    "action": "set_config",
+    "action_parameters": {
+      "security_level": "off"
+    },
+    "expression": "(http.host eq \"www.ellabo.hr\" and http.request.method eq \"GET\" and len(http.request.uri.args[\"route\"]) eq 1 and len(http.request.uri.args[\"key\"]) eq 1 and http.request.uri.args[\"key\"][0] ne \"\" and ((ip.src in {198.27.83.222 192.99.21.124 167.114.64.88 167.114.64.21 2607:5300:60:24de:: 2607:5300:60:467c:: 2607:5300:60:6558:: 2607:5300:60:6515::} and ((http.request.uri.path eq \"/admin/index.php\" and http.request.uri.args[\"route\"][0] eq \"extension/module/product_quick_edit/updateStockFromXML\") or (http.request.uri.path eq \"/index.php\" and http.request.uri.args[\"route\"][0] eq \"extension/module/ag_specials_cron/updateSpecialPricesUnified\"))) or (ip.src in {116.203.129.16 116.203.134.67 23.88.105.37 128.140.8.200 91.99.23.109} and http.request.uri.path eq \"/admin/index.php\" and http.request.uri.args[\"route\"][0] eq \"extension/module/product_quick_edit/importProductsFromXML\")))",
+    "id": "0e6afea5ec8d487b8a86c645f0245680"
+  },
+  "zone_setting_after_cron_verification": {
+    "security_level": "under_attack"
+  },
+  "verification_required_before_global_under_attack": [
+    "Review, validate, commit and push this manifest before applying its Cloudflare configuration rule.",
+    "Confirm the rule is accepted and enabled with no later conflicting configuration rule.",
+    "Verify each existing scheduled job retains its backend key and reaches the application from its bound provider.",
+    "Verify production feed locations and successful XML downloads from the application server before running any import under global Under Attack mode.",
+    "Confirm successful application responses for all three imports, then enable the target global Under Attack setting and verify normal public traffic remains protected.",
+    "Production confirmed on 2026-11-04: all four configured same-host XML feeds exist under the local xml directory; publish and validate the local ImportFeed reader before enabling global Under Attack mode."
+  ],
+  "security_notes": [
+    "Provider IPs are public shared execution addresses, not authentication; the existing IMPORT_XML_KEY checks remain required.",
+    "Exactly one route argument and exactly one nonempty key argument are required. No key value is stored or validated at the Cloudflare layer.",
+    "Only security_level is overridden for the three provider-bound endpoints; no broad WAF or bot-protection skip is requested.",
+    "Order exports, other paths, other routes, other providers, other methods and other hostnames are outside this exception."
+  ],
+  "cloudflare_references": [
+    "https://developers.cloudflare.com/rules/configuration-rules/settings/",
+    "https://developers.cloudflare.com/ruleset-engine/rules-language/functions/#len",
+    "https://developers.cloudflare.com/ruleset-engine/rules-language/fields/reference/http.request.uri.args/"
+  ],
+  "record_kind": "desired_configuration"
+}

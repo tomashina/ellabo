@@ -49,18 +49,20 @@ else
     git rev-parse HEAD > "$backup_dir/deploy-commit.txt"
     tar -cf "$backup_dir/source-before.tar" -C "$deploy_root" \
         system/framework.php system/library/db.php system/library/themeoptions.php \
-        catalog/controller/startup/seo_url.php
+        catalog/controller/startup/seo_url.php \
+        admin/controller/extension/module/product_quick_edit.php \
+        catalog/controller/extension/module/ag_specials_cron.php
     if [[ -f "$mysqli_override" ]]; then
         tar -rf "$backup_dir/source-before.tar" -C "$deploy_root" \
             system/storage/modification/system/library/db/mysqli.php
     fi
-    php "$repo_root/scripts/sync-modification-overrides.php" "$deploy_root" --apply "$backup_dir"
-
-    # Publish dependencies before framework.php starts admitting requests with them.
+    # Publish shared dependencies before controllers or the framework use them.
     /usr/bin/rsync --perms --checksum \
-        "$repo_root/system/library/catalogrequestgate.php" "$deploy_root/system/library/"
+        "$repo_root/system/library/catalogrequestgate.php" \
+        "$repo_root/system/library/importfeed.php" "$deploy_root/system/library/"
     /usr/bin/rsync --perms --checksum \
         "$repo_root/system/library/db.php" "$deploy_root/system/library/"
+    php "$repo_root/scripts/sync-modification-overrides.php" "$deploy_root" --apply "$backup_dir"
 fi
 
 cd "$repo_root"

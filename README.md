@@ -24,6 +24,8 @@ Catalog requests acquire a nonblocking request slot before connecting to the dat
 
 Malformed category chains redirect to the final category's real ancestry before rendering. Theme settings load once per request, avoiding repeated JSON parsing.
 
+The four configured Ellabo XML import mirrors are read locally through `ImportFeed`, without making HTTP requests back through Cloudflare. Feed validation runs before catalog changes and fails closed, including empty/unmatched stock data. Run `php scripts/tests/import-feed.php` and `php scripts/tests/import-feed-stock-safety.php` when changing this flow. The secret-free scheduler exception policy is tracked under `scripts/operations/cloudflare/`; it is not deployed to the public website.
+
 Additional checks: `php scripts/tests/catalog-request-gate.php`, `php scripts/tests/category-path-canonical.php`, `php scripts/tests/theme-options-settings.php`, and `php scripts/tests/modification-overrides.php`.
 
 ## Git deployment
